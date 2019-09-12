@@ -1,7 +1,6 @@
 ---
-title: "index"
-author: "Joel Ricci López"
-date: "12/9/2019"
+title: "Inicio"
+
 output: html_document
 ---
 
