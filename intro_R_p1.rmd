@@ -1,7 +1,7 @@
 ---
 title: "Introducción a R: Parte 1"
 ---
-
+***
 # Primera Parte
 
 Este documento muestra... bla bla bla
@@ -18,9 +18,10 @@ Una de las cosas más simples que podemos hacer con R, es usar la **consola** co
 10 + 5
 ```
 
-Como ves, al ejecutar cada comando en la **consola**, R mostrará la respuesta (precedida por un "*[1]*") en la siguiente línea. Podemos probar otras operaciones aritméticas.
+Como ves, al ejecutar cada comando en la **consola**, R mostrará la respuesta (precedida por un `[1]`) en la siguiente línea. Podemos probar otras operaciones aritméticas.
 
 **Ejercicio:**
+
 * Fíjate en el orden en que cada operación se ejecuta; ¿El resultado de las operaciones  $2-2*2$ y $(2 -2) * 2$ es el mismo?
 * ¿Qué hacen las operaciones $3 ** 2$ y $3^2$?
 
@@ -36,12 +37,12 @@ Como ves, al ejecutar cada comando en la **consola**, R mostrará la respuesta (
 
 ### Orden de las operaciones aritméticas
 
-1. Paréntesis: (, )
-2. Exponente: ^ o **
-3. División: /
-4. Multiplicación: *
-5. Suma: +
-6. Resta: -
+1. **Paréntesis:** `( )`
+2. **Exponente:** `^` o `**`
+3. **División:** `/`
+4. **Multiplicación:** `*`
+5. **Suma:** `+`
+6. **Resta:** `-`
 
 **¿Cuáles son los resultados tras usar los siguientes comandos?**
 ```{r echo = T, results = 'hide'}
@@ -61,10 +62,10 @@ Prueba escribir los siguientes comandos en la consola, ¿Cómo representa R los 
 10**6
 1 / 10 ** 6
 ```
-¿Qué pasa si escribes direactamente *1e3* en la consola?
+¿Qué pasa si escribes direactamente `1e3` en la consola?
 
 ## Comentarios
-Es posible hacer comentarios en el código usando el caracter **#**, lo que escribas después de dicho símbolo no se ejecutará. Prueba lo siguiente.
+Es posible hacer comentarios en el código usando el caracter `#`, lo que escribas después de dicho símbolo no se ejecutará. Prueba lo siguiente.
 
 ```{r}
 # Esto es un comentario
@@ -88,18 +89,18 @@ exp(1) # ¿Qué hace esta función?
 ## Ayuda en R
 
 No es necesario memorizar todas las funciones, si quieres hacer algo en R puedes googlearlo, seguramente encontrarás una respuesta.  
-Otra opción es usar el panel de ayuda en R. Por ejemplo, vamos a averiguar que hace la función $exp()$:
+Otra opción es usar el panel de ayuda en R. Por ejemplo, vamos a averiguar que hace la función `exp()`:
 ```{r}
 ?exp
 ```
 
-En el panel de **Ayuda**, o *Help*, de RStudio es posible consultar la documenación sobre las funciones y comandos que podemos usar en R. Puedes usar la sintáxis _**?**nombreFuncion_ (como en _**?**exp_ o _**?**sum_), o directamente escribir en la sección de búsqueda del panel de **Ayuda**.
+En el panel de **Ayuda**, o *`Help`*, de RStudio es posible consultar la documenación sobre las funciones y comandos que podemos usar en R. Puedes usar la sintáxis `?nombreFuncion` (como en `?exp` o `?sum`), o directamente escribir en la sección de búsqueda del panel de **Ayuda**.
 
 **Ejercicio:** puedes consultar ayuda también sobre cómo funcionan los operadores. Por ejemplo:
 ```{r}
 ?"+"
 ```
-**¿Qué hacen los operadores _%\%_ y _%%_**
+**¿Qué hacen los operadores `%\%` y `%%`**
 
 ```{r eval=FALSE}
 4 %/% 2
@@ -117,12 +118,12 @@ En el panel de **Ayuda**, o *Help*, de RStudio es posible consultar la documenac
 
 Hasta ahora hemos usado únicamente la consola. Llegó la hora de llevar un registro de los comandos que vamos usando y poder guardarlos en un archivo.
 
-Podemos crear un nuevo archivo *.R* usando *File > New File > R script*, esto generará un archivo donde podremos ir escribiendo comandos de **R** sin necesidad de tener que ejecutarlos directamente sobre la consola.
+Podemos crear un nuevo archivo *.R* usando `File > New File > R script`, esto generará un archivo donde podremos ir escribiendo comandos de **R** sin necesidad de tener que ejecutarlos directamente sobre la consola.
 
 ### Guardar el archivo *.R*
-Puedes guardar el archivo desde *File > Save*, o con *Ctrl + S*. Guárdalo en el **Escritorio** dentro de una carpeta llamada *Taller_R*, nombrando el archivo como *Intro_R.R*; es importante usar la extensión __*.R*__.  
+Puedes guardar el archivo desde `File > Save`, o con `Ctrl + S`. Guárdalo en el **Escritorio** dentro de una carpeta llamada *Taller_R*, nombrando el archivo como *Intro_R.R*; es importante usar la extensión __*.R*__.  
 Una vez guardado vamos a la ventana de navegación de archivos (**Files**) dentro de RStudio (panel inferior derecho). Puedes navegar hasta la carpeta de trabajo.  
-En la pestaña **_More_** del panel de navegación de archivos, selecciona *Set As Working Directory*. ¿Qué ocurrió?
+En la pestaña **_More_** del panel de navegación de archivos, selecciona *`Set As Working Directory`*. ¿Qué ocurrió?
 
 ```{r eval=FALSE}
 getwd() # Este comando nos dice la ruta del directorio de trabajo donde estamos.
@@ -130,11 +131,11 @@ getwd() # Este comando nos dice la ruta del directorio de trabajo donde estamos.
 ```
 
 A partir de ahora puedes escribir los comandos que vayamos viendo directamente en el archivo *Intro_R.R*, escribiéndo un comando por línea.  
-Puedes ejecutar una línea colocándo el cursor sobre ella y presionando *__Crtl + Enter__*. También puedes ejecutar múltiples líneas si las seleccionas con el cursor y luego presionas *__Crtl + Enter__*.
+Puedes ejecutar una línea colocándo el cursor sobre ella y presionando `Crtl + Enter`. También puedes ejecutar múltiples líneas si las seleccionas con el cursor y luego presionas `Crtl + Enter`.
 
 ## Variables y asignaciones
 
-En R, es posible almacenar valores en variables usando el operador de asignación **<-**, o **=**: 
+En R, es posible almacenar valores en variables usando el operador de asignación `<-`, o `=`: 
 ```{r}
 # Asignamos a la variable llamada "temperatura" el valor numérico 25
 x = 25
@@ -145,7 +146,7 @@ Al ejecutar el comando, R no devúelve una respuesta. Sin embargo si escribimos 
 x
 ```
 
-*Nota:* ¿Qué pasa si en lugar de escribir *x* (minúscula) en la consola, escribímos *X* (mayúscula)?
+*Nota:* ¿Qué pasa si en lugar de escribir `x` (minúscula) en la consola, escribímos `X` (mayúscula)?
 
 
 Como es de esperarse, ahora puedes hacer operaciones usando dicha variable:
@@ -155,7 +156,7 @@ x * 5
 log10(x)
 ```
 
-Observa que el valor de $x$ no ha cambiado aunque hayamos operado sobre él. Ejecuta lo siguiente:
+Observa que el valor de `x` no ha cambiado aunque hayamos operado sobre él. Ejecuta lo siguiente:
 ```{r}
 # print y paste nos sirven para "imprimir" en la consola:
 print( paste( "El valor actual de x es:", x ) )
@@ -165,13 +166,13 @@ x = x * 2
 print( paste( "El nuevo valor de x es:", x ) )
 ```
 
-Crea ahora una variable $temp_K$ que contenga el doble del valor que tome x. **¿Cuánto vale $y$?**
+Crea ahora una variable $temp_K$ que contenga el doble del valor que tome x. **¿Cuánto vale `y`?**
 ```{r}
 y = x * 2
 y
 ```
 
-Asigna un nuevo valor a *x* de tal manera que *y* ahora pueda valer 1,000.
+Asigna un nuevo valor a `x` de tal manera que `y` ahora pueda valer 1,000.
 ```{r eval=FALSE}
 # Actualiza el valor de x.
 x <- ingresa tu respuesta
@@ -207,9 +208,9 @@ once = "once"
 
 **¿Cuántas variables pudiste crear?**
 
-### Paneles *Environment* y *History*
-Tras ejecutar los comandos anteriores verás que en el panel superior derecho, en la pestaña *Environment* se han ido guardando las variables que has creado. Dichas variables están guardadas en memoria y pueden ser usadas para realizar operaciones.  
-Por otro lado, el panel *History* posee el historial de todos los comandos que has ido ejecutando en la sesión.
+### Paneles *`Environment`* y *`History`*
+Tras ejecutar los comandos anteriores verás que en el panel superior derecho, en la pestaña *`Environment`* se han ido guardando las variables que has creado. Dichas variables están guardadas en memoria y pueden ser usadas para realizar operaciones.  
+Por otro lado, el panel *`History`* posee el historial de todos los comandos que has ido ejecutando en la sesión.
 
 ## Operaciones relacionales
 
@@ -233,7 +234,7 @@ Los tipos de datos **básicos** más comunes en R son los siguientes:
 * **character**: cadena de texto
 * **logical**: valores lógicos (verdadero o falso)
 
-Hasta ahora hemos utilizado algunos de ellos, y es importante saber con que tipo de datos estamos trabajando, pues de ello depende qué operaciones podemos realizar con ellos. A cotinuación usamos la función **_class()_** que nos indica qué tipo de dato esun objeto:
+Hasta ahora hemos utilizado algunos de ellos, y es importante saber con que tipo de datos estamos trabajando, pues de ello depende qué operaciones podemos realizar con ellos. A cotinuación usamos la función `class()` que nos indica qué tipo de dato esun objeto:
 
 ```{r collapse=TRUE}
 numero_real = 100.5
@@ -256,7 +257,7 @@ class(valor_logico)
 ```
 
 **Ejercicio**: ¿Cuáles de las siguientes operaciones es posible realizar? ¿Qué tipo de dato es el resultado de cada una?  
-Usa la función **_class()_** para evaluar cada resultado (por ejemplo: *class(100 + 2)*)
+Usa la función `class()` para evaluar cada resultado (por ejemplo: `class(100 + 2)`)
 
 ```{r eval=FALSE}
 100 + 2				 #(1

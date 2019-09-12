@@ -1,0 +1,54 @@
+code span.op {
+  color: #f56d6d;
+}
+
+code span.kw {
+  color: #f5d271;
+}
+
+code span.dv {
+  color: #76ffd5;
+}
+
+code span.fl {
+  color: #f1e5bd;
+}
+
+p code {
+  color: #333;
+  background-color: #eaddb8;
+}
+
+div h1.title {
+    font-size: 42px;
+    color: #eb6864;
+}
+
+.header-section-number::after {
+  content: "-";
+}
+
+.section h1 {
+  padding: 80px 0px 30px;
+  margin-top: 0px;
+}
+
+.section h2 {
+    padding: 80px 0px 20px;
+    margin-top: -66px;
+}
+
+.section h2 {
+    padding: 80px 0px 10px;
+    margin-top: -66px;
+}
+
+ul .tocify ul, .tocify li {
+    line-height: 20px;
+    background-color: #EFEFEF;
+    color: #333;
+}
+
+div.main-container {
+    max-width: 1350px;
+}

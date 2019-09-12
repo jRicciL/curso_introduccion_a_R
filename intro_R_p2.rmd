@@ -1,11 +1,11 @@
 ---
 title: "Introducción a R: Parte 3"
 ---
-
+***
 # Tercera Parte
 ## Vectores
 
-Un vector es una estructura de una sola dimensión que contiene elementos homogéneos. Podemos crear vectores usando la función **_c()_** (**combine**). (Usa *?c* en consola, o busca **_c_** en el panel de ayuda para saber más).
+Un vector es una estructura de una sola dimensión que contiene elementos homogéneos. Podemos crear vectores usando la función `c()` (**combine**). (Usa `?c` en consola, o busca **_c_** en el panel de ayuda para saber más).
 
 Vamos a crear nuestros primeros vectores:
 ```{r collapse=TRUE}
@@ -17,7 +17,7 @@ w = c(1, 2, "3", 4)
 print(w)
 class(w)
 ```
-**Es importante recordar que los vectores son _homogéneos_, por lo que pueden tener un sólo tipo de dato.** Observa como el vector $w$, al ser creado con un dato de tipo *character*, $"3"$, ha convertido los elementos *numeric* (1 y 2) a *character*. 
+**Es importante recordar que los vectores son _homogéneos_, por lo que pueden tener un sólo tipo de dato.** Observa como el vector `w`, al ser creado con un dato de tipo *character*, $"3"$, ha convertido los elementos *numeric* (1 y 2) a *character*. 
 
 También puedes crear vectores con valores dentro de un rango usando **:**.
 ```{r collapse=TRUE}
@@ -25,12 +25,12 @@ z = c(1, 2, 3:10) # Es lo mismo que c(1:10)
 print(z)
 class(z)
 ```
-¿Qué tipo de dato es el vector **_z_**?
+¿Qué tipo de dato es el vector `z`?
 
 **Ejercicio**:
 
 1. Crea un vector que vaya del 0 al 100 sin incluir el 50, es decir, que vaya del 1 al 49, y del 51 al 100.
-2. Crea un vector que vaya del 2 al 100, de dos en dos. **Pista**: busca en **Ayuda** la función *seq()*.
+2. Crea un vector que vaya del 2 al 100, de dos en dos. **Pista**: busca en **Ayuda** la función `seq()`.
 
 ```{r include=FALSE}
 c(1:49, 51:100)
@@ -64,7 +64,7 @@ names(edades) = nombres_personas
 edades
 ```
 
-**Ejercicio**: Calcula la media de las edades. *Pista*: puedes usar las funciones *sum()* y *length()*.
+**Ejercicio**: Calcula la media de las edades. *Pista*: puedes usar las funciones `sum()` y `length()`.
 ```{r include=FALSE}
 # Ejercicio: sacar la media de las edades
 media_edades = sum(edades) / length(edades)
@@ -79,7 +79,7 @@ edades[2] # El segundo elmento del vector
 edades[c(2, 3)] # Segundo y tercer elementos del vector
 ```
 
-Podemos remover ciertos valores del vector según su posición. Para ello usamos el signo *menos*, **-** .
+Podemos remover ciertos valores del vector según su posición. Para ello usamos el signo *menos*, `-`.
 ```{r collapse=TRUE}
 edades[-1] # Se va Ernesto
 edades[-2] # Se va Andrés
@@ -93,7 +93,7 @@ n = 60
 edades > n
 ```
 
-Ahora podemos usar los corchetes cuadrados **_[]_** para conservar los valores que nos interesan, según la condición:
+Ahora podemos usar los corchetes cuadrados `[]` para conservar los valores que nos interesan, según la condición:
 ```{r}
 n = 60
 condicion = edades > n
@@ -101,21 +101,21 @@ edades[ condicion ] # Esto es igual a edades[ edades > n ]
 ```
 
 Podemos preguntar también: ¿qué personas están entre los 55 **y** 65 años?  
-Para ello usamos dos condiciones y el *operador lógico* **&** (puedes buscar *?"&"* para más información) que nos permita evaluarlas.
+Para ello usamos dos condiciones y el *operador lógico* `&` (puedes buscar `?"&"` para más información) que nos permita evaluarlas.
 ```{r}
 condicion_1 = edades >= 55 # Observa que usamos una condición =>, que significa mayor o igual
 condicion_2 = edades <= 65 # En este caso usamos menor o igual
 edades[ condicion_1 & condicion_2 ]
 ```
 
-**Ejercicio:** ¿Qué personas son menores a los 55 años **o** mayores a los 65? *Pista:* En este caso tendrás que usar el operador lógico **|** (caracter *Alt + 124*).
+**Ejercicio:** ¿Qué personas son menores a los 55 años **o** mayores a los 65? *Pista:* En este caso tendrás que usar el operador lógico `|` (caracter *Alt + 124*).
 
 ```{r include=FALSE}
 edades[ (edades < 55) | (edades > 65) ]
 ```
 
 ### Funciones aplicables a vectores:
-Para ordenar el vector, usamos la función *sort()*:
+Para ordenar el vector, usamos la función `sort()`:
 ```{r}
 edades_ord = sort(edades) # Orden acendente
 edades_ord 
@@ -140,14 +140,14 @@ mean( edades_ord[ - length(edades) ] )
 
 ## Ejercicio Final
 
-Ahora vamos a utilizar datos reales para practicar lo visto hasta ahora. R contiene *datasets* precargados con los que podemos trabajar. En este caso vamos a utilizar el *dataset* **PlantGrowth**, que contiene datos experimentales del crecimiento de plantas (midiendo su **peso** seco en $g$) bajo ciertas condiciones (puedes ejecuatar en consola *?PlantGrowth* para más información).  
+Ahora vamos a utilizar datos reales para practicar lo visto hasta ahora. R contiene *datasets* precargados con los que podemos trabajar. En este caso vamos a utilizar el *dataset* `PlantGrowth`, que contiene datos experimentales del crecimiento de plantas (midiendo su **peso** seco en $g$) bajo ciertas condiciones (puedes ejecuatar en consola `?PlantGrowth` para más información).  
 Por ahora sólo nos interesa tomar los datos de peso de las plantas, así que ejecuta lo siguiente:
 ```{r}
 peso_plantas = PlantGrowth$weight
 # No te preocupes por la sintaxis, lo veremos más adelante
 ```
 
-Con los datos cargados en la variable **peso_plantas** responde las siguientes preguntas:
+Con los datos cargados en la variable `peso_plantas` responde las siguientes preguntas:
 
 1. ¿Cuántos datos contiene?
 2. ¿Qué tipo de datos son?

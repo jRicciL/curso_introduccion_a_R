@@ -5,16 +5,18 @@ navbar:
   left:
   - text: "Home"
     href: index.html
-  - text: "Introducción: Parte 1"
+  - text: "Introducción: Partes 1 y 2"
     href: intro_R_p1.html
-  - text: "Introducción: Parte 2"
+  - text: "Introducción: Parte 3"
     href: intro_R_p2.html
 output:
   html_document:
     toc: true
     toc_float: true
     toc_collapsed: true
+    css: "styles.css"
     theme: journal
     highlight: zenburn
     code_download: true
     number_sections: true
+  
