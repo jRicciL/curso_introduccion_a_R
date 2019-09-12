@@ -5,8 +5,10 @@ navbar:
   left:
   - text: "Home"
     href: index.html
-  - text: "Introducción a R"
+  - text: "Introducción: Parte 1"
     href: intro_R_p1.html
+  - text: "Introducción: Parte 2"
+    href: intro_R_p2.html
 output:
   html_document:
     toc: true
