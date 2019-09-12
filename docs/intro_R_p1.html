@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Joel Ricci López" />
+
+
+<title>Introducción a R</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/journal.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<script src="site_libs/navigation-1.1/sourceembed.js"></script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  { color: #cccccc; background-color: #303030; }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ffcfaf; } /* Alert */
+code span.an { color: #7f9f7f; font-weight: bold; } /* Annotation */
+code span.at { } /* Attribute */
+code span.bn { color: #dca3a3; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #f0dfaf; } /* ControlFlow */
+code span.ch { color: #dca3a3; } /* Char */
+code span.cn { color: #dca3a3; font-weight: bold; } /* Constant */
+code span.co { color: #7f9f7f; } /* Comment */
+code span.cv { color: #7f9f7f; font-weight: bold; } /* CommentVar */
+code span.do { color: #7f9f7f; } /* Documentation */
+code span.dt { color: #dfdfbf; } /* DataType */
+code span.dv { color: #dcdccc; } /* DecVal */
+code span.er { color: #c3bf9f; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #c0bed1; } /* Float */
+code span.fu { color: #efef8f; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #7f9f7f; font-weight: bold; } /* Information */
+code span.kw { color: #f0dfaf; } /* Keyword */
+code span.op { color: #f0efd0; } /* Operator */
+code span.ot { color: #efef8f; } /* Other */
+code span.pp { color: #ffcfaf; font-weight: bold; } /* Preprocessor */
+code span.sc { color: #dca3a3; } /* SpecialChar */
+code span.ss { color: #cc9393; } /* SpecialString */
+code span.st { color: #cc9393; } /* String */
+code span.va { } /* Variable */
+code span.vs { color: #cc9393; } /* VerbatimString */
+code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+#rmd-source-code {
+  display: none;
+}
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 61px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 66px;
+  margin-top: -66px;
+}
+.section h2 {
+  padding-top: 66px;
+  margin-top: -66px;
+}
+.section h3 {
+  padding-top: 66px;
+  margin-top: -66px;
+}
+.section h4 {
+  padding-top: 66px;
+  margin-top: -66px;
+}
+.section h5 {
+  padding-top: 66px;
+  margin-top: -66px;
+}
+.section h6 {
+  padding-top: 66px;
+  margin-top: -66px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Curso R</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="intro_R_p1.html">Introducción a R</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+<div class="btn-group pull-right">
+<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu" style="min-width: 50px;">
+<li><a id="rmd-download-source" href="#">Download Rmd</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">Introducción a R</h1>
+<h4 class="author">Joel Ricci López</h4>
+<h4 class="date">11/9/2019</h4>
+
+</div>
+
+
+<div id="primera-parte" class="section level1">
+<h1><span class="header-section-number">1</span> Primera Parte</h1>
+<p>Este documento muestra… bla bla bla</p>
+<div id="conociendo-rstudio" class="section level2">
+<h2><span class="header-section-number">1.1</span> Conociendo RStudio</h2>
+</div>
+<div id="usando-r-como-una-calculadora" class="section level2">
+<h2><span class="header-section-number">1.2</span> Usando R como una calculadora</h2>
+<p>Una de las cosas más simples que podemos hacer con R, es usar la <strong>consola</strong> como una calculadora. Escribe en ella:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="dv">10</span> <span class="op">+</span><span class="st"> </span><span class="dv">5</span></a></code></pre></div>
+<pre><code>## [1] 15</code></pre>
+<p>Como ves, al ejecutar cada comando en la <strong>consola</strong>, R mostrará la respuesta (precedida por un “<em>[1]</em>”) en la siguiente línea. Podemos probar otras operaciones aritméticas.</p>
+<p><strong>Ejercicio:</strong> * Fíjate en el orden en que cada operación se ejecuta; ¿El resultado de las operaciones <span class="math inline">\(2-2*2\)</span> y <span class="math inline">\((2 -2) * 2\)</span> es el mismo? * ¿Qué hacen las operaciones <span class="math inline">\(3 ** 2\)</span> y <span class="math inline">\(3^2\)</span>?</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="dv">10</span> <span class="op">-</span><span class="st"> </span><span class="dv">5</span></a></code></pre></div>
+<pre><code>## [1] 5</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="dv">10</span> <span class="op">*</span><span class="st"> </span><span class="dv">5</span></a></code></pre></div>
+<pre><code>## [1] 50</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="dv">10</span> <span class="op">/</span><span class="st"> </span><span class="dv">5</span></a></code></pre></div>
+<pre><code>## [1] 2</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="dv">2</span> <span class="op">-</span><span class="st"> </span><span class="dv">2</span> <span class="op">*</span><span class="st"> </span><span class="dv">2</span></a></code></pre></div>
+<pre><code>## [1] -2</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">(<span class="dv">2</span> <span class="op">-</span><span class="st"> </span><span class="dv">2</span>) <span class="op">*</span><span class="st"> </span><span class="dv">2</span></a></code></pre></div>
+<pre><code>## [1] 0</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="dv">3</span> <span class="op">**</span><span class="st"> </span><span class="dv">2</span></a></code></pre></div>
+<pre><code>## [1] 9</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="dv">3</span> <span class="op">^</span><span class="st"> </span><span class="dv">2</span></a></code></pre></div>
+<pre><code>## [1] 9</code></pre>
+<div id="orden-de-las-operaciones-aritmeticas" class="section level3">
+<h3><span class="header-section-number">1.2.1</span> Orden de las operaciones aritméticas</h3>
+<ol style="list-style-type: decimal">
+<li>Paréntesis: (, )</li>
+<li>Exponente: ^ o **</li>
+<li>División: /</li>
+<li>Multiplicación: *</li>
+<li>Suma: +</li>
+<li>Resta: -</li>
+</ol>
+<p><strong>¿Cuáles son los resultados tras usar los siguientes comandos?</strong></p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1">(<span class="dv">1</span> <span class="op">+</span><span class="st"> </span>(<span class="dv">2</span> <span class="op">*</span><span class="st"> </span>(<span class="dv">3</span><span class="op">**</span><span class="dv">2</span>))) <span class="co"># Opción 1</span></a>
+<a class="sourceLine" id="cb17-2" data-line-number="2"><span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span> <span class="op">*</span><span class="st"> </span><span class="dv">3</span> <span class="op">^</span><span class="st"> </span><span class="dv">2</span>      <span class="co"># Opción 2</span></a>
+<a class="sourceLine" id="cb17-3" data-line-number="3"><span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span> <span class="op">*</span><span class="st"> </span>(<span class="dv">3</span><span class="op">**</span><span class="dv">2</span>)     <span class="co"># Opción 3</span></a></code></pre></div>
+<p>También puedes usar números decimales:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="fl">2.5</span> <span class="op">*</span><span class="st"> </span><span class="dv">2</span></a></code></pre></div>
+<pre><code>## [1] 5</code></pre>
+</div>
+</div>
+<div id="notacion-cientifica" class="section level2">
+<h2><span class="header-section-number">1.3</span> Notación científica</h2>
+<p>Prueba escribir los siguientes comandos en la consola, ¿Cómo representa R los número muy grandes o muy pequeños?</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1"><span class="dv">10</span><span class="op">**</span><span class="dv">6</span></a></code></pre></div>
+<pre><code>## [1] 1e+06</code></pre>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1"><span class="dv">1</span> <span class="op">/</span><span class="st"> </span><span class="dv">10</span> <span class="op">**</span><span class="st"> </span><span class="dv">6</span></a></code></pre></div>
+<pre><code>## [1] 1e-06</code></pre>
+<p>¿Qué pasa si escribes direactamente <em>1e3</em> en la consola?</p>
+</div>
+<div id="comentarios" class="section level2">
+<h2><span class="header-section-number">1.4</span> Comentarios</h2>
+<p>Es posible hacer comentarios en el código usando el caracter <strong>#</strong>, lo que escribas después de dicho símbolo no se ejecutará. Prueba lo siguiente.</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1"><span class="co"># Esto es un comentario</span></a>
+<a class="sourceLine" id="cb24-2" data-line-number="2"><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="fl">2.5</span> <span class="co"># Este es un comentario</span></a></code></pre></div>
+<pre><code>## [1] 4.5</code></pre>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1"><span class="co"># 2 + 2.5</span></a></code></pre></div>
+</div>
+<div id="otras-funciones-matematicas" class="section level2">
+<h2><span class="header-section-number">1.5</span> Otras funciones Matemáticas</h2>
+<p>Además de los operadores algebráicos como <em><strong>+</strong>, <strong>-</strong>, <strong>/</strong>,</em> etc., <strong>R</strong> posee <em>funciones</em> preestablecidas que llevan a cabo otras operaciones aritméticas. Cada función recibe uno o más parámetros, los cuales los escribimos entre paréntesis, y separados por comas:</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1"><span class="kw">round</span>(<span class="fl">3.1415926</span>, <span class="dt">digits =</span> <span class="dv">3</span>) <span class="co"># Redondea 3.1415926 a tres decimales</span></a></code></pre></div>
+<pre><code>## [1] 3.142</code></pre>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1"><span class="kw">abs</span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="dv">10</span>) <span class="co"># Valor absoluto de la operación 1 - 10 = -9</span></a></code></pre></div>
+<pre><code>## [1] 9</code></pre>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1"><span class="kw">sum</span>(<span class="dv">5</span>, <span class="dv">10</span>) <span class="co"># 5 + 10</span></a></code></pre></div>
+<pre><code>## [1] 15</code></pre>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1"><span class="kw">sqrt</span>(<span class="dv">9</span>) <span class="co"># raíz cuadrada de 9</span></a></code></pre></div>
+<pre><code>## [1] 3</code></pre>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1"><span class="kw">log</span>(<span class="dv">1</span>) <span class="co"># ln de 1</span></a></code></pre></div>
+<pre><code>## [1] 0</code></pre>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1"><span class="kw">log</span>(<span class="dv">8</span>, <span class="dt">base =</span> <span class="dv">2</span>) <span class="co"># log base 2 de 8</span></a></code></pre></div>
+<pre><code>## [1] 3</code></pre>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" data-line-number="1"><span class="kw">log10</span>(<span class="dv">1000</span>) <span class="co"># log base 10 de 1000</span></a></code></pre></div>
+<pre><code>## [1] 3</code></pre>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" data-line-number="1"><span class="kw">exp</span>(<span class="dv">1</span>) <span class="co"># ¿Qué hace esta función?</span></a></code></pre></div>
+<pre><code>## [1] 2.718282</code></pre>
+</div>
+<div id="ayuda-en-r" class="section level2">
+<h2><span class="header-section-number">1.6</span> Ayuda en R</h2>
+<p>No es necesario memorizar todas las funciones, si quieres hacer algo en R puedes googlearlo, seguramente encontrarás una respuesta.<br />
+Otra opción es usar el panel de ayuda en R. Por ejemplo, vamos a averiguar que hace la función <span class="math inline">\(exp()\)</span>:</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" data-line-number="1">?exp</a></code></pre></div>
+<p>En el panel de <strong>Ayuda</strong>, o <em>Help</em>, de RStudio es posible consultar la documenación sobre las funciones y comandos que podemos usar en R. Puedes usar la sintáxis <em><strong>?</strong>nombreFuncion</em> (como en <em><strong>?</strong>exp</em> o <em><strong>?</strong>sum</em>), o directamente escribir en la sección de búsqueda del panel de <strong>Ayuda</strong>.</p>
+<p><strong>Ejercicio:</strong> puedes consultar ayuda también sobre cómo funcionan los operadores. Por ejemplo:</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" data-line-number="1">?<span class="st">&quot;+&quot;</span></a></code></pre></div>
+<p><strong>¿Qué hacen los operadores <em>%%</em> y <em>%%</em></strong></p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" data-line-number="1"><span class="dv">4</span> <span class="op">%/%</span><span class="st"> </span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb45-2" data-line-number="2"><span class="dv">4</span> <span class="op">/</span><span class="st"> </span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb45-3" data-line-number="3"><span class="dv">5</span> <span class="op">%/%</span><span class="st"> </span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb45-4" data-line-number="4"><span class="dv">5</span> <span class="op">/</span><span class="st"> </span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb45-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb45-6" data-line-number="6"><span class="dv">4</span> <span class="op">%%</span><span class="st"> </span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb45-7" data-line-number="7"><span class="dv">5</span> <span class="op">%/%</span><span class="st"> </span><span class="dv">2</span></a></code></pre></div>
+</div>
+</div>
+<div id="segunda-parte" class="section level1">
+<h1><span class="header-section-number">2</span> Segunda Parte</h1>
+<div id="scripts-de-r" class="section level2">
+<h2><span class="header-section-number">2.1</span> <em>Scripts</em> de R</h2>
+<p>Hasta ahora hemos usado únicamente la consola. Llegó la hora de llevar un registro de los comandos que vamos usando y poder guardarlos en un archivo.</p>
+<p>Podemos crear un nuevo archivo <em>.R</em> usando <em>File &gt; New File &gt; R script</em>, esto generará un archivo donde podremos ir escribiendo comandos de <strong>R</strong> sin necesidad de tener que ejecutarlos directamente sobre la consola.</p>
+<div id="guardar-el-archivo-.r" class="section level3">
+<h3><span class="header-section-number">2.1.1</span> Guardar el archivo <em>.R</em></h3>
+<p>Puedes guardar el archivo desde <em>File &gt; Save</em>, o con <em>Ctrl + S</em>. Guárdalo en el <strong>Escritorio</strong> dentro de una carpeta llamada <em>Taller_R</em>, nombrando el archivo como <em>Intro_R.R</em>; es importante usar la extensión <strong><em>.R</em></strong>.<br />
+Una vez guardado vamos a la ventana de navegación de archivos (<strong>Files</strong>) dentro de RStudio (panel inferior derecho). Puedes navegar hasta la carpeta de trabajo.<br />
+En la pestaña <strong><em>More</em></strong> del panel de navegación de archivos, selecciona <em>Set As Working Directory</em>. ¿Qué ocurrió?</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" data-line-number="1"><span class="kw">getwd</span>() <span class="co"># Este comando nos dice la ruta del directorio de trabajo donde estamos.</span></a>
+<a class="sourceLine" id="cb46-2" data-line-number="2"><span class="co"># Lo usaremos más adelante cuando trabajemos con archivos.</span></a></code></pre></div>
+<p>A partir de ahora puedes escribir los comandos que vayamos viendo directamente en el archivo <em>Intro_R.R</em>, escribiéndo un comando por línea.<br />
+Puedes ejecutar una línea colocándo el cursor sobre ella y presionando <em><strong>Crtl + Enter</strong></em>. También puedes ejecutar múltiples líneas si las seleccionas con el cursor y luego presionas <em><strong>Crtl + Enter</strong></em>.</p>
+</div>
+</div>
+<div id="variables-y-asignaciones" class="section level2">
+<h2><span class="header-section-number">2.2</span> Variables y asignaciones</h2>
+<p>En R, es posible almacenar valores en variables usando el operador de asignación <strong>&lt;-</strong>, o <strong>=</strong>:</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" data-line-number="1"><span class="co"># Asignamos a la variable llamada &quot;temperatura&quot; el valor numérico 25</span></a>
+<a class="sourceLine" id="cb47-2" data-line-number="2">x =<span class="st"> </span><span class="dv">25</span></a></code></pre></div>
+<p>Al ejecutar el comando, R no devúelve una respuesta. Sin embargo si escribimos el nombre de la variable R nos retornará el valor que le corresponde:</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" data-line-number="1"><span class="co"># &quot;Llamámos&quot; a la variable &quot;temperatura&quot;</span></a>
+<a class="sourceLine" id="cb48-2" data-line-number="2">x</a></code></pre></div>
+<pre><code>## [1] 25</code></pre>
+<p><em>Nota:</em> ¿Qué pasa si en lugar de escribir <em>x</em> (minúscula) en la consola, escribímos <em>X</em> (mayúscula)?</p>
+<p>Como es de esperarse, ahora puedes hacer operaciones usando dicha variable:</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" data-line-number="1">x <span class="op">+</span><span class="st"> </span><span class="fl">5.0</span></a></code></pre></div>
+<pre><code>## [1] 30</code></pre>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" data-line-number="1">x <span class="op">*</span><span class="st"> </span><span class="dv">5</span></a></code></pre></div>
+<pre><code>## [1] 125</code></pre>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" data-line-number="1"><span class="kw">log10</span>(x)</a></code></pre></div>
+<pre><code>## [1] 1.39794</code></pre>
+<p>Observa que el valor de <span class="math inline">\(x\)</span> no ha cambiado aunque hayamos operado sobre él. Ejecuta lo siguiente:</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" data-line-number="1"><span class="co"># print y paste nos sirven para &quot;imprimir&quot; en la consola:</span></a>
+<a class="sourceLine" id="cb56-2" data-line-number="2"><span class="kw">print</span>( <span class="kw">paste</span>( <span class="st">&quot;El valor actual de x es:&quot;</span>, x ) )</a></code></pre></div>
+<pre><code>## [1] &quot;El valor actual de x es: 25&quot;</code></pre>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" data-line-number="1"><span class="co"># Actualizamos x</span></a>
+<a class="sourceLine" id="cb58-2" data-line-number="2"><span class="co"># Usamos el operador &quot;=&quot; o &quot;&lt;-&quot;</span></a>
+<a class="sourceLine" id="cb58-3" data-line-number="3">x =<span class="st"> </span>x <span class="op">*</span><span class="st"> </span><span class="dv">2</span> </a>
+<a class="sourceLine" id="cb58-4" data-line-number="4"><span class="kw">print</span>( <span class="kw">paste</span>( <span class="st">&quot;El nuevo valor de x es:&quot;</span>, x ) )</a></code></pre></div>
+<pre><code>## [1] &quot;El nuevo valor de x es: 50&quot;</code></pre>
+<p>Crea ahora una variable <span class="math inline">\(temp_K\)</span> que contenga el doble del valor que tome x. <strong>¿Cuánto vale <span class="math inline">\(y\)</span>?</strong></p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" data-line-number="1">y =<span class="st"> </span>x <span class="op">*</span><span class="st"> </span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb60-2" data-line-number="2">y</a></code></pre></div>
+<pre><code>## [1] 100</code></pre>
+<p>Asigna un nuevo valor a <em>x</em> de tal manera que <em>y</em> ahora pueda valer 1,000.</p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" data-line-number="1"><span class="co"># Actualiza el valor de x.</span></a>
+<a class="sourceLine" id="cb62-2" data-line-number="2">x &lt;-<span class="st"> </span>ingresa tu respuesta</a></code></pre></div>
+<p><strong>Ojo</strong>: Si tratas de ejecutar el comando así, te dará error. ¿Por qué?</p>
+<div id="como-nombrar-variables" class="section level3">
+<h3><span class="header-section-number">2.2.1</span> ¿Cómo nombrar variables?</h3>
+<p>Los nombres de las variables pueden contener letras, números, guiones bajos y puntos. <strong>No pueden comenzar con un número ni contener espacios o guiones medios entre palabras.</strong></p>
+<p><strong>ejercicio:</strong> Verifica cuales de las siguientes formas de nombrar una variables son válidas (ve ejecuatando uno a uno):</p>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" data-line-number="1">numero_dos =<span class="st"> </span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb63-2" data-line-number="2">numero<span class="op">-</span>tres =<span class="st"> </span><span class="dv">3</span></a>
+<a class="sourceLine" id="cb63-3" data-line-number="3">numero cuatro =<span class="st"> </span><span class="dv">4</span></a>
+<a class="sourceLine" id="cb63-4" data-line-number="4">numero<span class="fl">.5</span> =<span class="st"> </span><span class="dv">5</span></a>
+<a class="sourceLine" id="cb63-5" data-line-number="5">numeroSeis =<span class="st"> </span><span class="dv">6</span></a>
+<a class="sourceLine" id="cb63-6" data-line-number="6"><span class="fl">7.</span>numero =<span class="st"> </span><span class="dv">7</span></a>
+<a class="sourceLine" id="cb63-7" data-line-number="7">_<span class="dv">8</span> =<span class="st"> </span><span class="dv">9</span></a>
+<a class="sourceLine" id="cb63-8" data-line-number="8"><span class="fl">.9</span> =<span class="st"> </span><span class="dv">9</span></a>
+<a class="sourceLine" id="cb63-9" data-line-number="9">num_<span class="dv">10</span> =<span class="st"> </span><span class="dv">10</span></a>
+<a class="sourceLine" id="cb63-10" data-line-number="10">once =<span class="st"> &quot;once&quot;</span></a></code></pre></div>
+<p><strong>¿Cuántas variables pudiste crear?</strong></p>
+</div>
+<div id="paneles-environment-y-history" class="section level3">
+<h3><span class="header-section-number">2.2.2</span> Paneles <em>Environment</em> y <em>History</em></h3>
+<p>Tras ejecutar los comandos anteriores verás que en el panel superior derecho, en la pestaña <em>Environment</em> se han ido guardando las variables que has creado. Dichas variables están guardadas en memoria y pueden ser usadas para realizar operaciones.<br />
+Por otro lado, el panel <em>History</em> posee el historial de todos los comandos que has ido ejecutando en la sesión.</p>
+</div>
+</div>
+<div id="operaciones-relacionales" class="section level2">
+<h2><span class="header-section-number">2.3</span> Operaciones relacionales</h2>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb64-1" data-line-number="1"><span class="dv">2</span> <span class="op">==</span><span class="st"> </span><span class="dv">2</span> <span class="co"># ¿Son iguales?: Devuelve TRUE</span></a></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" data-line-number="1">numero_dos <span class="op">==</span><span class="st"> </span><span class="dv">2</span> <span class="co"># ¿Son iguales?: Observa que esta vez usamos &quot;==&quot;, y no &quot;=&quot;</span></a></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" data-line-number="1"><span class="dv">2</span> <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="co"># ¿Son iguales?: Devuelve FALSE</span></a></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb70-1" data-line-number="1"><span class="dv">2</span> <span class="op">!=</span><span class="st"> </span><span class="dv">1</span> <span class="co"># ¿Son DESiguales?: Devuelve TRUE</span></a></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb72-1" data-line-number="1"><span class="dv">2</span> <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span> <span class="co"># ¿Es mayor que?: Devuelve TRUE</span></a></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb74-1" data-line-number="1"><span class="dv">2</span> <span class="op">&lt;</span><span class="st"> </span><span class="dv">1</span> <span class="co"># ¿Es menor que?: Devuelve FALSE</span></a></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+</div>
+<div id="tipos-de-datos" class="section level2">
+<h2><span class="header-section-number">2.4</span> Tipos de datos</h2>
+<p>En R, casi todos los datos con los que trabajamos son considerados <strong><em>Objetos</em></strong>, lo que significa que cada dato pertenece a una <strong>clase</strong> en particular, y por ello tiene atributos particulares.<br />
+Los tipos de datos <strong>básicos</strong> más comunes en R son los siguientes:</p>
+<ul>
+<li><strong>numeric</strong>: número real</li>
+<li><strong>integer</strong>: número entero</li>
+<li><strong>character</strong>: cadena de texto</li>
+<li><strong>logical</strong>: valores lógicos (verdadero o falso)</li>
+</ul>
+<p>Hasta ahora hemos utilizado algunos de ellos, y es importante saber con que tipo de datos estamos trabajando, pues de ello depende qué operaciones podemos realizar con ellos. A cotinuación usamos la función <strong><em>class()</em></strong> que nos indica qué tipo de dato esun objeto:</p>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb76-1" data-line-number="1">numero_real =<span class="st"> </span><span class="fl">100.5</span></a>
+<a class="sourceLine" id="cb76-2" data-line-number="2"><span class="kw">class</span>(numero_real)</a>
+<a class="sourceLine" id="cb76-3" data-line-number="3"><span class="co">## [1] &quot;numeric&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb77-1" data-line-number="1">numero_entero =<span class="st"> </span>100L</a>
+<a class="sourceLine" id="cb77-2" data-line-number="2"><span class="kw">class</span>(numero_entero)</a>
+<a class="sourceLine" id="cb77-3" data-line-number="3"><span class="co">## [1] &quot;integer&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb78-1" data-line-number="1">cadena_de_texto =<span class="st"> &quot;100&quot;</span> <span class="co"># O cadena de caracteres</span></a>
+<a class="sourceLine" id="cb78-2" data-line-number="2"><span class="kw">class</span>(cadena_de_texto)</a>
+<a class="sourceLine" id="cb78-3" data-line-number="3"><span class="co">## [1] &quot;character&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb79-1" data-line-number="1">valor_logico =<span class="st"> </span><span class="ot">TRUE</span> <span class="co"># También puede ser FALSE</span></a>
+<a class="sourceLine" id="cb79-2" data-line-number="2"><span class="kw">class</span>(valor_logico)</a>
+<a class="sourceLine" id="cb79-3" data-line-number="3"><span class="co">## [1] &quot;logical&quot;</span></a></code></pre></div>
+<p><strong>Ejercicio</strong>: ¿Cuáles de las siguientes operaciones es posible realizar? ¿Qué tipo de dato es el resultado de cada una?<br />
+Usa la función <strong><em>class()</em></strong> para evaluar cada resultado (por ejemplo: <em>class(100 + 2)</em>)</p>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb80-1" data-line-number="1"><span class="dv">100</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span>              <span class="co">#(1</span></a>
+<a class="sourceLine" id="cb80-2" data-line-number="2">100L <span class="op">+</span><span class="st"> </span><span class="fl">2.0</span>          <span class="co">#(2</span></a>
+<a class="sourceLine" id="cb80-3" data-line-number="3">100L <span class="op">+</span><span class="st"> </span>2L          <span class="co">#(3</span></a>
+<a class="sourceLine" id="cb80-4" data-line-number="4"><span class="dv">100</span> <span class="op">+</span><span class="st"> </span><span class="ot">TRUE</span> <span class="op">+</span><span class="st"> </span><span class="ot">TRUE</span>   <span class="co">#(4</span></a>
+<a class="sourceLine" id="cb80-5" data-line-number="5"><span class="ot">TRUE</span> <span class="op">==</span><span class="st"> </span><span class="dv">1</span>           <span class="co">#(5</span></a>
+<a class="sourceLine" id="cb80-6" data-line-number="6"><span class="st">&quot;100&quot;</span> <span class="op">+</span><span class="st"> &quot;2&quot;</span>         <span class="co">#(6</span></a>
+<a class="sourceLine" id="cb80-7" data-line-number="7"><span class="kw">paste</span>(<span class="st">&quot;100&quot;</span> <span class="op">+</span><span class="st"> &quot;2&quot;</span>)  <span class="co">#(7</span></a>
+<a class="sourceLine" id="cb80-8" data-line-number="8"><span class="kw">paste</span>(<span class="st">&quot;100&quot;</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span>)    <span class="co">#(8</span></a>
+<a class="sourceLine" id="cb80-9" data-line-number="9"><span class="kw">paste</span>(<span class="dv">100</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span>)      <span class="co">#(9</span></a></code></pre></div>
+</div>
+<div id="vectores" class="section level2">
+<h2><span class="header-section-number">2.5</span> Vectores</h2>
+<p>Un vector es una estructura de una sola dimensión que contiene elementos homogéneos. Podemos crear vectores usando la función <strong><em>c()</em></strong> (<strong>combine</strong>). (Usa <em>?c</em> en consola, o busca <strong><em>c</em></strong> en el panel de ayuda para saber más).</p>
+<p>Vamos a crear nuestros primeros vectores:</p>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb81-1" data-line-number="1">v =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb81-2" data-line-number="2"><span class="kw">print</span>(v)</a>
+<a class="sourceLine" id="cb81-3" data-line-number="3"><span class="co">## [1] 1 2 3 4</span></a>
+<a class="sourceLine" id="cb81-4" data-line-number="4"><span class="kw">class</span>(v)</a>
+<a class="sourceLine" id="cb81-5" data-line-number="5"><span class="co">## [1] &quot;numeric&quot;</span></a>
+<a class="sourceLine" id="cb81-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb81-7" data-line-number="7">w =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="st">&quot;3&quot;</span>, <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb81-8" data-line-number="8"><span class="kw">print</span>(w)</a>
+<a class="sourceLine" id="cb81-9" data-line-number="9"><span class="co">## [1] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot;</span></a>
+<a class="sourceLine" id="cb81-10" data-line-number="10"><span class="kw">class</span>(w)</a>
+<a class="sourceLine" id="cb81-11" data-line-number="11"><span class="co">## [1] &quot;character&quot;</span></a></code></pre></div>
+<p><strong>Es importante recordar que los vectores son <em>homogéneos</em>, por lo que pueden tener un sólo tipo de dato.</strong> Observa como el vector <span class="math inline">\(w\)</span>, al ser creado con un dato de tipo <em>character</em>, <span class="math inline">\(&quot;3&quot;\)</span>, ha convertido los elementos <em>numeric</em> (1 y 2) a <em>character</em>.</p>
+<p>También puedes crear vectores con valores dentro de un rango usando <strong>:</strong>.</p>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb82-1" data-line-number="1">z =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span><span class="op">:</span><span class="dv">10</span>) <span class="co"># Es lo mismo que c(1:10)</span></a>
+<a class="sourceLine" id="cb82-2" data-line-number="2"><span class="kw">print</span>(z)</a>
+<a class="sourceLine" id="cb82-3" data-line-number="3"><span class="co">##  [1]  1  2  3  4  5  6  7  8  9 10</span></a>
+<a class="sourceLine" id="cb82-4" data-line-number="4"><span class="kw">class</span>(z)</a>
+<a class="sourceLine" id="cb82-5" data-line-number="5"><span class="co">## [1] &quot;numeric&quot;</span></a></code></pre></div>
+<p>¿Qué tipo de dato es el vector <strong><em>z</em></strong>?</p>
+<p><strong>Ejercicio</strong>:</p>
+<ol style="list-style-type: decimal">
+<li>Crea un vector que vaya del 0 al 100 sin incluir el 50, es decir, que vaya del 1 al 49, y del 51 al 100.</li>
+<li>Crea un vector que vaya del 2 al 100, de dos en dos. <strong>Pista</strong>: busca en <strong>Ayuda</strong> la función <em>seq()</em>.</li>
+</ol>
+<div id="operaciones-con-vectores" class="section level3">
+<h3><span class="header-section-number">2.5.1</span> Operaciones con vectores</h3>
+<p>Crea el siguiente vector:</p>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb83-1" data-line-number="1">edades =<span class="st"> </span><span class="kw">c</span>(<span class="dv">67</span>, <span class="dv">65</span>, <span class="dv">71</span>, <span class="dv">53</span>, <span class="dv">57</span>, <span class="dv">77</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb84-1" data-line-number="1">edades <span class="op">+</span><span class="st"> </span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb84-2" data-line-number="2"><span class="co">## [1] 69 67 73 55 59 79</span></a>
+<a class="sourceLine" id="cb84-3" data-line-number="3">edades <span class="op">/</span><span class="st"> </span><span class="dv">10</span></a>
+<a class="sourceLine" id="cb84-4" data-line-number="4"><span class="co">## [1] 6.7 6.5 7.1 5.3 5.7 7.7</span></a></code></pre></div>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb85-1" data-line-number="1"><span class="kw">length</span>(edades) <span class="co"># Número de elementos en el vector</span></a></code></pre></div>
+<pre><code>## [1] 6</code></pre>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb87-1" data-line-number="1"><span class="kw">sum</span>(edades) <span class="co"># Suma todos los elmentos del vector</span></a></code></pre></div>
+<pre><code>## [1] 390</code></pre>
+<p>Asignar <strong>nombres</strong> a los elementos del vector:</p>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb89-1" data-line-number="1">nombres_personas =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Ernesto&quot;</span>, <span class="st">&quot;Andrés&quot;</span>, <span class="st">&quot;Carlos&quot;</span>, </a>
+<a class="sourceLine" id="cb89-2" data-line-number="2">                     <span class="st">&quot;Enrique&quot;</span>, <span class="st">&quot;Felipe&quot;</span>, <span class="st">&quot;Vicente&quot;</span>)</a>
+<a class="sourceLine" id="cb89-3" data-line-number="3"><span class="co"># El vector de nombres lo asignamos al vector de edades</span></a>
+<a class="sourceLine" id="cb89-4" data-line-number="4"><span class="kw">names</span>(edades) =<span class="st"> </span>nombres_personas</a>
+<a class="sourceLine" id="cb89-5" data-line-number="5">edades</a>
+<a class="sourceLine" id="cb89-6" data-line-number="6"><span class="co">## Ernesto  Andrés  Carlos Enrique  Felipe Vicente </span></a>
+<a class="sourceLine" id="cb89-7" data-line-number="7"><span class="co">##      67      65      71      53      57      77</span></a></code></pre></div>
+<p><strong>Ejercicio</strong>: Calcula la media de las edades. <em>Pista</em>: puedes usar las funciones <em>sum()</em> y <em>length()</em>.</p>
+</div>
+<div id="indexacion-de-vectores" class="section level3">
+<h3><span class="header-section-number">2.5.2</span> Indexación de vectores</h3>
+<p>Podemos accesar a determinados valores del vector, según su posición en el. Para ello usamos la siguiente sintaxis:</p>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb90-1" data-line-number="1">edades[<span class="dv">1</span>] <span class="co"># El primer elemento del vector</span></a>
+<a class="sourceLine" id="cb90-2" data-line-number="2"><span class="co">## Ernesto </span></a>
+<a class="sourceLine" id="cb90-3" data-line-number="3"><span class="co">##      67</span></a>
+<a class="sourceLine" id="cb90-4" data-line-number="4">edades[<span class="dv">2</span>] <span class="co"># El segundo elmento del vector</span></a>
+<a class="sourceLine" id="cb90-5" data-line-number="5"><span class="co">## Andrés </span></a>
+<a class="sourceLine" id="cb90-6" data-line-number="6"><span class="co">##     65</span></a>
+<a class="sourceLine" id="cb90-7" data-line-number="7">edades[<span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">3</span>)] <span class="co"># Segundo y tercer elementos del vector</span></a>
+<a class="sourceLine" id="cb90-8" data-line-number="8"><span class="co">## Andrés Carlos </span></a>
+<a class="sourceLine" id="cb90-9" data-line-number="9"><span class="co">##     65     71</span></a></code></pre></div>
+<p>Podemos remover ciertos valores del vector según su posición. Para ello usamos el signo <em>menos</em>, <strong>-</strong> .</p>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb91-1" data-line-number="1">edades[<span class="op">-</span><span class="dv">1</span>] <span class="co"># Se va Ernesto</span></a>
+<a class="sourceLine" id="cb91-2" data-line-number="2"><span class="co">##  Andrés  Carlos Enrique  Felipe Vicente </span></a>
+<a class="sourceLine" id="cb91-3" data-line-number="3"><span class="co">##      65      71      53      57      77</span></a>
+<a class="sourceLine" id="cb91-4" data-line-number="4">edades[<span class="op">-</span><span class="dv">2</span>] <span class="co"># Se va Andrés</span></a>
+<a class="sourceLine" id="cb91-5" data-line-number="5"><span class="co">## Ernesto  Carlos Enrique  Felipe Vicente </span></a>
+<a class="sourceLine" id="cb91-6" data-line-number="6"><span class="co">##      67      71      53      57      77</span></a>
+<a class="sourceLine" id="cb91-7" data-line-number="7">edades[<span class="op">-</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">3</span>)] <span class="co"># Se van Andrés y Carlos</span></a>
+<a class="sourceLine" id="cb91-8" data-line-number="8"><span class="co">## Ernesto Enrique  Felipe Vicente </span></a>
+<a class="sourceLine" id="cb91-9" data-line-number="9"><span class="co">##      67      53      57      77</span></a></code></pre></div>
+</div>
+<div id="operaciones-relacionales-con-vectores" class="section level3">
+<h3><span class="header-section-number">2.5.3</span> Operaciones relacionales con vectores</h3>
+<p>¿Cómo podemos saber qué <em>personas</em> son <strong>mayores</strong> de una <em>n</em> cantidad de años?</p>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb92-1" data-line-number="1">n =<span class="st"> </span><span class="dv">60</span></a>
+<a class="sourceLine" id="cb92-2" data-line-number="2">edades <span class="op">&gt;</span><span class="st"> </span>n</a></code></pre></div>
+<pre><code>## Ernesto  Andrés  Carlos Enrique  Felipe Vicente 
+##    TRUE    TRUE    TRUE   FALSE   FALSE    TRUE</code></pre>
+<p>Ahora podemos usar los corchetes cuadrados <strong><em>[]</em></strong> para conservar los valores que nos interesan, según la condición:</p>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb94-1" data-line-number="1">n =<span class="st"> </span><span class="dv">60</span></a>
+<a class="sourceLine" id="cb94-2" data-line-number="2">condicion =<span class="st"> </span>edades <span class="op">&gt;</span><span class="st"> </span>n</a>
+<a class="sourceLine" id="cb94-3" data-line-number="3">edades[ condicion ] <span class="co"># Esto es igual a edades[ edades &gt; n ]</span></a></code></pre></div>
+<pre><code>## Ernesto  Andrés  Carlos Vicente 
+##      67      65      71      77</code></pre>
+<p>Podemos preguntar también: ¿qué personas están entre los 55 <strong>y</strong> 65 años?<br />
+Para ello usamos dos condiciones y el <em>operador lógico</em> <strong>&amp;</strong> (puedes buscar <em>?“&amp;”</em> para más información) que nos permita evaluarlas.</p>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb96-1" data-line-number="1">condicion_<span class="dv">1</span> =<span class="st"> </span>edades <span class="op">&gt;=</span><span class="st"> </span><span class="dv">55</span> <span class="co"># Observa que usamos una condición =&gt;, que significa mayor o igual</span></a>
+<a class="sourceLine" id="cb96-2" data-line-number="2">condicion_<span class="dv">2</span> =<span class="st"> </span>edades <span class="op">&lt;=</span><span class="st"> </span><span class="dv">65</span> <span class="co"># En este caso usamos menor o igual</span></a>
+<a class="sourceLine" id="cb96-3" data-line-number="3">edades[ condicion_<span class="dv">1</span> <span class="op">&amp;</span><span class="st"> </span>condicion_<span class="dv">2</span> ]</a></code></pre></div>
+<pre><code>## Andrés Felipe 
+##     65     57</code></pre>
+<p><strong>Ejercicio:</strong> ¿Qué personas son menores a los 55 años <strong>o</strong> mayores a los 65? <em>Pista:</em> En este caso tendrás que usar el operador lógico <strong>|</strong> (caracter <em>Alt + 124</em>).</p>
+</div>
+<div id="funciones-aplicables-a-vectores" class="section level3">
+<h3><span class="header-section-number">2.5.4</span> Funciones aplicables a vectores:</h3>
+<p>Para ordenar el vector, usamos la función <em>sort()</em>:</p>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb98-1" data-line-number="1">edades_ord =<span class="st"> </span><span class="kw">sort</span>(edades) <span class="co"># Orden acendente</span></a>
+<a class="sourceLine" id="cb98-2" data-line-number="2">edades_ord </a></code></pre></div>
+<pre><code>## Enrique  Felipe  Andrés Ernesto  Carlos Vicente 
+##      53      57      65      67      71      77</code></pre>
+<p><strong>Otras funciones:</strong> ¿Qué hace cada una de las siguientes funciones?</p>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb100-1" data-line-number="1"><span class="kw">mean</span>(edades)</a>
+<a class="sourceLine" id="cb100-2" data-line-number="2"><span class="co">## [1] 65</span></a>
+<a class="sourceLine" id="cb100-3" data-line-number="3"><span class="kw">median</span>(edades)</a>
+<a class="sourceLine" id="cb100-4" data-line-number="4"><span class="co">## [1] 66</span></a>
+<a class="sourceLine" id="cb100-5" data-line-number="5"><span class="kw">sd</span>(edades)</a>
+<a class="sourceLine" id="cb100-6" data-line-number="6"><span class="co">## [1] 8.854377</span></a>
+<a class="sourceLine" id="cb100-7" data-line-number="7"><span class="kw">var</span>(edades)</a>
+<a class="sourceLine" id="cb100-8" data-line-number="8"><span class="co">## [1] 78.4</span></a>
+<a class="sourceLine" id="cb100-9" data-line-number="9"><span class="kw">max</span>(edades)</a>
+<a class="sourceLine" id="cb100-10" data-line-number="10"><span class="co">## [1] 77</span></a>
+<a class="sourceLine" id="cb100-11" data-line-number="11"><span class="kw">min</span>(edades)</a>
+<a class="sourceLine" id="cb100-12" data-line-number="12"><span class="co">## [1] 53</span></a></code></pre></div>
+<p><strong>Ejercicio:</strong> ¿Cuál es el promedio de las edades sin contar a la persona de mayor edad?</p>
+</div>
+</div>
+<div id="ejercicio-final" class="section level2">
+<h2><span class="header-section-number">2.6</span> Ejercicio Final</h2>
+<p>Ahora vamos a utilizar datos reales para practicar lo visto hasta ahora. R contiene <em>datasets</em> precargados con los que podemos trabajar. En este caso vamos a utilizar el <em>dataset</em> <strong>PlantGrowth</strong>, que contiene datos experimentales del crecimiento de plantas (midiendo su <strong>peso</strong> seco en <span class="math inline">\(g\)</span>) bajo ciertas condiciones (puedes ejecuatar en consola <em>?PlantGrowth</em> para más información).<br />
+Por ahora sólo nos interesa tomar los datos de peso de las plantas, así que ejecuta lo siguiente:</p>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb101-1" data-line-number="1">peso_plantas =<span class="st"> </span>PlantGrowth<span class="op">$</span>weight</a>
+<a class="sourceLine" id="cb101-2" data-line-number="2"><span class="co"># No te preocupes por la sintaxis, lo veremos más adelante</span></a></code></pre></div>
+<p>Con los datos cargados en la variable <strong>peso_plantas</strong> responde las siguientes preguntas:</p>
+<ol style="list-style-type: decimal">
+<li>¿Cuántos datos contiene?</li>
+<li>¿Qué tipo de datos son?</li>
+<li>¿Cuál es el peso máximo y mínimo de las plantas?</li>
+<li>¿Cuál es la media del peso?</li>
+<li>¿Qué es mayor, la media o la mediana del peso?</li>
+<li>¿Cuántas plantas pesaron 4 gramos o más?</li>
+</ol>
+</div>
+</div>
+
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiSW50cm9kdWNjacOzbiBhIFIiCmF1dGhvcjogIkpvZWwgUmljY2kgTMOzcGV6IgpkYXRlOiAiMTEvOS8yMDE5IgpvdXRwdXQ6CiAgaHRtbF9kb2N1bWVudDoKICAgIHRvYzogdHJ1ZQogICAgdG9jX2Zsb2F0OiB0cnVlCiAgICB0b2NfY29sbGFwc2VkOiB0cnVlCiAgICB0aGVtZTogam91cm5hbAogICAgaGlnaGxpZ2h0OiB6ZW5idXJuCiAgICBjb2RlX2Rvd25sb2FkOiB0cnVlCiAgICBudW1iZXJfc2VjdGlvbnM6IHRydWUKLS0tCiAgCgojIFByaW1lcmEgUGFydGUKCkVzdGUgZG9jdW1lbnRvIG11ZXN0cmEuLi4gYmxhIGJsYSBibGEKCgojIyBDb25vY2llbmRvIFJTdHVkaW8KCmBgYHtyfQpgYGAKCiMjIFVzYW5kbyBSIGNvbW8gdW5hIGNhbGN1bGFkb3JhClVuYSBkZSBsYXMgY29zYXMgbcOhcyBzaW1wbGVzIHF1ZSBwb2RlbW9zIGhhY2VyIGNvbiBSLCBlcyB1c2FyIGxhICoqY29uc29sYSoqIGNvbW8gdW5hIGNhbGN1bGFkb3JhLiBFc2NyaWJlIGVuIGVsbGE6CmBgYHtyfQoxMCArIDUKYGBgCgpDb21vIHZlcywgYWwgZWplY3V0YXIgY2FkYSBjb21hbmRvIGVuIGxhICoqY29uc29sYSoqLCBSIG1vc3RyYXLDoSBsYSByZXNwdWVzdGEgKHByZWNlZGlkYSBwb3IgdW4gIipbMV0qIikgZW4gbGEgc2lndWllbnRlIGzDrW5lYS4gUG9kZW1vcyBwcm9iYXIgb3RyYXMgb3BlcmFjaW9uZXMgYXJpdG3DqXRpY2FzLgoKKipFamVyY2ljaW86KioKKiBGw61qYXRlIGVuIGVsIG9yZGVuIGVuIHF1ZSBjYWRhIG9wZXJhY2nDs24gc2UgZWplY3V0YTsgwr9FbCByZXN1bHRhZG8gZGUgbGFzIG9wZXJhY2lvbmVzICAkMi0yKjIkIHkgJCgyIC0yKSAqIDIkIGVzIGVsIG1pc21vPwoqIMK/UXXDqSBoYWNlbiBsYXMgb3BlcmFjaW9uZXMgJDMgKiogMiQgeSAkM14yJD8KCmBgYHtyfQoxMCAtIDUKMTAgKiA1CjEwIC8gNQoyIC0gMiAqIDIKKDIgLSAyKSAqIDIKMyAqKiAyCjMgXiAyCmBgYAoKIyMjIE9yZGVuIGRlIGxhcyBvcGVyYWNpb25lcyBhcml0bcOpdGljYXMKCjEuIFBhcsOpbnRlc2lzOiAoLCApCjIuIEV4cG9uZW50ZTogXiBvICoqCjMuIERpdmlzacOzbjogLwo0LiBNdWx0aXBsaWNhY2nDs246ICoKNS4gU3VtYTogKwo2LiBSZXN0YTogLQoKKirCv0N1w6FsZXMgc29uIGxvcyByZXN1bHRhZG9zIHRyYXMgdXNhciBsb3Mgc2lndWllbnRlcyBjb21hbmRvcz8qKgpgYGB7ciBlY2hvID0gVCwgcmVzdWx0cyA9ICdoaWRlJ30KKDEgKyAoMiAqICgzKioyKSkpICMgT3BjacOzbiAxCjEgKyAyICogMyBeIDIgICAgICAjIE9wY2nDs24gMgoxICsgMiAqICgzKioyKSAgICAgIyBPcGNpw7NuIDMKYGBgCgpUYW1iacOpbiBwdWVkZXMgdXNhciBuw7ptZXJvcyBkZWNpbWFsZXM6CmBgYHtyfQoyLjUgKiAyCmBgYAoKIyMgTm90YWNpw7NuIGNpZW50w61maWNhClBydWViYSBlc2NyaWJpciBsb3Mgc2lndWllbnRlcyBjb21hbmRvcyBlbiBsYSBjb25zb2xhLCDCv0PDs21vIHJlcHJlc2VudGEgUiBsb3MgbsO6bWVybyBtdXkgZ3JhbmRlcyBvIG11eSBwZXF1ZcOxb3M/CmBgYHtyfQoxMCoqNgoxIC8gMTAgKiogNgpgYGAKwr9RdcOpIHBhc2Egc2kgZXNjcmliZXMgZGlyZWFjdGFtZW50ZSAqMWUzKiBlbiBsYSBjb25zb2xhPwoKIyMgQ29tZW50YXJpb3MKRXMgcG9zaWJsZSBoYWNlciBjb21lbnRhcmlvcyBlbiBlbCBjw7NkaWdvIHVzYW5kbyBlbCBjYXJhY3RlciAqKiMqKiwgbG8gcXVlIGVzY3JpYmFzIGRlc3B1w6lzIGRlIGRpY2hvIHPDrW1ib2xvIG5vIHNlIGVqZWN1dGFyw6EuIFBydWViYSBsbyBzaWd1aWVudGUuCgpgYGB7cn0KIyBFc3RvIGVzIHVuIGNvbWVudGFyaW8KMiArIDIuNSAjIEVzdGUgZXMgdW4gY29tZW50YXJpbwojIDIgKyAyLjUKYGBgCgojIyBPdHJhcyBmdW5jaW9uZXMgTWF0ZW3DoXRpY2FzCkFkZW3DoXMgZGUgbG9zIG9wZXJhZG9yZXMgYWxnZWJyw6FpY29zIGNvbW8gKl9fK19fLCBfXy1fXywgX18vX18sKiBldGMuLCAqKlIqKiBwb3NlZSAqZnVuY2lvbmVzKiBwcmVlc3RhYmxlY2lkYXMgcXVlIGxsZXZhbiBhIGNhYm8gb3RyYXMgb3BlcmFjaW9uZXMgYXJpdG3DqXRpY2FzLiBDYWRhIGZ1bmNpw7NuIHJlY2liZSB1bm8gbyBtw6FzIHBhcsOhbWV0cm9zLCBsb3MgY3VhbGVzIGxvcyBlc2NyaWJpbW9zIGVudHJlIHBhcsOpbnRlc2lzLCB5IHNlcGFyYWRvcyBwb3IgY29tYXM6CmBgYHtyfQpyb3VuZCgzLjE0MTU5MjYsIGRpZ2l0cyA9IDMpICMgUmVkb25kZWEgMy4xNDE1OTI2IGEgdHJlcyBkZWNpbWFsZXMKYWJzKDEgLSAxMCkgIyBWYWxvciBhYnNvbHV0byBkZSBsYSBvcGVyYWNpw7NuIDEgLSAxMCA9IC05CnN1bSg1LCAxMCkgIyA1ICsgMTAKc3FydCg5KSAjIHJhw616IGN1YWRyYWRhIGRlIDkKbG9nKDEpICMgbG4gZGUgMQpsb2coOCwgYmFzZSA9IDIpICMgbG9nIGJhc2UgMiBkZSA4CmxvZzEwKDEwMDApICMgbG9nIGJhc2UgMTAgZGUgMTAwMApleHAoMSkgIyDCv1F1w6kgaGFjZSBlc3RhIGZ1bmNpw7NuPwpgYGAKCiMjIEF5dWRhIGVuIFIKCk5vIGVzIG5lY2VzYXJpbyBtZW1vcml6YXIgdG9kYXMgbGFzIGZ1bmNpb25lcywgc2kgcXVpZXJlcyBoYWNlciBhbGdvIGVuIFIgcHVlZGVzIGdvb2dsZWFybG8sIHNlZ3VyYW1lbnRlIGVuY29udHJhcsOhcyB1bmEgcmVzcHVlc3RhLiAgCk90cmEgb3BjacOzbiBlcyB1c2FyIGVsIHBhbmVsIGRlIGF5dWRhIGVuIFIuIFBvciBlamVtcGxvLCB2YW1vcyBhIGF2ZXJpZ3VhciBxdWUgaGFjZSBsYSBmdW5jacOzbiAkZXhwKCkkOgpgYGB7cn0KP2V4cApgYGAKCkVuIGVsIHBhbmVsIGRlICoqQXl1ZGEqKiwgbyAqSGVscCosIGRlIFJTdHVkaW8gZXMgcG9zaWJsZSBjb25zdWx0YXIgbGEgZG9jdW1lbmFjacOzbiBzb2JyZSBsYXMgZnVuY2lvbmVzIHkgY29tYW5kb3MgcXVlIHBvZGVtb3MgdXNhciBlbiBSLiBQdWVkZXMgdXNhciBsYSBzaW50w6F4aXMgXyoqPyoqbm9tYnJlRnVuY2lvbl8gKGNvbW8gZW4gXyoqPyoqZXhwXyBvIF8qKj8qKnN1bV8pLCBvIGRpcmVjdGFtZW50ZSBlc2NyaWJpciBlbiBsYSBzZWNjacOzbiBkZSBiw7pzcXVlZGEgZGVsIHBhbmVsIGRlICoqQXl1ZGEqKi4KCioqRWplcmNpY2lvOioqIHB1ZWRlcyBjb25zdWx0YXIgYXl1ZGEgdGFtYmnDqW4gc29icmUgY8OzbW8gZnVuY2lvbmFuIGxvcyBvcGVyYWRvcmVzLiBQb3IgZWplbXBsbzoKYGBge3J9Cj8iKyIKYGBgCioqwr9RdcOpIGhhY2VuIGxvcyBvcGVyYWRvcmVzIF8lXCVfIHkgXyUlXyoqCgpgYGB7ciBldmFsPUZBTFNFfQo0ICUvJSAyCjQgLyAyCjUgJS8lIDIKNSAvIDIKCjQgJSUgMgo1ICUvJSAyCmBgYAoKIyBTZWd1bmRhIFBhcnRlCgojIyAqU2NyaXB0cyogZGUgUgoKSGFzdGEgYWhvcmEgaGVtb3MgdXNhZG8gw7puaWNhbWVudGUgbGEgY29uc29sYS4gTGxlZ8OzIGxhIGhvcmEgZGUgbGxldmFyIHVuIHJlZ2lzdHJvIGRlIGxvcyBjb21hbmRvcyBxdWUgdmFtb3MgdXNhbmRvIHkgcG9kZXIgZ3VhcmRhcmxvcyBlbiB1biBhcmNoaXZvLgoKUG9kZW1vcyBjcmVhciB1biBudWV2byBhcmNoaXZvICouUiogdXNhbmRvICpGaWxlID4gTmV3IEZpbGUgPiBSIHNjcmlwdCosIGVzdG8gZ2VuZXJhcsOhIHVuIGFyY2hpdm8gZG9uZGUgcG9kcmVtb3MgaXIgZXNjcmliaWVuZG8gY29tYW5kb3MgZGUgKipSKiogc2luIG5lY2VzaWRhZCBkZSB0ZW5lciBxdWUgZWplY3V0YXJsb3MgZGlyZWN0YW1lbnRlIHNvYnJlIGxhIGNvbnNvbGEuCgojIyMgR3VhcmRhciBlbCBhcmNoaXZvICouUioKUHVlZGVzIGd1YXJkYXIgZWwgYXJjaGl2byBkZXNkZSAqRmlsZSA+IFNhdmUqLCBvIGNvbiAqQ3RybCArIFMqLiBHdcOhcmRhbG8gZW4gZWwgKipFc2NyaXRvcmlvKiogZGVudHJvIGRlIHVuYSBjYXJwZXRhIGxsYW1hZGEgKlRhbGxlcl9SKiwgbm9tYnJhbmRvIGVsIGFyY2hpdm8gY29tbyAqSW50cm9fUi5SKjsgZXMgaW1wb3J0YW50ZSB1c2FyIGxhIGV4dGVuc2nDs24gX18qLlIqX18uICAKVW5hIHZleiBndWFyZGFkbyB2YW1vcyBhIGxhIHZlbnRhbmEgZGUgbmF2ZWdhY2nDs24gZGUgYXJjaGl2b3MgKCoqRmlsZXMqKikgZGVudHJvIGRlIFJTdHVkaW8gKHBhbmVsIGluZmVyaW9yIGRlcmVjaG8pLiBQdWVkZXMgbmF2ZWdhciBoYXN0YSBsYSBjYXJwZXRhIGRlIHRyYWJham8uICAKRW4gbGEgcGVzdGHDsWEgKipfTW9yZV8qKiBkZWwgcGFuZWwgZGUgbmF2ZWdhY2nDs24gZGUgYXJjaGl2b3MsIHNlbGVjY2lvbmEgKlNldCBBcyBXb3JraW5nIERpcmVjdG9yeSouIMK/UXXDqSBvY3VycmnDsz8KCmBgYHtyIGV2YWw9RkFMU0V9CmdldHdkKCkgIyBFc3RlIGNvbWFuZG8gbm9zIGRpY2UgbGEgcnV0YSBkZWwgZGlyZWN0b3JpbyBkZSB0cmFiYWpvIGRvbmRlIGVzdGFtb3MuCiMgTG8gdXNhcmVtb3MgbcOhcyBhZGVsYW50ZSBjdWFuZG8gdHJhYmFqZW1vcyBjb24gYXJjaGl2b3MuCmBgYAoKQSBwYXJ0aXIgZGUgYWhvcmEgcHVlZGVzIGVzY3JpYmlyIGxvcyBjb21hbmRvcyBxdWUgdmF5YW1vcyB2aWVuZG8gZGlyZWN0YW1lbnRlIGVuIGVsIGFyY2hpdm8gKkludHJvX1IuUiosIGVzY3JpYmnDqW5kbyB1biBjb21hbmRvIHBvciBsw61uZWEuICAKUHVlZGVzIGVqZWN1dGFyIHVuYSBsw61uZWEgY29sb2PDoW5kbyBlbCBjdXJzb3Igc29icmUgZWxsYSB5IHByZXNpb25hbmRvICpfX0NydGwgKyBFbnRlcl9fKi4gVGFtYmnDqW4gcHVlZGVzIGVqZWN1dGFyIG3Dumx0aXBsZXMgbMOtbmVhcyBzaSBsYXMgc2VsZWNjaW9uYXMgY29uIGVsIGN1cnNvciB5IGx1ZWdvIHByZXNpb25hcyAqX19DcnRsICsgRW50ZXJfXyouCgojIyBWYXJpYWJsZXMgeSBhc2lnbmFjaW9uZXMKCkVuIFIsIGVzIHBvc2libGUgYWxtYWNlbmFyIHZhbG9yZXMgZW4gdmFyaWFibGVzIHVzYW5kbyBlbCBvcGVyYWRvciBkZSBhc2lnbmFjacOzbiAqKjwtKiosIG8gKio9Kio6IApgYGB7cn0KIyBBc2lnbmFtb3MgYSBsYSB2YXJpYWJsZSBsbGFtYWRhICJ0ZW1wZXJhdHVyYSIgZWwgdmFsb3IgbnVtw6lyaWNvIDI1CnggPSAyNQpgYGAKQWwgZWplY3V0YXIgZWwgY29tYW5kbywgUiBubyBkZXbDumVsdmUgdW5hIHJlc3B1ZXN0YS4gU2luIGVtYmFyZ28gc2kgZXNjcmliaW1vcyBlbCBub21icmUgZGUgbGEgdmFyaWFibGUgUiBub3MgcmV0b3JuYXLDoSBlbCB2YWxvciBxdWUgbGUgY29ycmVzcG9uZGU6CmBgYHtyfQojICJMbGFtw6Ftb3MiIGEgbGEgdmFyaWFibGUgInRlbXBlcmF0dXJhIgp4CmBgYAoKKk5vdGE6KiDCv1F1w6kgcGFzYSBzaSBlbiBsdWdhciBkZSBlc2NyaWJpciAqeCogKG1pbsO6c2N1bGEpIGVuIGxhIGNvbnNvbGEsIGVzY3JpYsOtbW9zICpYKiAobWF5w7pzY3VsYSk/CgoKQ29tbyBlcyBkZSBlc3BlcmFyc2UsIGFob3JhIHB1ZWRlcyBoYWNlciBvcGVyYWNpb25lcyB1c2FuZG8gZGljaGEgdmFyaWFibGU6CmBgYHtyfQp4ICsgNS4wCnggKiA1CmxvZzEwKHgpCmBgYAoKT2JzZXJ2YSBxdWUgZWwgdmFsb3IgZGUgJHgkIG5vIGhhIGNhbWJpYWRvIGF1bnF1ZSBoYXlhbW9zIG9wZXJhZG8gc29icmUgw6lsLiBFamVjdXRhIGxvIHNpZ3VpZW50ZToKYGBge3J9CiMgcHJpbnQgeSBwYXN0ZSBub3Mgc2lydmVuIHBhcmEgImltcHJpbWlyIiBlbiBsYSBjb25zb2xhOgpwcmludCggcGFzdGUoICJFbCB2YWxvciBhY3R1YWwgZGUgeCBlczoiLCB4ICkgKQojIEFjdHVhbGl6YW1vcyB4CiMgVXNhbW9zIGVsIG9wZXJhZG9yICI9IiBvICI8LSIKeCA9IHggKiAyIApwcmludCggcGFzdGUoICJFbCBudWV2byB2YWxvciBkZSB4IGVzOiIsIHggKSApCmBgYAoKQ3JlYSBhaG9yYSB1bmEgdmFyaWFibGUgJHRlbXBfSyQgcXVlIGNvbnRlbmdhIGVsIGRvYmxlIGRlbCB2YWxvciBxdWUgdG9tZSB4LiAqKsK/Q3XDoW50byB2YWxlICR5JD8qKgpgYGB7cn0KeSA9IHggKiAyCnkKYGBgCgpBc2lnbmEgdW4gbnVldm8gdmFsb3IgYSAqeCogZGUgdGFsIG1hbmVyYSBxdWUgKnkqIGFob3JhIHB1ZWRhIHZhbGVyIDEsMDAwLgpgYGB7ciBldmFsPUZBTFNFfQojIEFjdHVhbGl6YSBlbCB2YWxvciBkZSB4Lgp4IDwtIGluZ3Jlc2EgdHUgcmVzcHVlc3RhCmBgYAoKKipPam8qKjogU2kgdHJhdGFzIGRlIGVqZWN1dGFyIGVsIGNvbWFuZG8gYXPDrSwgdGUgZGFyw6EgZXJyb3IuIMK/UG9yIHF1w6k/CgoKIyMjIMK/Q8OzbW8gbm9tYnJhciB2YXJpYWJsZXM/CkxvcyBub21icmVzIGRlIGxhcyB2YXJpYWJsZXMgcHVlZGVuIGNvbnRlbmVyIGxldHJhcywgbsO6bWVyb3MsIGd1aW9uZXMgYmFqb3MgeSBwdW50b3MuICoqTm8gcHVlZGVuIGNvbWVuemFyIGNvbiB1biBuw7ptZXJvIG5pIGNvbnRlbmVyIGVzcGFjaW9zIG8gZ3Vpb25lcyBtZWRpb3MgZW50cmUgcGFsYWJyYXMuKiogIAoKKiplamVyY2ljaW86KiogVmVyaWZpY2EgY3VhbGVzIGRlIGxhcyBzaWd1aWVudGVzIGZvcm1hcyBkZSBub21icmFyIHVuYSB2YXJpYWJsZXMgc29uIHbDoWxpZGFzICh2ZSBlamVjdWF0YW5kbyB1bm8gYSB1bm8pOgpgYGB7ciBldmFsPUZBTFNFfQpudW1lcm9fZG9zID0gMgpudW1lcm8tdHJlcyA9IDMKbnVtZXJvIGN1YXRybyA9IDQKbnVtZXJvLjUgPSA1Cm51bWVyb1NlaXMgPSA2CjcubnVtZXJvID0gNwpfOCA9IDkKLjkgPSA5Cm51bV8xMCA9IDEwCm9uY2UgPSAib25jZSIKYGBgCgpgYGB7ciBpbmNsdWRlPUZBTFNFfQpudW1lcm9fZG9zID0gMgpudW1lcm8uNSA9IDUKbnVtZXJvU2VpcyA9IDYKbnVtXzEwID0gMTAKb25jZSA9ICJvbmNlIgpgYGAKCioqwr9DdcOhbnRhcyB2YXJpYWJsZXMgcHVkaXN0ZSBjcmVhcj8qKgoKIyMjIFBhbmVsZXMgKkVudmlyb25tZW50KiB5ICpIaXN0b3J5KgpUcmFzIGVqZWN1dGFyIGxvcyBjb21hbmRvcyBhbnRlcmlvcmVzIHZlcsOhcyBxdWUgZW4gZWwgcGFuZWwgc3VwZXJpb3IgZGVyZWNobywgZW4gbGEgcGVzdGHDsWEgKkVudmlyb25tZW50KiBzZSBoYW4gaWRvIGd1YXJkYW5kbyBsYXMgdmFyaWFibGVzIHF1ZSBoYXMgY3JlYWRvLiBEaWNoYXMgdmFyaWFibGVzIGVzdMOhbiBndWFyZGFkYXMgZW4gbWVtb3JpYSB5IHB1ZWRlbiBzZXIgdXNhZGFzIHBhcmEgcmVhbGl6YXIgb3BlcmFjaW9uZXMuICAKUG9yIG90cm8gbGFkbywgZWwgcGFuZWwgKkhpc3RvcnkqIHBvc2VlIGVsIGhpc3RvcmlhbCBkZSB0b2RvcyBsb3MgY29tYW5kb3MgcXVlIGhhcyBpZG8gZWplY3V0YW5kbyBlbiBsYSBzZXNpw7NuLgoKIyMgT3BlcmFjaW9uZXMgcmVsYWNpb25hbGVzCgpgYGB7cn0KMiA9PSAyICMgwr9Tb24gaWd1YWxlcz86IERldnVlbHZlIFRSVUUKbnVtZXJvX2RvcyA9PSAyICMgwr9Tb24gaWd1YWxlcz86IE9ic2VydmEgcXVlIGVzdGEgdmV6IHVzYW1vcyAiPT0iLCB5IG5vICI9IgoKMiA9PSAxICMgwr9Tb24gaWd1YWxlcz86IERldnVlbHZlIEZBTFNFCjIgIT0gMSAjIMK/U29uIERFU2lndWFsZXM/OiBEZXZ1ZWx2ZSBUUlVFCjIgPiAxICMgwr9FcyBtYXlvciBxdWU/OiBEZXZ1ZWx2ZSBUUlVFCjIgPCAxICMgwr9FcyBtZW5vciBxdWU/OiBEZXZ1ZWx2ZSBGQUxTRQpgYGAKCiMjIFRpcG9zIGRlIGRhdG9zCgpFbiBSLCBjYXNpIHRvZG9zIGxvcyBkYXRvcyBjb24gbG9zIHF1ZSB0cmFiYWphbW9zIHNvbiBjb25zaWRlcmFkb3MgKipfT2JqZXRvc18qKiwgbG8gcXVlIHNpZ25pZmljYSBxdWUgY2FkYSBkYXRvIHBlcnRlbmVjZSBhIHVuYSAqKmNsYXNlKiogZW4gcGFydGljdWxhciwgeSBwb3IgZWxsbyB0aWVuZSBhdHJpYnV0b3MgcGFydGljdWxhcmVzLiAgCkxvcyB0aXBvcyBkZSBkYXRvcyAqKmLDoXNpY29zKiogbcOhcyBjb211bmVzIGVuIFIgc29uIGxvcyBzaWd1aWVudGVzOgoKKiAqKm51bWVyaWMqKjogbsO6bWVybyByZWFsCiogKippbnRlZ2VyKio6IG7Dum1lcm8gZW50ZXJvCiogKipjaGFyYWN0ZXIqKjogY2FkZW5hIGRlIHRleHRvCiogKipsb2dpY2FsKio6IHZhbG9yZXMgbMOzZ2ljb3MgKHZlcmRhZGVybyBvIGZhbHNvKQoKSGFzdGEgYWhvcmEgaGVtb3MgdXRpbGl6YWRvIGFsZ3Vub3MgZGUgZWxsb3MsIHkgZXMgaW1wb3J0YW50ZSBzYWJlciBjb24gcXVlIHRpcG8gZGUgZGF0b3MgZXN0YW1vcyB0cmFiYWphbmRvLCBwdWVzIGRlIGVsbG8gZGVwZW5kZSBxdcOpIG9wZXJhY2lvbmVzIHBvZGVtb3MgcmVhbGl6YXIgY29uIGVsbG9zLiBBIGNvdGludWFjacOzbiB1c2Ftb3MgbGEgZnVuY2nDs24gKipfY2xhc3MoKV8qKiBxdWUgbm9zIGluZGljYSBxdcOpIHRpcG8gZGUgZGF0byBlc3VuIG9iamV0bzoKCmBgYHtyIGNvbGxhcHNlPVRSVUV9Cm51bWVyb19yZWFsID0gMTAwLjUKY2xhc3MobnVtZXJvX3JlYWwpCmBgYAoKYGBge3IgY29sbGFwc2U9VFJVRX0KbnVtZXJvX2VudGVybyA9IDEwMEwKY2xhc3MobnVtZXJvX2VudGVybykKYGBgCgpgYGB7ciBjb2xsYXBzZT1UUlVFfQpjYWRlbmFfZGVfdGV4dG8gPSAiMTAwIiAjIE8gY2FkZW5hIGRlIGNhcmFjdGVyZXMKY2xhc3MoY2FkZW5hX2RlX3RleHRvKQpgYGAKCmBgYHtyIGNvbGxhcHNlPVRSVUV9CnZhbG9yX2xvZ2ljbyA9IFRSVUUgIyBUYW1iacOpbiBwdWVkZSBzZXIgRkFMU0UKY2xhc3ModmFsb3JfbG9naWNvKQpgYGAKCioqRWplcmNpY2lvKio6IMK/Q3XDoWxlcyBkZSBsYXMgc2lndWllbnRlcyBvcGVyYWNpb25lcyBlcyBwb3NpYmxlIHJlYWxpemFyPyDCv1F1w6kgdGlwbyBkZSBkYXRvIGVzIGVsIHJlc3VsdGFkbyBkZSBjYWRhIHVuYT8gIApVc2EgbGEgZnVuY2nDs24gKipfY2xhc3MoKV8qKiBwYXJhIGV2YWx1YXIgY2FkYSByZXN1bHRhZG8gKHBvciBlamVtcGxvOiAqY2xhc3MoMTAwICsgMikqKQoKYGBge3IgZXZhbD1GQUxTRX0KMTAwICsgMgkJCQkgIygxCjEwMEwgKyAyLjAJCSAgIAkjKDIKMTAwTCArIDJMCQkgICAjKDMKMTAwICsgVFJVRSArIFRSVUUJIyg0ClRSVUUgPT0gMQkJCSMoNQoiMTAwIiArICIyIgkJICAJIyg2CnBhc3RlKCIxMDAiICsgIjIiKQkjKDcKcGFzdGUoIjEwMCIgKyAyKSAJIyg4CnBhc3RlKDEwMCArIDIpCQkjKDkKYGBgCgojIyBWZWN0b3JlcwoKVW4gdmVjdG9yIGVzIHVuYSBlc3RydWN0dXJhIGRlIHVuYSBzb2xhIGRpbWVuc2nDs24gcXVlIGNvbnRpZW5lIGVsZW1lbnRvcyBob21vZ8OpbmVvcy4gUG9kZW1vcyBjcmVhciB2ZWN0b3JlcyB1c2FuZG8gbGEgZnVuY2nDs24gKipfYygpXyoqICgqKmNvbWJpbmUqKikuIChVc2EgKj9jKiBlbiBjb25zb2xhLCBvIGJ1c2NhICoqX2NfKiogZW4gZWwgcGFuZWwgZGUgYXl1ZGEgcGFyYSBzYWJlciBtw6FzKS4KClZhbW9zIGEgY3JlYXIgbnVlc3Ryb3MgcHJpbWVyb3MgdmVjdG9yZXM6CmBgYHtyIGNvbGxhcHNlPVRSVUV9CnYgPSBjKDEsIDIsIDMsIDQpCnByaW50KHYpCmNsYXNzKHYpCgp3ID0gYygxLCAyLCAiMyIsIDQpCnByaW50KHcpCmNsYXNzKHcpCmBgYAoqKkVzIGltcG9ydGFudGUgcmVjb3JkYXIgcXVlIGxvcyB2ZWN0b3JlcyBzb24gX2hvbW9nw6luZW9zXywgcG9yIGxvIHF1ZSBwdWVkZW4gdGVuZXIgdW4gc8OzbG8gdGlwbyBkZSBkYXRvLioqIE9ic2VydmEgY29tbyBlbCB2ZWN0b3IgJHckLCBhbCBzZXIgY3JlYWRvIGNvbiB1biBkYXRvIGRlIHRpcG8gKmNoYXJhY3RlciosICQiMyIkLCBoYSBjb252ZXJ0aWRvIGxvcyBlbGVtZW50b3MgKm51bWVyaWMqICgxIHkgMikgYSAqY2hhcmFjdGVyKi4gCgpUYW1iacOpbiBwdWVkZXMgY3JlYXIgdmVjdG9yZXMgY29uIHZhbG9yZXMgZGVudHJvIGRlIHVuIHJhbmdvIHVzYW5kbyAqKjoqKi4KYGBge3IgY29sbGFwc2U9VFJVRX0KeiA9IGMoMSwgMiwgMzoxMCkgIyBFcyBsbyBtaXNtbyBxdWUgYygxOjEwKQpwcmludCh6KQpjbGFzcyh6KQpgYGAKwr9RdcOpIHRpcG8gZGUgZGF0byBlcyBlbCB2ZWN0b3IgKipfel8qKj8KCioqRWplcmNpY2lvKio6CgoxLiBDcmVhIHVuIHZlY3RvciBxdWUgdmF5YSBkZWwgMCBhbCAxMDAgc2luIGluY2x1aXIgZWwgNTAsIGVzIGRlY2lyLCBxdWUgdmF5YSBkZWwgMSBhbCA0OSwgeSBkZWwgNTEgYWwgMTAwLgoyLiBDcmVhIHVuIHZlY3RvciBxdWUgdmF5YSBkZWwgMiBhbCAxMDAsIGRlIGRvcyBlbiBkb3MuICoqUGlzdGEqKjogYnVzY2EgZW4gKipBeXVkYSoqIGxhIGZ1bmNpw7NuICpzZXEoKSouCgpgYGB7ciBpbmNsdWRlPUZBTFNFfQpjKDE6NDksIDUxOjEwMCkKc2VxKDIsIDEwMCwgYnkgPSAyKQpgYGAKCiMjIyBPcGVyYWNpb25lcyBjb24gdmVjdG9yZXMKCkNyZWEgZWwgc2lndWllbnRlIHZlY3RvcjoKCmBgYHtyfQplZGFkZXMgPSBjKDY3LCA2NSwgNzEsIDUzLCA1NywgNzcpCmBgYAoKYGBge3IgY29sbGFwc2U9VFJVRX0KZWRhZGVzICsgMgplZGFkZXMgLyAxMApgYGAKCmBgYHtyfQpsZW5ndGgoZWRhZGVzKSAjIE7Dum1lcm8gZGUgZWxlbWVudG9zIGVuIGVsIHZlY3RvcgpzdW0oZWRhZGVzKSAjIFN1bWEgdG9kb3MgbG9zIGVsbWVudG9zIGRlbCB2ZWN0b3IKYGBgCgpBc2lnbmFyICoqbm9tYnJlcyoqIGEgbG9zIGVsZW1lbnRvcyBkZWwgdmVjdG9yOgpgYGB7ciBjb2xsYXBzZT1UUlVFfQpub21icmVzX3BlcnNvbmFzID0gYygiRXJuZXN0byIsICJBbmRyw6lzIiwgIkNhcmxvcyIsIAogICAgICAgICAgICAgICAgICAgICAiRW5yaXF1ZSIsICJGZWxpcGUiLCAiVmljZW50ZSIpCiMgRWwgdmVjdG9yIGRlIG5vbWJyZXMgbG8gYXNpZ25hbW9zIGFsIHZlY3RvciBkZSBlZGFkZXMKbmFtZXMoZWRhZGVzKSA9IG5vbWJyZXNfcGVyc29uYXMKZWRhZGVzCmBgYAoKKipFamVyY2ljaW8qKjogQ2FsY3VsYSBsYSBtZWRpYSBkZSBsYXMgZWRhZGVzLiAqUGlzdGEqOiBwdWVkZXMgdXNhciBsYXMgZnVuY2lvbmVzICpzdW0oKSogeSAqbGVuZ3RoKCkqLgpgYGB7ciBpbmNsdWRlPUZBTFNFfQojIEVqZXJjaWNpbzogc2FjYXIgbGEgbWVkaWEgZGUgbGFzIGVkYWRlcwptZWRpYV9lZGFkZXMgPSBzdW0oZWRhZGVzKSAvIGxlbmd0aChlZGFkZXMpCm1lZGlhX2VkYWRlcwpgYGAKCiMjIyBJbmRleGFjacOzbiBkZSB2ZWN0b3JlcwpQb2RlbW9zIGFjY2VzYXIgYSBkZXRlcm1pbmFkb3MgdmFsb3JlcyBkZWwgdmVjdG9yLCBzZWfDum4gc3UgcG9zaWNpw7NuIGVuIGVsLiBQYXJhIGVsbG8gdXNhbW9zIGxhIHNpZ3VpZW50ZSBzaW50YXhpczoKYGBge3IgY29sbGFwc2U9VFJVRX0KZWRhZGVzWzFdICMgRWwgcHJpbWVyIGVsZW1lbnRvIGRlbCB2ZWN0b3IKZWRhZGVzWzJdICMgRWwgc2VndW5kbyBlbG1lbnRvIGRlbCB2ZWN0b3IKZWRhZGVzW2MoMiwgMyldICMgU2VndW5kbyB5IHRlcmNlciBlbGVtZW50b3MgZGVsIHZlY3RvcgpgYGAKClBvZGVtb3MgcmVtb3ZlciBjaWVydG9zIHZhbG9yZXMgZGVsIHZlY3RvciBzZWfDum4gc3UgcG9zaWNpw7NuLiBQYXJhIGVsbG8gdXNhbW9zIGVsIHNpZ25vICptZW5vcyosICoqLSoqIC4KYGBge3IgY29sbGFwc2U9VFJVRX0KZWRhZGVzWy0xXSAjIFNlIHZhIEVybmVzdG8KZWRhZGVzWy0yXSAjIFNlIHZhIEFuZHLDqXMKZWRhZGVzWy0gYygyLCAzKV0gIyBTZSB2YW4gQW5kcsOpcyB5IENhcmxvcwpgYGAKCiMjIyBPcGVyYWNpb25lcyByZWxhY2lvbmFsZXMgY29uIHZlY3RvcmVzCsK/Q8OzbW8gcG9kZW1vcyBzYWJlciBxdcOpICpwZXJzb25hcyogc29uICoqbWF5b3JlcyoqIGRlIHVuYSAqbiogY2FudGlkYWQgZGUgYcOxb3M/CmBgYHtyfQpuID0gNjAKZWRhZGVzID4gbgpgYGAKCkFob3JhIHBvZGVtb3MgdXNhciBsb3MgY29yY2hldGVzIGN1YWRyYWRvcyAqKl9bXV8qKiBwYXJhIGNvbnNlcnZhciBsb3MgdmFsb3JlcyBxdWUgbm9zIGludGVyZXNhbiwgc2Vnw7puIGxhIGNvbmRpY2nDs246CmBgYHtyfQpuID0gNjAKY29uZGljaW9uID0gZWRhZGVzID4gbgplZGFkZXNbIGNvbmRpY2lvbiBdICMgRXN0byBlcyBpZ3VhbCBhIGVkYWRlc1sgZWRhZGVzID4gbiBdCmBgYAoKUG9kZW1vcyBwcmVndW50YXIgdGFtYmnDqW46IMK/cXXDqSBwZXJzb25hcyBlc3TDoW4gZW50cmUgbG9zIDU1ICoqeSoqIDY1IGHDsW9zPyAgClBhcmEgZWxsbyB1c2Ftb3MgZG9zIGNvbmRpY2lvbmVzIHkgZWwgKm9wZXJhZG9yIGzDs2dpY28qICoqJioqIChwdWVkZXMgYnVzY2FyICo/IiYiKiBwYXJhIG3DoXMgaW5mb3JtYWNpw7NuKSBxdWUgbm9zIHBlcm1pdGEgZXZhbHVhcmxhcy4KYGBge3J9CmNvbmRpY2lvbl8xID0gZWRhZGVzID49IDU1ICMgT2JzZXJ2YSBxdWUgdXNhbW9zIHVuYSBjb25kaWNpw7NuID0+LCBxdWUgc2lnbmlmaWNhIG1heW9yIG8gaWd1YWwKY29uZGljaW9uXzIgPSBlZGFkZXMgPD0gNjUgIyBFbiBlc3RlIGNhc28gdXNhbW9zIG1lbm9yIG8gaWd1YWwKZWRhZGVzWyBjb25kaWNpb25fMSAmIGNvbmRpY2lvbl8yIF0KYGBgCgoqKkVqZXJjaWNpbzoqKiDCv1F1w6kgcGVyc29uYXMgc29uIG1lbm9yZXMgYSBsb3MgNTUgYcOxb3MgKipvKiogbWF5b3JlcyBhIGxvcyA2NT8gKlBpc3RhOiogRW4gZXN0ZSBjYXNvIHRlbmRyw6FzIHF1ZSB1c2FyIGVsIG9wZXJhZG9yIGzDs2dpY28gKip8KiogKGNhcmFjdGVyICpBbHQgKyAxMjQqKS4KCmBgYHtyIGluY2x1ZGU9RkFMU0V9CmVkYWRlc1sgKGVkYWRlcyA8IDU1KSB8IChlZGFkZXMgPiA2NSkgXQpgYGAKCiMjIyBGdW5jaW9uZXMgYXBsaWNhYmxlcyBhIHZlY3RvcmVzOgpQYXJhIG9yZGVuYXIgZWwgdmVjdG9yLCB1c2Ftb3MgbGEgZnVuY2nDs24gKnNvcnQoKSo6CmBgYHtyfQplZGFkZXNfb3JkID0gc29ydChlZGFkZXMpICMgT3JkZW4gYWNlbmRlbnRlCmVkYWRlc19vcmQgCmBgYAoKKipPdHJhcyBmdW5jaW9uZXM6KioKwr9RdcOpIGhhY2UgY2FkYSB1bmEgZGUgbGFzIHNpZ3VpZW50ZXMgZnVuY2lvbmVzPwpgYGB7ciBjb2xsYXBzZT1UUlVFfQptZWFuKGVkYWRlcykKbWVkaWFuKGVkYWRlcykKc2QoZWRhZGVzKQp2YXIoZWRhZGVzKQptYXgoZWRhZGVzKQptaW4oZWRhZGVzKQpgYGAKCioqRWplcmNpY2lvOioqIMK/Q3XDoWwgZXMgZWwgcHJvbWVkaW8gZGUgbGFzIGVkYWRlcyBzaW4gY29udGFyIGEgbGEgcGVyc29uYSBkZSBtYXlvciBlZGFkPwoKYGBge3IgaW5jbHVkZT1GQUxTRX0KbWVhbiggZWRhZGVzX29yZFsgLSBsZW5ndGgoZWRhZGVzKSBdICkKYGBgCgojIyBFamVyY2ljaW8gRmluYWwKCkFob3JhIHZhbW9zIGEgdXRpbGl6YXIgZGF0b3MgcmVhbGVzIHBhcmEgcHJhY3RpY2FyIGxvIHZpc3RvIGhhc3RhIGFob3JhLiBSIGNvbnRpZW5lICpkYXRhc2V0cyogcHJlY2FyZ2Fkb3MgY29uIGxvcyBxdWUgcG9kZW1vcyB0cmFiYWphci4gRW4gZXN0ZSBjYXNvIHZhbW9zIGEgdXRpbGl6YXIgZWwgKmRhdGFzZXQqICoqUGxhbnRHcm93dGgqKiwgcXVlIGNvbnRpZW5lIGRhdG9zIGV4cGVyaW1lbnRhbGVzIGRlbCBjcmVjaW1pZW50byBkZSBwbGFudGFzIChtaWRpZW5kbyBzdSAqKnBlc28qKiBzZWNvIGVuICRnJCkgYmFqbyBjaWVydGFzIGNvbmRpY2lvbmVzIChwdWVkZXMgZWplY3VhdGFyIGVuIGNvbnNvbGEgKj9QbGFudEdyb3d0aCogcGFyYSBtw6FzIGluZm9ybWFjacOzbikuICAKUG9yIGFob3JhIHPDs2xvIG5vcyBpbnRlcmVzYSB0b21hciBsb3MgZGF0b3MgZGUgcGVzbyBkZSBsYXMgcGxhbnRhcywgYXPDrSBxdWUgZWplY3V0YSBsbyBzaWd1aWVudGU6CmBgYHtyfQpwZXNvX3BsYW50YXMgPSBQbGFudEdyb3d0aCR3ZWlnaHQKIyBObyB0ZSBwcmVvY3VwZXMgcG9yIGxhIHNpbnRheGlzLCBsbyB2ZXJlbW9zIG3DoXMgYWRlbGFudGUKYGBgCgpDb24gbG9zIGRhdG9zIGNhcmdhZG9zIGVuIGxhIHZhcmlhYmxlICoqcGVzb19wbGFudGFzKiogcmVzcG9uZGUgbGFzIHNpZ3VpZW50ZXMgcHJlZ3VudGFzOgoKMS4gwr9DdcOhbnRvcyBkYXRvcyBjb250aWVuZT8KMi4gwr9RdcOpIHRpcG8gZGUgZGF0b3Mgc29uPwozLiDCv0N1w6FsIGVzIGVsIHBlc28gbcOheGltbyB5IG3DrW5pbW8gZGUgbGFzIHBsYW50YXM/CjQuIMK/Q3XDoWwgZXMgbGEgbWVkaWEgZGVsIHBlc28/CjUuIMK/UXXDqSBlcyBtYXlvciwgbGEgbWVkaWEgbyBsYSBtZWRpYW5hIGRlbCBwZXNvPwo2LiDCv0N1w6FudGFzIHBsYW50YXMgcGVzYXJvbiA0IGdyYW1vcyBvIG3DoXM/Cg==</div>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeSourceEmbed("intro_R_p1.rmd");
+});
+</script>
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

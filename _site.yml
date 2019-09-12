@@ -1,0 +1,18 @@
+name: "IntroR"
+output_dir: "docs"
+navbar:
+  title: "Curso R"
+  left:
+  - text: "Home"
+    href: index.html
+  - text: "Introducción a R"
+    href: intro_R_p1.html
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    toc_collapsed: true
+    theme: journal
+    highlight: zenburn
+    code_download: true
+    number_sections: true
