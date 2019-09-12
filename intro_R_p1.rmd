@@ -1,16 +1,5 @@
 ---
 title: "Introducción a R"
-author: "Joel Ricci López"
-date: "11/9/2019"
-output:
-  html_document:
-    toc: true
-    toc_float: true
-    toc_collapsed: true
-    theme: journal
-    highlight: zenburn
-    code_download: true
-    number_sections: true
 ---
   
 
