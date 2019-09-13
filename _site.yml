@@ -3,12 +3,18 @@ output_dir: "docs"
 navbar:
   title: "Curso R"
   left:
-  - text: "Home"
+  - text: "Inicio"
     href: index.html
-  - text: "Introducción: Partes 1 y 2"
-    href: intro_R_p1.html
-  - text: "Introducción: Parte 3"
-    href: intro_R_p2.html
+  - text: "Introducción a R"
+    menu:
+      - text: "Parte 1"
+        href: intro_R_p1.html
+      - text: "Parte 2"
+        href: intro_R_p2.html
+      - text: "Parte 3"
+        href: intro_R_p3.html
+  - text: "Estructuras de datos"
+    href: estructuras_de_datos.html
 output:
   html_document:
     toc: true

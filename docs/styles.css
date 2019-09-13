@@ -2,8 +2,16 @@ code span.op {
   color: #f56d6d;
 }
 
+code span.st {
+    color: #f5dd7e;
+}
+
+code span.ot {
+    color: #be8fef;
+}
+
 code span.kw {
-  color: #f5d271;
+  color: #f77979;
 }
 
 code span.dv {
@@ -21,7 +29,7 @@ p code {
 
 div h1.title {
     font-size: 42px;
-    color: #eb6864;
+    color: #999;
 }
 
 .header-section-number::after {

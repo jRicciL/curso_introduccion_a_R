@@ -1,0 +1,257 @@
+---
+title: 'Estructuras de datos'
+---
+***
+# Matrices, Listas y Dataframes
+
+## Matrices
+Al igual que los vectores, las matrices son una estructura de datos del **mismo tipo**, con la diferencia de que en las matrices los datos están estructurados en dos dimensión. Es posible crear matrices usando el comando `matrix()`. 
+
+```{r}
+matriz = matrix(1:15, byrow = TRUE, nrow = 3)
+matriz
+```
+
+También es posible tener estructuras de datos de más de dos dimensiones, para ello usamos el comando `array()`.
+En este tutorial veremos poco sobre matrices, pero es importante que algunos de los comandos que veremos para los `DataFrames` son también aplicables para las matrices. Puedes consultar más al respecto en los siguientes vinculos: [1](https://www.oreilly.com/library/view/learning-r/9781449357160/ch04.html), [2](http://www.r-tutor.com/r-introduction/matrix).
+
+## Listas
+
+* Las listas funcionan como contenedores de objetos. 
+* Al contrario de los vectores, **las listas pueden contener objetos de diferentes tipos** (pueden ser heterogéneas).
+* Las listas pueden incluso contener otras listas.
+* Se crean con el comando `list()`.
+
+```{r}
+mi_lista = list( "Arc", 1000, TRUE, "AGTTTG")
+mi_lista
+```
+
+Los elementos de las listas pueden ser nombrados:
+
+```{r}
+mi_lista = list( gen = "Arc", num_bases = 1000, expresado = TRUE, sec_inicial = "AGTTTG")
+mi_lista
+```
+
+Los elementos dentro de una lista se obtienen usando dos corchetes cuadrados anidados: `[[ i ]]`, donde $i$ es el número de elemento deseado.
+
+**Ejercicio:**
+* ¿Cuál es la deferencia entre los siguientes dos comandos?
+* ¿Qué tipo de dato es cada uno? *Usa la función `class()` para veriguarlo.
+
+```{r eval=FALSE}
+mi_lista[4]
+mi_lista[[4]]
+```
+
+Si se han asignado nombres a la lista, es posible usarlos para extraer los datos:
+
+```{r}
+names(mi_lista) # Devuelve los nombres de los elementos de la lista
+mi_lista$gen # Devuelve el elemento nombrado como "gen"
+mi_lista[["gen"]] # Devuelve el elemento nombrado como "gen"
+```
+
+## DataFrames
+
+* Los  `DataFrames` son uno de los objetos más usados en R.
+* Podemos entender a un `Dataframe` como una tabla de datos de un determinado número de filas y columnas. Sin embargo, a diferencia de las matrices, los DataFrames pueden tener datos heterogéneos.
+
+Comencémos creando un `DataFrame` usando el comando `data.frame()`:
+
+```{r}
+my_df = data.frame( "Num_de_gen" = c(1:3),
+                    "Nombre_gen" = c("Arc", "cdk2", "miR-1–1"),
+                    "Expresado" = c(TRUE, FALSE, FALSE),
+                    "Num_pbases" = c(100, 200, 60)
+                    )
+my_df
+```
+
+```{r echo=FALSE}
+library(knitr)
+kable(my_df, caption = "Mi primer DataFrame")
+```
+
+Ya has creado tu primer `DataFrame`, sin emabrgo, vamos ahora un conjunto de datos proveniente de un archivo.
+
+### Ejercicio con Dataframes
+
+Vamos a utilizar los datos proporcionados por el Dr. Cei Abreu en la página [Prácticas de Bioinformática: R](http://datos.langebio.cinvestav.mx/~cei/cursos/BP_2018/n_sesion06.html). En particular, vamos a utilizar el archivo [ensembl_info.tab](http://datos.langebio.cinvestav.mx/~cei/cursos/BP_2018/data/ensembl_info.tab). 
+
+<blockquote>
+  <p>La información en la tabla que acaban de descargar fue obtenida de la página de Ensembl, que reune una gran cantidad de información sobre genomas completamente secuenciados de vertebrados y algunos organismos modelo.</p>
+  <small>Citado la página <cite title="Nombre Apellidos">http://datos.langebio.cinvestav.mx/~cei/cursos/BP_2018/</cite></small>
+</blockquote>
+
+una vez descargado el archivo, guárdalo en tu directorio de trabajo (puedes usar el comando `getwd()` (*getWorkDirectory*) para guardar ahí el archivo).
+
+Vamos a abrir el archivo utilizando el comando `read.table()`.  
+**Nota:** ¿Qué indican los parámetros `header=` y `row.names=`?
+```{r}
+ensTab = read.table("ensembl_info.tab", header = TRUE, row.names = 1)
+```
+Una vez cargado, podemos comprobar que el objeto es un `DataFrame`:
+```{r}
+class(ensTab)
+```
+
+Además, podemos usar los comandos `head()` y `tail()` para ver las primeras y las últimas filas de la tabla, respectivamente. Tú puedes imprimir toda la tabla en consola, si así lo deseas.
+```{r}
+head(ensTab, n = 3)
+```
+
+```{r}
+tail(ensTab, n = 3)
+```
+
+**OJO**: En `Environment` puedes comprobar que el objeto `ensTab` ha sido creado, puedes abrirlo desde *RStudio* para examinarlo.
+
+### Inspeccionando el *DataFrame*
+
+**Ejercicio:**
+Usando los comandos indicados, averigua lo siguiente de la tabla `ensTab`:
+
+1. ¿Qué dimensiones tiene la tabla? `dim()`
+2. ¿Qué datos brinda la función `str()`?  
+3. ¿Cuántas especies hay en la tabla? `nrow()`
+4. ¿Cuántas variables se midieron para cada especie? `ncols()`
+5. ¿Cuáles son los nombres de dichas variables? `colnames()` 
+6. ¿Cuáles son los nombres de las especies?
+
+***
+
+Ahora vamos a inspeccionar más a fondo los datos de la tabla.
+Si queremos obtener un dato particular de la tabla, por ejemplo **cuántos genes codificantes tiene el Humano**, podemos usar lo siguiente:
+```{r}
+# Fíjate en la sintáxis:
+# Primero ponemos el nombre de la fila, y luego el de la columna.
+ensTab["Human", "coding_genes"]
+```
+
+¿Cuál es la longitud del genoma del *Tasmanian_devil*?
+
+```{r eval=FALSE}
+ensTab["Tasmanian_devil", "genome_length"] # Este funcionará
+
+ensTab["genome_length", "Tasmanian_devil"] # Este NO funcionará
+```
+
+**RECUERDA:** Primero nombra o indica la fila, y luego la columna, separados por una coma `,`.
+
+Ahora queremos saber los datos de las primeras dos columnas (variables *coding_genes* y *ncrna_genes*) de las primeras tres especies:
+```{r eval=FALSE}
+# Podemos usar valores numéricos como índices de la tabla
+ensTab[ c(1:3) , c(1:2) ]
+```
+
+¿Qué pasa si queremos ver la longitud de los genomas de todas las especies?
+```{r}
+ensTab[ , "genome_length" ] # ¡No olvides la coma!
+```
+
+**Analiza lo siguiente:**  
+¿Qué especie tiene la mayor longitud de genoma? Para ello podemos averiguar qué hace la función `which.max()`.  
+Tómate un tiempo para analizar los siguientes comandos.
+```{r eval=FALSE}
+ensTab$genome_length # ¿Es esto similar a la opción de arriba?
+# ¿Recuerdas que también era posible con las listas?
+
+# ¿Qué crees que indique la función which.max()?
+maximo_pos = which.max(ensTab$genome_length)
+
+
+rownames(ensTab[ maximo_pos , ])
+```
+
+**¿Qué ocurrió?**
+
+1. El comando `ensTab$genome_length` es similar a ejecutar `ensTab[ , "genome_length" ]`, con lo cual obtenemos un vector de valores correspondentes a la longitud del genoma.
+2. El comando `which.max` identifica al valor máximo y nos devuelve su posición en el **vector**. En cambio, si recuerdas, el comando `max()` nos devolvía el valor máximo (pero no su posición en el vector).
+3. A la variable `maximo_pos` se le asignó el valor de la posición del valor máximo del vector.
+4. Escribir `ensTab[ maximo_pos , ]` es equivalente a `ensTab[ 5 , ]`, y en la tabla, el **Chimpance** está en la posición 5.
+5. Por último, usar `rownames()` nos simplifica la visualización mostrándonos únicamente el nombre de esa fila.
+
+### Análisis finales con DataFrames... por ahora
+
+Tómate unos minutos para análizar lo que hacen cada uno de los siguientes comandos:
+```{r eval=FALSE}
+# 1) ¿Qué especies tienen más de 22,000 genes codificantes?
+rownames( ensTab )[ensTab$coding_genes > 22e3]
+
+# 2) ¿Cuál es el promedio, en Megabases, de todas las especies?
+longs_Mb = ensTab$genome_length / 1e6
+mean( longs_Mb )
+
+# 3) ¿Qué porcentaje del genoma de cada especie es codificante?
+# Calculamos el número de pb codificantes
+avg_coding_base_pairs = ensTab$coding_genes * ensTab$coding_gene_avg_length
+# Obtenemos el porcentaje
+percentage =  avg_coding_base_pairs / ensTab$genome_length * 100
+# Lo agregamos a la tabla 
+# (OJO: La columna "coding_genes_percentage" la estamos creando nosotros)
+ensTab$coding_genes_percentage = percentage
+```
+
+## Un poco más sobre gráficos
+Podemos usar el comando `barplot()` para visualizar nuestros datos en un gráfico de barras. Supon que queremos visualizar únicamente los datos de genes codificantes, ncRAN y pseudo genes. Para ello creamos un nuevo DataFrame con sólo estos datos:
+
+```{r}
+genesTab = ensTab[,c("coding_genes","ncrna_genes","pseudo_genes")]
+```
+
+Si ahora intentamos usar `barplot()` tendremos lo siguiente:
+```{r error = TRUE}
+barplot(genesTab, beside=TRUE)
+```
+
+Como indica el error, debemos convertir el `DataFrame` *genesTab* a una matriz, para ello usamos el comando `as.matriz()`.
+```{r}
+m.ensTab = as.matrix( genesTab )
+```
+
+Y generamos la gráfica:
+
+```{r}
+barplot(m.ensTab, beside=TRUE) 
+```
+
+Besides nos grafica los datos de cada columna por separado. Podemos cambiar esto girando o transponiendo la matriz con el comando `t()`, esto hará que ahora las columnas sean las filas, es decir, que las especies sean ahora las columnas (prueba en la consola `t(m.ensTab)`.
+
+```{r }
+barplot( t(m.ensTab), beside = TRUE) 
+```
+
+**¡Casi!** Pero aún es difícil comparar por especie, de hecho, los datos están tan apilados que R no ha podido "dibujar" los nombres de todas las especies.
+
+Segundo intento, removamos `besides()`.
+```{r }
+barplot( t(m.ensTab)) 
+```
+
+**¿Mejor?**. Ahora tenemos una gráfica de barras apiladas. Con una barra por especie. Pero seguimos sin visualizar los nombres de las especies. Lo mejor será graficar horizontalmente:
+
+
+```{r fig.height=7,  fig.width=10}
+barplot( t(m.ensTab), horiz = TRUE, las = 1, 
+         # Y agregamos algo de decoración
+         col = c("indianred3", "turquoise4", "lightgoldenrod"), 
+         xlab = "Pares de bases",
+         legend.text = (colnames(genesTab))) 
+```
+
+***
+
+**¡Listo!**  
+Puedes continuar hacia la siguiente sección.
+
+***
+
+<button type="button" class="btn btn-primary pull-left">
+  <a href="./intro_R_p3.html" style="color:inherit"> Inicio </a>
+</button>
+
+<button type="button" class="btn btn-primary pull-right">
+  <a href="./index.html" style="color:inherit"> Siguiente </a>
+</button>

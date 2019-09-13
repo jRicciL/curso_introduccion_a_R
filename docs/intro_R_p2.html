@@ -12,7 +12,7 @@
 
 
 
-<title>Introducción a R: Parte 3</title>
+<title>Introducción a R: Parte 2</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -426,11 +426,23 @@ div.tocify {
         <li>
   <a href="index.html">Home</a>
 </li>
-<li>
-  <a href="intro_R_p1.html">Introducción: Partes 1 y 2</a>
-</li>
-<li>
-  <a href="intro_R_p2.html">Introducción: Parte 3</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Introducción a R
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="intro_R_p1.html">Parte 1</a>
+    </li>
+    <li>
+      <a href="intro_R_p2.html">Parte 2</a>
+    </li>
+    <li>
+      <a href="intro_R_p3.html">Parte 3</a>
+    </li>
+  </ul>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -451,151 +463,152 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Introducción a R: Parte 3</h1>
+<h1 class="title toc-ignore">Introducción a R: Parte 2</h1>
 
 </div>
 
 
 <hr />
-<div id="tercera-parte" class="section level1">
-<h1><span class="header-section-number">1</span> Tercera Parte</h1>
-<div id="vectores" class="section level2">
-<h2><span class="header-section-number">1.1</span> Vectores</h2>
-<p>Un vector es una estructura de una sola dimensión que contiene elementos homogéneos. Podemos crear vectores usando la función <code>c()</code> (<strong>combine</strong>). (Usa <code>?c</code> en consola, o busca <strong><em>c</em></strong> en el panel de ayuda para saber más).</p>
-<p>Vamos a crear nuestros primeros vectores:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">v =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">print</span>(v)</a>
-<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="co">## [1] 1 2 3 4</span></a>
-<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="kw">class</span>(v)</a>
-<a class="sourceLine" id="cb1-5" data-line-number="5"><span class="co">## [1] &quot;numeric&quot;</span></a>
-<a class="sourceLine" id="cb1-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb1-7" data-line-number="7">w =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="st">&quot;3&quot;</span>, <span class="dv">4</span>)</a>
-<a class="sourceLine" id="cb1-8" data-line-number="8"><span class="kw">print</span>(w)</a>
-<a class="sourceLine" id="cb1-9" data-line-number="9"><span class="co">## [1] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot;</span></a>
-<a class="sourceLine" id="cb1-10" data-line-number="10"><span class="kw">class</span>(w)</a>
-<a class="sourceLine" id="cb1-11" data-line-number="11"><span class="co">## [1] &quot;character&quot;</span></a></code></pre></div>
-<p><strong>Es importante recordar que los vectores son <em>homogéneos</em>, por lo que pueden tener un sólo tipo de dato.</strong> Observa como el vector <code>w</code>, al ser creado con un dato de tipo <em>character</em>, <span class="math inline">\(&quot;3&quot;\)</span>, ha convertido los elementos <em>numeric</em> (1 y 2) a <em>character</em>.</p>
-<p>También puedes crear vectores con valores dentro de un rango usando <strong>:</strong>.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">z =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span><span class="op">:</span><span class="dv">10</span>) <span class="co"># Es lo mismo que c(1:10)</span></a>
-<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw">print</span>(z)</a>
-<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="co">##  [1]  1  2  3  4  5  6  7  8  9 10</span></a>
-<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="kw">class</span>(z)</a>
-<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="co">## [1] &quot;numeric&quot;</span></a></code></pre></div>
-<p>¿Qué tipo de dato es el vector <code>z</code>?</p>
-<p><strong>Ejercicio</strong>:</p>
-<ol style="list-style-type: decimal">
-<li>Crea un vector que vaya del 0 al 100 sin incluir el 50, es decir, que vaya del 1 al 49, y del 51 al 100.</li>
-<li>Crea un vector que vaya del 2 al 100, de dos en dos. <strong>Pista</strong>: busca en <strong>Ayuda</strong> la función <code>seq()</code>.</li>
-</ol>
-<div id="operaciones-con-vectores" class="section level3">
-<h3><span class="header-section-number">1.1.1</span> Operaciones con vectores</h3>
-<p>Crea el siguiente vector:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">edades =<span class="st"> </span><span class="kw">c</span>(<span class="dv">67</span>, <span class="dv">65</span>, <span class="dv">71</span>, <span class="dv">53</span>, <span class="dv">57</span>, <span class="dv">77</span>)</a></code></pre></div>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">edades <span class="op">+</span><span class="st"> </span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="co">## [1] 69 67 73 55 59 79</span></a>
-<a class="sourceLine" id="cb4-3" data-line-number="3">edades <span class="op">/</span><span class="st"> </span><span class="dv">10</span></a>
-<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="co">## [1] 6.7 6.5 7.1 5.3 5.7 7.7</span></a></code></pre></div>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">length</span>(edades) <span class="co"># Número de elementos en el vector</span></a></code></pre></div>
-<pre><code>## [1] 6</code></pre>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">sum</span>(edades) <span class="co"># Suma todos los elmentos del vector</span></a></code></pre></div>
-<pre><code>## [1] 390</code></pre>
-<p>Asignar <strong>nombres</strong> a los elementos del vector:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">nombres_personas =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Ernesto&quot;</span>, <span class="st">&quot;Andrés&quot;</span>, <span class="st">&quot;Carlos&quot;</span>, </a>
-<a class="sourceLine" id="cb9-2" data-line-number="2">                     <span class="st">&quot;Enrique&quot;</span>, <span class="st">&quot;Felipe&quot;</span>, <span class="st">&quot;Vicente&quot;</span>)</a>
-<a class="sourceLine" id="cb9-3" data-line-number="3"><span class="co"># El vector de nombres lo asignamos al vector de edades</span></a>
-<a class="sourceLine" id="cb9-4" data-line-number="4"><span class="kw">names</span>(edades) =<span class="st"> </span>nombres_personas</a>
-<a class="sourceLine" id="cb9-5" data-line-number="5">edades</a>
-<a class="sourceLine" id="cb9-6" data-line-number="6"><span class="co">## Ernesto  Andrés  Carlos Enrique  Felipe Vicente </span></a>
-<a class="sourceLine" id="cb9-7" data-line-number="7"><span class="co">##      67      65      71      53      57      77</span></a></code></pre></div>
-<p><strong>Ejercicio</strong>: Calcula la media de las edades. <em>Pista</em>: puedes usar las funciones <code>sum()</code> y <code>length()</code>.</p>
-</div>
-<div id="indexacion-de-vectores" class="section level3">
-<h3><span class="header-section-number">1.1.2</span> Indexación de vectores</h3>
-<p>Podemos accesar a determinados valores del vector, según su posición en el. Para ello usamos la siguiente sintaxis:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">edades[<span class="dv">1</span>] <span class="co"># El primer elemento del vector</span></a>
-<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="co">## Ernesto </span></a>
-<a class="sourceLine" id="cb10-3" data-line-number="3"><span class="co">##      67</span></a>
-<a class="sourceLine" id="cb10-4" data-line-number="4">edades[<span class="dv">2</span>] <span class="co"># El segundo elmento del vector</span></a>
-<a class="sourceLine" id="cb10-5" data-line-number="5"><span class="co">## Andrés </span></a>
-<a class="sourceLine" id="cb10-6" data-line-number="6"><span class="co">##     65</span></a>
-<a class="sourceLine" id="cb10-7" data-line-number="7">edades[<span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">3</span>)] <span class="co"># Segundo y tercer elementos del vector</span></a>
-<a class="sourceLine" id="cb10-8" data-line-number="8"><span class="co">## Andrés Carlos </span></a>
-<a class="sourceLine" id="cb10-9" data-line-number="9"><span class="co">##     65     71</span></a></code></pre></div>
-<p>Podemos remover ciertos valores del vector según su posición. Para ello usamos el signo <em>menos</em>, <code>-</code>.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">edades[<span class="op">-</span><span class="dv">1</span>] <span class="co"># Se va Ernesto</span></a>
-<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="co">##  Andrés  Carlos Enrique  Felipe Vicente </span></a>
-<a class="sourceLine" id="cb11-3" data-line-number="3"><span class="co">##      65      71      53      57      77</span></a>
-<a class="sourceLine" id="cb11-4" data-line-number="4">edades[<span class="op">-</span><span class="dv">2</span>] <span class="co"># Se va Andrés</span></a>
-<a class="sourceLine" id="cb11-5" data-line-number="5"><span class="co">## Ernesto  Carlos Enrique  Felipe Vicente </span></a>
-<a class="sourceLine" id="cb11-6" data-line-number="6"><span class="co">##      67      71      53      57      77</span></a>
-<a class="sourceLine" id="cb11-7" data-line-number="7">edades[<span class="op">-</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">3</span>)] <span class="co"># Se van Andrés y Carlos</span></a>
-<a class="sourceLine" id="cb11-8" data-line-number="8"><span class="co">## Ernesto Enrique  Felipe Vicente </span></a>
-<a class="sourceLine" id="cb11-9" data-line-number="9"><span class="co">##      67      53      57      77</span></a></code></pre></div>
-</div>
-<div id="operaciones-relacionales-con-vectores" class="section level3">
-<h3><span class="header-section-number">1.1.3</span> Operaciones relacionales con vectores</h3>
-<p>¿Cómo podemos saber qué <em>personas</em> son <strong>mayores</strong> de una <em>n</em> cantidad de años?</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">n =<span class="st"> </span><span class="dv">60</span></a>
-<a class="sourceLine" id="cb12-2" data-line-number="2">edades <span class="op">&gt;</span><span class="st"> </span>n</a></code></pre></div>
-<pre><code>## Ernesto  Andrés  Carlos Enrique  Felipe Vicente 
-##    TRUE    TRUE    TRUE   FALSE   FALSE    TRUE</code></pre>
-<p>Ahora podemos usar los corchetes cuadrados <code>[]</code> para conservar los valores que nos interesan, según la condición:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">n =<span class="st"> </span><span class="dv">60</span></a>
-<a class="sourceLine" id="cb14-2" data-line-number="2">condicion =<span class="st"> </span>edades <span class="op">&gt;</span><span class="st"> </span>n</a>
-<a class="sourceLine" id="cb14-3" data-line-number="3">edades[ condicion ] <span class="co"># Esto es igual a edades[ edades &gt; n ]</span></a></code></pre></div>
-<pre><code>## Ernesto  Andrés  Carlos Vicente 
-##      67      65      71      77</code></pre>
-<p>Podemos preguntar también: ¿qué personas están entre los 55 <strong>y</strong> 65 años?<br />
-Para ello usamos dos condiciones y el <em>operador lógico</em> <code>&amp;</code> (puedes buscar <code>?&quot;&amp;&quot;</code> para más información) que nos permita evaluarlas.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1">condicion_<span class="dv">1</span> =<span class="st"> </span>edades <span class="op">&gt;=</span><span class="st"> </span><span class="dv">55</span> <span class="co"># Observa que usamos una condición =&gt;, que significa mayor o igual</span></a>
-<a class="sourceLine" id="cb16-2" data-line-number="2">condicion_<span class="dv">2</span> =<span class="st"> </span>edades <span class="op">&lt;=</span><span class="st"> </span><span class="dv">65</span> <span class="co"># En este caso usamos menor o igual</span></a>
-<a class="sourceLine" id="cb16-3" data-line-number="3">edades[ condicion_<span class="dv">1</span> <span class="op">&amp;</span><span class="st"> </span>condicion_<span class="dv">2</span> ]</a></code></pre></div>
-<pre><code>## Andrés Felipe 
-##     65     57</code></pre>
-<p><strong>Ejercicio:</strong> ¿Qué personas son menores a los 55 años <strong>o</strong> mayores a los 65? <em>Pista:</em> En este caso tendrás que usar el operador lógico <code>|</code> (caracter <em>Alt + 124</em>).</p>
-</div>
-<div id="funciones-aplicables-a-vectores" class="section level3">
-<h3><span class="header-section-number">1.1.4</span> Funciones aplicables a vectores:</h3>
-<p>Para ordenar el vector, usamos la función <code>sort()</code>:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1">edades_ord =<span class="st"> </span><span class="kw">sort</span>(edades) <span class="co"># Orden acendente</span></a>
-<a class="sourceLine" id="cb18-2" data-line-number="2">edades_ord </a></code></pre></div>
-<pre><code>## Enrique  Felipe  Andrés Ernesto  Carlos Vicente 
-##      53      57      65      67      71      77</code></pre>
-<p><strong>Otras funciones:</strong> ¿Qué hace cada una de las siguientes funciones?</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1"><span class="kw">mean</span>(edades)</a>
-<a class="sourceLine" id="cb20-2" data-line-number="2"><span class="co">## [1] 65</span></a>
-<a class="sourceLine" id="cb20-3" data-line-number="3"><span class="kw">median</span>(edades)</a>
-<a class="sourceLine" id="cb20-4" data-line-number="4"><span class="co">## [1] 66</span></a>
-<a class="sourceLine" id="cb20-5" data-line-number="5"><span class="kw">sd</span>(edades)</a>
-<a class="sourceLine" id="cb20-6" data-line-number="6"><span class="co">## [1] 8.854377</span></a>
-<a class="sourceLine" id="cb20-7" data-line-number="7"><span class="kw">var</span>(edades)</a>
-<a class="sourceLine" id="cb20-8" data-line-number="8"><span class="co">## [1] 78.4</span></a>
-<a class="sourceLine" id="cb20-9" data-line-number="9"><span class="kw">max</span>(edades)</a>
-<a class="sourceLine" id="cb20-10" data-line-number="10"><span class="co">## [1] 77</span></a>
-<a class="sourceLine" id="cb20-11" data-line-number="11"><span class="kw">min</span>(edades)</a>
-<a class="sourceLine" id="cb20-12" data-line-number="12"><span class="co">## [1] 53</span></a></code></pre></div>
-<p><strong>Ejercicio:</strong> ¿Cuál es el promedio de las edades sin contar a la persona de mayor edad?</p>
+<div id="scrips-y-tipos-de-datos" class="section level1">
+<h1><span class="header-section-number">1</span> Scrips y tipos de datos</h1>
+<div id="scripts-de-r" class="section level2">
+<h2><span class="header-section-number">1.1</span> <em>Scripts</em> de R</h2>
+<p>Hasta ahora hemos usado únicamente la consola. Llegó la hora de llevar un registro de los comandos que vamos usando y poder guardarlos en un archivo.</p>
+<p>Podemos crear un nuevo archivo <em>.R</em> usando <code>File &gt; New File &gt; R script</code>, esto generará un archivo donde podremos ir escribiendo comandos de <strong>R</strong> sin necesidad de tener que ejecutarlos directamente sobre la consola.</p>
+<div id="guardar-el-archivo-.r" class="section level3">
+<h3><span class="header-section-number">1.1.1</span> Guardar el archivo “<em>.R</em>”</h3>
+<p>Puedes guardar el archivo desde <code>File &gt; Save</code>, o con <code>Ctrl + S</code>. Guárdalo en el <strong>Escritorio</strong> dentro de una carpeta llamada <em>Taller_R</em>, nombrando el archivo como <em>Intro_R.R</em>; es importante usar la extensión <strong><em>.R</em></strong>.<br />
+Una vez guardado vamos a la ventana de navegación de archivos (<strong>Files</strong>) dentro de RStudio (panel inferior derecho). Puedes navegar hasta la carpeta de trabajo.<br />
+En la pestaña <strong><em>More</em></strong> del panel de navegación de archivos, selecciona <em><code>Set As Working Directory</code></em>.</p>
+<p>¿Qué ocurrió en la consola?</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">getwd</span>() <span class="co"># Este comando nos dice la ruta del directorio de trabajo donde estamos.</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="co"># Lo usaremos más adelante cuando trabajemos con archivos.</span></a></code></pre></div>
+<p>A partir de ahora puedes escribir los comandos que vayamos viendo directamente en el archivo <em>Intro_R.R</em>, escribiéndo un comando por línea.<br />
+Puedes ejecutar una línea colocándo el cursor sobre ella y presionando <code>Crtl + Enter</code>. También puedes ejecutar múltiples líneas si las seleccionas con el cursor y luego presionas <code>Crtl + Enter</code>.</p>
 </div>
 </div>
-<div id="ejercicio-final" class="section level2">
-<h2><span class="header-section-number">1.2</span> Ejercicio Final</h2>
-<p>Ahora vamos a utilizar datos reales para practicar lo visto hasta ahora. R contiene <em>datasets</em> precargados con los que podemos trabajar. En este caso vamos a utilizar el <em>dataset</em> <code>PlantGrowth</code>, que contiene datos experimentales del crecimiento de plantas (midiendo su <strong>peso</strong> seco en <span class="math inline">\(g\)</span>) bajo ciertas condiciones (puedes ejecuatar en consola <code>?PlantGrowth</code> para más información).<br />
-Por ahora sólo nos interesa tomar los datos de peso de las plantas, así que ejecuta lo siguiente:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1">peso_plantas =<span class="st"> </span>PlantGrowth<span class="op">$</span>weight</a>
-<a class="sourceLine" id="cb21-2" data-line-number="2"><span class="co"># No te preocupes por la sintaxis, lo veremos más adelante</span></a></code></pre></div>
-<p>Con los datos cargados en la variable <code>peso_plantas</code> responde las siguientes preguntas:</p>
-<ol style="list-style-type: decimal">
-<li>¿Cuántos datos contiene?</li>
-<li>¿Qué tipo de datos son?</li>
-<li>¿Cuál es el peso máximo y mínimo de las plantas?</li>
-<li>¿Cuál es la media del peso?</li>
-<li>¿Qué es mayor, la media o la mediana del peso?</li>
-<li>¿Cuántas plantas pesaron 4 gramos o más?</li>
-</ol>
+<div id="variables-y-asignaciones" class="section level2">
+<h2><span class="header-section-number">1.2</span> Variables y asignaciones</h2>
+<p>En R, es posible almacenar valores en variables usando el operador de asignación <code>&lt;-</code>, o <code>=</code>:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co"># Asignamos a la variable llamada &quot;temperatura&quot; el valor numérico 25</span></a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">x =<span class="st"> </span><span class="dv">25</span></a></code></pre></div>
+<p>Al ejecutar el comando, R no devúelve una respuesta. Sin embargo si escribimos el nombre de la variable R nos retornará el valor que le corresponde:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="co"># &quot;Llamámos&quot; a la variable &quot;temperatura&quot;</span></a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">x</a></code></pre></div>
+<pre><code>## [1] 25</code></pre>
+<p><strong><em>Nota:</em></strong> ¿Qué pasa si en lugar de escribir <code>x</code> (minúscula) en la consola, escribímos <code>X</code> (mayúscula)?</p>
+<p>Como es de esperarse, ahora puedes hacer operaciones usando dicha variable:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">x <span class="op">+</span><span class="st"> </span><span class="fl">5.0</span></a></code></pre></div>
+<pre><code>## [1] 30</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">x <span class="op">*</span><span class="st"> </span><span class="dv">5</span></a></code></pre></div>
+<pre><code>## [1] 125</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw">log10</span>(x)</a></code></pre></div>
+<pre><code>## [1] 1.39794</code></pre>
+<p>Observa que el valor de <code>x</code> no ha cambiado aunque hayamos operado sobre él. Ejecuta lo siguiente:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="co"># print y paste nos sirven para &quot;imprimir&quot; en la consola:</span></a>
+<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="kw">print</span>( <span class="kw">paste</span>( <span class="st">&quot;El valor actual de x es:&quot;</span>, x ) )</a></code></pre></div>
+<pre><code>## [1] &quot;El valor actual de x es: 25&quot;</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="co"># Actualizamos x</span></a>
+<a class="sourceLine" id="cb13-2" data-line-number="2"><span class="co"># Usamos el operador &quot;=&quot; o &quot;&lt;-&quot;</span></a>
+<a class="sourceLine" id="cb13-3" data-line-number="3">x =<span class="st"> </span>x <span class="op">*</span><span class="st"> </span><span class="dv">2</span> </a>
+<a class="sourceLine" id="cb13-4" data-line-number="4"><span class="kw">print</span>( <span class="kw">paste</span>( <span class="st">&quot;El nuevo valor de x es:&quot;</span>, x ) )</a></code></pre></div>
+<pre><code>## [1] &quot;El nuevo valor de x es: 50&quot;</code></pre>
+<p>Crea ahora una variable <span class="math inline">\(temp_K\)</span> que contenga el doble del valor que tome x. <strong>¿Cuánto vale <code>y</code>?</strong></p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">y =<span class="st"> </span>x <span class="op">*</span><span class="st"> </span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb15-2" data-line-number="2">y</a></code></pre></div>
+<pre><code>## [1] 100</code></pre>
+<p>Asigna un nuevo valor a <code>x</code> de tal manera que <code>y</code> ahora pueda valer 1,000.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="co"># Actualiza el valor de x.</span></a>
+<a class="sourceLine" id="cb17-2" data-line-number="2">x &lt;-<span class="st"> </span>ingresa tu respuesta</a></code></pre></div>
+<p><strong>Ojo</strong>: Si tratas de ejecutar el comando así, te dará error. ¿Por qué?</p>
+<div id="como-nombrar-variables" class="section level3">
+<h3><span class="header-section-number">1.2.1</span> ¿Cómo nombrar variables?</h3>
+<ul>
+<li>Los nombres de las variables pueden contener letras, números, guiones bajos y puntos.</li>
+<li><strong>No pueden comenzar con un número ni contener espacios o guiones medios entre palabras.</strong></li>
+</ul>
+<p><strong>Ejercicio:</strong> Verifica cuales de las siguientes formas de nombrar una variables son válidas (ve ejecuatando uno a uno):</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1">numero_dos =<span class="st"> </span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb18-2" data-line-number="2">numero<span class="op">-</span>tres =<span class="st"> </span><span class="dv">3</span></a>
+<a class="sourceLine" id="cb18-3" data-line-number="3">numero cuatro =<span class="st"> </span><span class="dv">4</span></a>
+<a class="sourceLine" id="cb18-4" data-line-number="4">numero<span class="fl">.5</span> =<span class="st"> </span><span class="dv">5</span></a>
+<a class="sourceLine" id="cb18-5" data-line-number="5">numeroSeis =<span class="st"> </span><span class="dv">6</span></a>
+<a class="sourceLine" id="cb18-6" data-line-number="6"><span class="fl">7.</span>numero =<span class="st"> </span><span class="dv">7</span></a>
+<a class="sourceLine" id="cb18-7" data-line-number="7">_<span class="dv">8</span> =<span class="st"> </span><span class="dv">9</span></a>
+<a class="sourceLine" id="cb18-8" data-line-number="8"><span class="fl">.9</span> =<span class="st"> </span><span class="dv">9</span></a>
+<a class="sourceLine" id="cb18-9" data-line-number="9">num_<span class="dv">10</span> =<span class="st"> </span><span class="dv">10</span></a>
+<a class="sourceLine" id="cb18-10" data-line-number="10">once =<span class="st"> &quot;once&quot;</span></a></code></pre></div>
+<p><strong>¿Cuántas variables pudiste crear?</strong></p>
+</div>
+<div id="paneles-environment-y-history" class="section level3">
+<h3><span class="header-section-number">1.2.2</span> Paneles <em><code>Environment</code></em> y <em><code>History</code></em></h3>
+<p>Tras ejecutar los comandos anteriores verás que en el panel superior derecho, en la pestaña <em><code>Environment</code></em> se han ido guardando las variables que has creado. Dichas variables están guardadas en memoria y pueden ser usadas para realizar operaciones.<br />
+Por otro lado, el panel <em><code>History</code></em> posee el historial de todos los comandos que has ido ejecutando en la sesión.</p>
+</div>
+</div>
+<div id="operaciones-relacionales" class="section level2">
+<h2><span class="header-section-number">1.3</span> Operaciones relacionales</h2>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="dv">2</span> <span class="op">==</span><span class="st"> </span><span class="dv">2</span> <span class="co"># ¿Son iguales?: Devuelve TRUE</span></a></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1">numero_dos <span class="op">==</span><span class="st"> </span><span class="dv">2</span> <span class="co"># ¿Son iguales?: Observa que esta vez usamos &quot;==&quot;, y no &quot;=&quot;</span></a></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1"><span class="dv">2</span> <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="co"># ¿Son iguales?: Devuelve FALSE</span></a></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1"><span class="dv">2</span> <span class="op">!=</span><span class="st"> </span><span class="dv">1</span> <span class="co"># ¿Son DESiguales?: Devuelve TRUE</span></a></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1"><span class="dv">2</span> <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span> <span class="co"># ¿Es mayor que?: Devuelve TRUE</span></a></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1"><span class="dv">2</span> <span class="op">&lt;</span><span class="st"> </span><span class="dv">1</span> <span class="co"># ¿Es menor que?: Devuelve FALSE</span></a></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+</div>
+<div id="tipos-de-datos" class="section level2">
+<h2><span class="header-section-number">1.4</span> Tipos de datos</h2>
+<p>En R, casi todos los datos con los que trabajamos son considerados <strong><em>Objetos</em></strong>, lo que significa que cada dato pertenece a una <strong>clase</strong> en particular, y por ello tiene atributos particulares.<br />
+Los tipos de datos <strong>básicos</strong> más comunes en R son los siguientes:</p>
+<ul>
+<li><strong>numeric</strong>: número real</li>
+<li><strong>integer</strong>: número entero</li>
+<li><strong>character</strong>: cadena de texto</li>
+<li><strong>logical</strong>: valores lógicos (verdadero o falso)</li>
+</ul>
+<p>Hasta ahora hemos utilizado algunos de ellos, y es importante saber con que tipo de datos estamos trabajando, pues de ello depende qué operaciones podemos realizar con ellos. A cotinuación usamos la función <code>class()</code> que nos indica qué tipo de dato esun objeto:</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1">numero_real =<span class="st"> </span><span class="fl">100.5</span></a>
+<a class="sourceLine" id="cb31-2" data-line-number="2"><span class="kw">class</span>(numero_real)</a>
+<a class="sourceLine" id="cb31-3" data-line-number="3"><span class="co">## [1] &quot;numeric&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" data-line-number="1">numero_entero =<span class="st"> </span>100L</a>
+<a class="sourceLine" id="cb32-2" data-line-number="2"><span class="kw">class</span>(numero_entero)</a>
+<a class="sourceLine" id="cb32-3" data-line-number="3"><span class="co">## [1] &quot;integer&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1">cadena_de_texto =<span class="st"> &quot;100&quot;</span> <span class="co"># O cadena de caracteres</span></a>
+<a class="sourceLine" id="cb33-2" data-line-number="2"><span class="kw">class</span>(cadena_de_texto)</a>
+<a class="sourceLine" id="cb33-3" data-line-number="3"><span class="co">## [1] &quot;character&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1">valor_logico =<span class="st"> </span><span class="ot">TRUE</span> <span class="co"># También puede ser FALSE</span></a>
+<a class="sourceLine" id="cb34-2" data-line-number="2"><span class="kw">class</span>(valor_logico)</a>
+<a class="sourceLine" id="cb34-3" data-line-number="3"><span class="co">## [1] &quot;logical&quot;</span></a></code></pre></div>
+<p><strong>Ejercicio</strong>: ¿Cuáles de las siguientes operaciones es posible realizar? ¿Qué tipo de dato es el resultado de cada una?<br />
+Usa la función <code>class()</code> para evaluar cada resultado (por ejemplo: <code>class(100 + 2)</code>)</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1"><span class="dv">100</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span>              <span class="co">#(1</span></a>
+<a class="sourceLine" id="cb35-2" data-line-number="2">100L <span class="op">+</span><span class="st"> </span><span class="fl">2.0</span>          <span class="co">#(2</span></a>
+<a class="sourceLine" id="cb35-3" data-line-number="3">100L <span class="op">+</span><span class="st"> </span>2L          <span class="co">#(3</span></a>
+<a class="sourceLine" id="cb35-4" data-line-number="4"><span class="dv">100</span> <span class="op">+</span><span class="st"> </span><span class="ot">TRUE</span> <span class="op">+</span><span class="st"> </span><span class="ot">TRUE</span>   <span class="co">#(4</span></a>
+<a class="sourceLine" id="cb35-5" data-line-number="5"><span class="ot">TRUE</span> <span class="op">==</span><span class="st"> </span><span class="dv">1</span>           <span class="co">#(5</span></a>
+<a class="sourceLine" id="cb35-6" data-line-number="6"><span class="st">&quot;100&quot;</span> <span class="op">+</span><span class="st"> &quot;2&quot;</span>         <span class="co">#(6</span></a>
+<a class="sourceLine" id="cb35-7" data-line-number="7"><span class="kw">paste</span>(<span class="st">&quot;100&quot;</span> <span class="op">+</span><span class="st"> &quot;2&quot;</span>)  <span class="co">#(7</span></a>
+<a class="sourceLine" id="cb35-8" data-line-number="8"><span class="kw">paste</span>(<span class="st">&quot;100&quot;</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span>)    <span class="co">#(8</span></a>
+<a class="sourceLine" id="cb35-9" data-line-number="9"><span class="kw">paste</span>(<span class="dv">100</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span>)      <span class="co">#(9</span></a></code></pre></div>
+<hr />
+<p><strong>¡Listo!</strong><br />
+Puedes continuar hacia la siguiente sección.</p>
+<hr />
+<button type="button" class="btn btn-primary pull-left">
+Anterior
+</button>
+<button type="button" class="btn btn-primary pull-right">
+Siguiente
+</button>
 </div>
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiSW50cm9kdWNjacOzbiBhIFI6IFBhcnRlIDMiCi0tLQoqKioKIyBUZXJjZXJhIFBhcnRlCiMjIFZlY3RvcmVzCgpVbiB2ZWN0b3IgZXMgdW5hIGVzdHJ1Y3R1cmEgZGUgdW5hIHNvbGEgZGltZW5zacOzbiBxdWUgY29udGllbmUgZWxlbWVudG9zIGhvbW9nw6luZW9zLiBQb2RlbW9zIGNyZWFyIHZlY3RvcmVzIHVzYW5kbyBsYSBmdW5jacOzbiBgYygpYCAoKipjb21iaW5lKiopLiAoVXNhIGA/Y2AgZW4gY29uc29sYSwgbyBidXNjYSAqKl9jXyoqIGVuIGVsIHBhbmVsIGRlIGF5dWRhIHBhcmEgc2FiZXIgbcOhcykuCgpWYW1vcyBhIGNyZWFyIG51ZXN0cm9zIHByaW1lcm9zIHZlY3RvcmVzOgpgYGB7ciBjb2xsYXBzZT1UUlVFfQp2ID0gYygxLCAyLCAzLCA0KQpwcmludCh2KQpjbGFzcyh2KQoKdyA9IGMoMSwgMiwgIjMiLCA0KQpwcmludCh3KQpjbGFzcyh3KQpgYGAKKipFcyBpbXBvcnRhbnRlIHJlY29yZGFyIHF1ZSBsb3MgdmVjdG9yZXMgc29uIF9ob21vZ8OpbmVvc18sIHBvciBsbyBxdWUgcHVlZGVuIHRlbmVyIHVuIHPDs2xvIHRpcG8gZGUgZGF0by4qKiBPYnNlcnZhIGNvbW8gZWwgdmVjdG9yIGB3YCwgYWwgc2VyIGNyZWFkbyBjb24gdW4gZGF0byBkZSB0aXBvICpjaGFyYWN0ZXIqLCAkIjMiJCwgaGEgY29udmVydGlkbyBsb3MgZWxlbWVudG9zICpudW1lcmljKiAoMSB5IDIpIGEgKmNoYXJhY3RlciouIAoKVGFtYmnDqW4gcHVlZGVzIGNyZWFyIHZlY3RvcmVzIGNvbiB2YWxvcmVzIGRlbnRybyBkZSB1biByYW5nbyB1c2FuZG8gKio6KiouCmBgYHtyIGNvbGxhcHNlPVRSVUV9CnogPSBjKDEsIDIsIDM6MTApICMgRXMgbG8gbWlzbW8gcXVlIGMoMToxMCkKcHJpbnQoeikKY2xhc3MoeikKYGBgCsK/UXXDqSB0aXBvIGRlIGRhdG8gZXMgZWwgdmVjdG9yIGB6YD8KCioqRWplcmNpY2lvKio6CgoxLiBDcmVhIHVuIHZlY3RvciBxdWUgdmF5YSBkZWwgMCBhbCAxMDAgc2luIGluY2x1aXIgZWwgNTAsIGVzIGRlY2lyLCBxdWUgdmF5YSBkZWwgMSBhbCA0OSwgeSBkZWwgNTEgYWwgMTAwLgoyLiBDcmVhIHVuIHZlY3RvciBxdWUgdmF5YSBkZWwgMiBhbCAxMDAsIGRlIGRvcyBlbiBkb3MuICoqUGlzdGEqKjogYnVzY2EgZW4gKipBeXVkYSoqIGxhIGZ1bmNpw7NuIGBzZXEoKWAuCgpgYGB7ciBpbmNsdWRlPUZBTFNFfQpjKDE6NDksIDUxOjEwMCkKc2VxKDIsIDEwMCwgYnkgPSAyKQpgYGAKCiMjIyBPcGVyYWNpb25lcyBjb24gdmVjdG9yZXMKCkNyZWEgZWwgc2lndWllbnRlIHZlY3RvcjoKCmBgYHtyfQplZGFkZXMgPSBjKDY3LCA2NSwgNzEsIDUzLCA1NywgNzcpCmBgYAoKYGBge3IgY29sbGFwc2U9VFJVRX0KZWRhZGVzICsgMgplZGFkZXMgLyAxMApgYGAKCmBgYHtyfQpsZW5ndGgoZWRhZGVzKSAjIE7Dum1lcm8gZGUgZWxlbWVudG9zIGVuIGVsIHZlY3RvcgpzdW0oZWRhZGVzKSAjIFN1bWEgdG9kb3MgbG9zIGVsbWVudG9zIGRlbCB2ZWN0b3IKYGBgCgpBc2lnbmFyICoqbm9tYnJlcyoqIGEgbG9zIGVsZW1lbnRvcyBkZWwgdmVjdG9yOgpgYGB7ciBjb2xsYXBzZT1UUlVFfQpub21icmVzX3BlcnNvbmFzID0gYygiRXJuZXN0byIsICJBbmRyw6lzIiwgIkNhcmxvcyIsIAogICAgICAgICAgICAgICAgICAgICAiRW5yaXF1ZSIsICJGZWxpcGUiLCAiVmljZW50ZSIpCiMgRWwgdmVjdG9yIGRlIG5vbWJyZXMgbG8gYXNpZ25hbW9zIGFsIHZlY3RvciBkZSBlZGFkZXMKbmFtZXMoZWRhZGVzKSA9IG5vbWJyZXNfcGVyc29uYXMKZWRhZGVzCmBgYAoKKipFamVyY2ljaW8qKjogQ2FsY3VsYSBsYSBtZWRpYSBkZSBsYXMgZWRhZGVzLiAqUGlzdGEqOiBwdWVkZXMgdXNhciBsYXMgZnVuY2lvbmVzIGBzdW0oKWAgeSBgbGVuZ3RoKClgLgpgYGB7ciBpbmNsdWRlPUZBTFNFfQojIEVqZXJjaWNpbzogc2FjYXIgbGEgbWVkaWEgZGUgbGFzIGVkYWRlcwptZWRpYV9lZGFkZXMgPSBzdW0oZWRhZGVzKSAvIGxlbmd0aChlZGFkZXMpCm1lZGlhX2VkYWRlcwpgYGAKCiMjIyBJbmRleGFjacOzbiBkZSB2ZWN0b3JlcwpQb2RlbW9zIGFjY2VzYXIgYSBkZXRlcm1pbmFkb3MgdmFsb3JlcyBkZWwgdmVjdG9yLCBzZWfDum4gc3UgcG9zaWNpw7NuIGVuIGVsLiBQYXJhIGVsbG8gdXNhbW9zIGxhIHNpZ3VpZW50ZSBzaW50YXhpczoKYGBge3IgY29sbGFwc2U9VFJVRX0KZWRhZGVzWzFdICMgRWwgcHJpbWVyIGVsZW1lbnRvIGRlbCB2ZWN0b3IKZWRhZGVzWzJdICMgRWwgc2VndW5kbyBlbG1lbnRvIGRlbCB2ZWN0b3IKZWRhZGVzW2MoMiwgMyldICMgU2VndW5kbyB5IHRlcmNlciBlbGVtZW50b3MgZGVsIHZlY3RvcgpgYGAKClBvZGVtb3MgcmVtb3ZlciBjaWVydG9zIHZhbG9yZXMgZGVsIHZlY3RvciBzZWfDum4gc3UgcG9zaWNpw7NuLiBQYXJhIGVsbG8gdXNhbW9zIGVsIHNpZ25vICptZW5vcyosIGAtYC4KYGBge3IgY29sbGFwc2U9VFJVRX0KZWRhZGVzWy0xXSAjIFNlIHZhIEVybmVzdG8KZWRhZGVzWy0yXSAjIFNlIHZhIEFuZHLDqXMKZWRhZGVzWy0gYygyLCAzKV0gIyBTZSB2YW4gQW5kcsOpcyB5IENhcmxvcwpgYGAKCiMjIyBPcGVyYWNpb25lcyByZWxhY2lvbmFsZXMgY29uIHZlY3RvcmVzCsK/Q8OzbW8gcG9kZW1vcyBzYWJlciBxdcOpICpwZXJzb25hcyogc29uICoqbWF5b3JlcyoqIGRlIHVuYSAqbiogY2FudGlkYWQgZGUgYcOxb3M/CmBgYHtyfQpuID0gNjAKZWRhZGVzID4gbgpgYGAKCkFob3JhIHBvZGVtb3MgdXNhciBsb3MgY29yY2hldGVzIGN1YWRyYWRvcyBgW11gIHBhcmEgY29uc2VydmFyIGxvcyB2YWxvcmVzIHF1ZSBub3MgaW50ZXJlc2FuLCBzZWfDum4gbGEgY29uZGljacOzbjoKYGBge3J9Cm4gPSA2MApjb25kaWNpb24gPSBlZGFkZXMgPiBuCmVkYWRlc1sgY29uZGljaW9uIF0gIyBFc3RvIGVzIGlndWFsIGEgZWRhZGVzWyBlZGFkZXMgPiBuIF0KYGBgCgpQb2RlbW9zIHByZWd1bnRhciB0YW1iacOpbjogwr9xdcOpIHBlcnNvbmFzIGVzdMOhbiBlbnRyZSBsb3MgNTUgKip5KiogNjUgYcOxb3M/ICAKUGFyYSBlbGxvIHVzYW1vcyBkb3MgY29uZGljaW9uZXMgeSBlbCAqb3BlcmFkb3IgbMOzZ2ljbyogYCZgIChwdWVkZXMgYnVzY2FyIGA/IiYiYCBwYXJhIG3DoXMgaW5mb3JtYWNpw7NuKSBxdWUgbm9zIHBlcm1pdGEgZXZhbHVhcmxhcy4KYGBge3J9CmNvbmRpY2lvbl8xID0gZWRhZGVzID49IDU1ICMgT2JzZXJ2YSBxdWUgdXNhbW9zIHVuYSBjb25kaWNpw7NuID0+LCBxdWUgc2lnbmlmaWNhIG1heW9yIG8gaWd1YWwKY29uZGljaW9uXzIgPSBlZGFkZXMgPD0gNjUgIyBFbiBlc3RlIGNhc28gdXNhbW9zIG1lbm9yIG8gaWd1YWwKZWRhZGVzWyBjb25kaWNpb25fMSAmIGNvbmRpY2lvbl8yIF0KYGBgCgoqKkVqZXJjaWNpbzoqKiDCv1F1w6kgcGVyc29uYXMgc29uIG1lbm9yZXMgYSBsb3MgNTUgYcOxb3MgKipvKiogbWF5b3JlcyBhIGxvcyA2NT8gKlBpc3RhOiogRW4gZXN0ZSBjYXNvIHRlbmRyw6FzIHF1ZSB1c2FyIGVsIG9wZXJhZG9yIGzDs2dpY28gYHxgIChjYXJhY3RlciAqQWx0ICsgMTI0KikuCgpgYGB7ciBpbmNsdWRlPUZBTFNFfQplZGFkZXNbIChlZGFkZXMgPCA1NSkgfCAoZWRhZGVzID4gNjUpIF0KYGBgCgojIyMgRnVuY2lvbmVzIGFwbGljYWJsZXMgYSB2ZWN0b3JlczoKUGFyYSBvcmRlbmFyIGVsIHZlY3RvciwgdXNhbW9zIGxhIGZ1bmNpw7NuIGBzb3J0KClgOgpgYGB7cn0KZWRhZGVzX29yZCA9IHNvcnQoZWRhZGVzKSAjIE9yZGVuIGFjZW5kZW50ZQplZGFkZXNfb3JkIApgYGAKCioqT3RyYXMgZnVuY2lvbmVzOioqCsK/UXXDqSBoYWNlIGNhZGEgdW5hIGRlIGxhcyBzaWd1aWVudGVzIGZ1bmNpb25lcz8KYGBge3IgY29sbGFwc2U9VFJVRX0KbWVhbihlZGFkZXMpCm1lZGlhbihlZGFkZXMpCnNkKGVkYWRlcykKdmFyKGVkYWRlcykKbWF4KGVkYWRlcykKbWluKGVkYWRlcykKYGBgCgoqKkVqZXJjaWNpbzoqKiDCv0N1w6FsIGVzIGVsIHByb21lZGlvIGRlIGxhcyBlZGFkZXMgc2luIGNvbnRhciBhIGxhIHBlcnNvbmEgZGUgbWF5b3IgZWRhZD8KCmBgYHtyIGluY2x1ZGU9RkFMU0V9Cm1lYW4oIGVkYWRlc19vcmRbIC0gbGVuZ3RoKGVkYWRlcykgXSApCmBgYAoKIyMgRWplcmNpY2lvIEZpbmFsCgpBaG9yYSB2YW1vcyBhIHV0aWxpemFyIGRhdG9zIHJlYWxlcyBwYXJhIHByYWN0aWNhciBsbyB2aXN0byBoYXN0YSBhaG9yYS4gUiBjb250aWVuZSAqZGF0YXNldHMqIHByZWNhcmdhZG9zIGNvbiBsb3MgcXVlIHBvZGVtb3MgdHJhYmFqYXIuIEVuIGVzdGUgY2FzbyB2YW1vcyBhIHV0aWxpemFyIGVsICpkYXRhc2V0KiBgUGxhbnRHcm93dGhgLCBxdWUgY29udGllbmUgZGF0b3MgZXhwZXJpbWVudGFsZXMgZGVsIGNyZWNpbWllbnRvIGRlIHBsYW50YXMgKG1pZGllbmRvIHN1ICoqcGVzbyoqIHNlY28gZW4gJGckKSBiYWpvIGNpZXJ0YXMgY29uZGljaW9uZXMgKHB1ZWRlcyBlamVjdWF0YXIgZW4gY29uc29sYSBgP1BsYW50R3Jvd3RoYCBwYXJhIG3DoXMgaW5mb3JtYWNpw7NuKS4gIApQb3IgYWhvcmEgc8OzbG8gbm9zIGludGVyZXNhIHRvbWFyIGxvcyBkYXRvcyBkZSBwZXNvIGRlIGxhcyBwbGFudGFzLCBhc8OtIHF1ZSBlamVjdXRhIGxvIHNpZ3VpZW50ZToKYGBge3J9CnBlc29fcGxhbnRhcyA9IFBsYW50R3Jvd3RoJHdlaWdodAojIE5vIHRlIHByZW9jdXBlcyBwb3IgbGEgc2ludGF4aXMsIGxvIHZlcmVtb3MgbcOhcyBhZGVsYW50ZQpgYGAKCkNvbiBsb3MgZGF0b3MgY2FyZ2Fkb3MgZW4gbGEgdmFyaWFibGUgYHBlc29fcGxhbnRhc2AgcmVzcG9uZGUgbGFzIHNpZ3VpZW50ZXMgcHJlZ3VudGFzOgoKMS4gwr9DdcOhbnRvcyBkYXRvcyBjb250aWVuZT8KMi4gwr9RdcOpIHRpcG8gZGUgZGF0b3Mgc29uPwozLiDCv0N1w6FsIGVzIGVsIHBlc28gbcOheGltbyB5IG3DrW5pbW8gZGUgbGFzIHBsYW50YXM/CjQuIMK/Q3XDoWwgZXMgbGEgbWVkaWEgZGVsIHBlc28/CjUuIMK/UXXDqSBlcyBtYXlvciwgbGEgbWVkaWEgbyBsYSBtZWRpYW5hIGRlbCBwZXNvPwo2LiDCv0N1w6FudGFzIHBsYW50YXMgcGVzYXJvbiA0IGdyYW1vcyBvIG3DoXM/Cg==</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAnSW50cm9kdWNjacOzbiBhIFI6IFBhcnRlIDInCi0tLQoqKioKIyBTY3JpcHMgeSB0aXBvcyBkZSBkYXRvcwoKIyMgKlNjcmlwdHMqIGRlIFIKCkhhc3RhIGFob3JhIGhlbW9zIHVzYWRvIMO6bmljYW1lbnRlIGxhIGNvbnNvbGEuIExsZWfDsyBsYSBob3JhIGRlIGxsZXZhciB1biByZWdpc3RybyBkZSBsb3MgY29tYW5kb3MgcXVlIHZhbW9zIHVzYW5kbyB5IHBvZGVyIGd1YXJkYXJsb3MgZW4gdW4gYXJjaGl2by4KClBvZGVtb3MgY3JlYXIgdW4gbnVldm8gYXJjaGl2byAqLlIqIHVzYW5kbyBgRmlsZSA+IE5ldyBGaWxlID4gUiBzY3JpcHRgLCBlc3RvIGdlbmVyYXLDoSB1biBhcmNoaXZvIGRvbmRlIHBvZHJlbW9zIGlyIGVzY3JpYmllbmRvIGNvbWFuZG9zIGRlICoqUioqIHNpbiBuZWNlc2lkYWQgZGUgdGVuZXIgcXVlIGVqZWN1dGFybG9zIGRpcmVjdGFtZW50ZSBzb2JyZSBsYSBjb25zb2xhLgoKIyMjIEd1YXJkYXIgZWwgYXJjaGl2byAiKi5SKiIKUHVlZGVzIGd1YXJkYXIgZWwgYXJjaGl2byBkZXNkZSBgRmlsZSA+IFNhdmVgLCBvIGNvbiBgQ3RybCArIFNgLiBHdcOhcmRhbG8gZW4gZWwgKipFc2NyaXRvcmlvKiogZGVudHJvIGRlIHVuYSBjYXJwZXRhIGxsYW1hZGEgKlRhbGxlcl9SKiwgbm9tYnJhbmRvIGVsIGFyY2hpdm8gY29tbyAqSW50cm9fUi5SKjsgZXMgaW1wb3J0YW50ZSB1c2FyIGxhIGV4dGVuc2nDs24gX18qLlIqX18uICAKVW5hIHZleiBndWFyZGFkbyB2YW1vcyBhIGxhIHZlbnRhbmEgZGUgbmF2ZWdhY2nDs24gZGUgYXJjaGl2b3MgKCoqRmlsZXMqKikgZGVudHJvIGRlIFJTdHVkaW8gKHBhbmVsIGluZmVyaW9yIGRlcmVjaG8pLiBQdWVkZXMgbmF2ZWdhciBoYXN0YSBsYSBjYXJwZXRhIGRlIHRyYWJham8uICAKRW4gbGEgcGVzdGHDsWEgKipfTW9yZV8qKiBkZWwgcGFuZWwgZGUgbmF2ZWdhY2nDs24gZGUgYXJjaGl2b3MsIHNlbGVjY2lvbmEgKmBTZXQgQXMgV29ya2luZyBEaXJlY3RvcnlgKi4KCsK/UXXDqSBvY3VycmnDsyBlbiBsYSBjb25zb2xhPwoKYGBge3IgZXZhbD1GQUxTRX0KZ2V0d2QoKSAjIEVzdGUgY29tYW5kbyBub3MgZGljZSBsYSBydXRhIGRlbCBkaXJlY3RvcmlvIGRlIHRyYWJham8gZG9uZGUgZXN0YW1vcy4KIyBMbyB1c2FyZW1vcyBtw6FzIGFkZWxhbnRlIGN1YW5kbyB0cmFiYWplbW9zIGNvbiBhcmNoaXZvcy4KYGBgCgpBIHBhcnRpciBkZSBhaG9yYSBwdWVkZXMgZXNjcmliaXIgbG9zIGNvbWFuZG9zIHF1ZSB2YXlhbW9zIHZpZW5kbyBkaXJlY3RhbWVudGUgZW4gZWwgYXJjaGl2byAqSW50cm9fUi5SKiwgZXNjcmliacOpbmRvIHVuIGNvbWFuZG8gcG9yIGzDrW5lYS4gIApQdWVkZXMgZWplY3V0YXIgdW5hIGzDrW5lYSBjb2xvY8OhbmRvIGVsIGN1cnNvciBzb2JyZSBlbGxhIHkgcHJlc2lvbmFuZG8gYENydGwgKyBFbnRlcmAuIFRhbWJpw6luIHB1ZWRlcyBlamVjdXRhciBtw7psdGlwbGVzIGzDrW5lYXMgc2kgbGFzIHNlbGVjY2lvbmFzIGNvbiBlbCBjdXJzb3IgeSBsdWVnbyBwcmVzaW9uYXMgYENydGwgKyBFbnRlcmAuCgojIyBWYXJpYWJsZXMgeSBhc2lnbmFjaW9uZXMKCkVuIFIsIGVzIHBvc2libGUgYWxtYWNlbmFyIHZhbG9yZXMgZW4gdmFyaWFibGVzIHVzYW5kbyBlbCBvcGVyYWRvciBkZSBhc2lnbmFjacOzbiBgPC1gLCBvIGA9YDogCmBgYHtyfQojIEFzaWduYW1vcyBhIGxhIHZhcmlhYmxlIGxsYW1hZGEgInRlbXBlcmF0dXJhIiBlbCB2YWxvciBudW3DqXJpY28gMjUKeCA9IDI1CmBgYApBbCBlamVjdXRhciBlbCBjb21hbmRvLCBSIG5vIGRldsO6ZWx2ZSB1bmEgcmVzcHVlc3RhLiBTaW4gZW1iYXJnbyBzaSBlc2NyaWJpbW9zIGVsIG5vbWJyZSBkZSBsYSB2YXJpYWJsZSBSIG5vcyByZXRvcm5hcsOhIGVsIHZhbG9yIHF1ZSBsZSBjb3JyZXNwb25kZToKYGBge3J9CiMgIkxsYW3DoW1vcyIgYSBsYSB2YXJpYWJsZSAidGVtcGVyYXR1cmEiCngKYGBgCgoqKl9Ob3RhOl8qKiDCv1F1w6kgcGFzYSBzaSBlbiBsdWdhciBkZSBlc2NyaWJpciBgeGAgKG1pbsO6c2N1bGEpIGVuIGxhIGNvbnNvbGEsIGVzY3JpYsOtbW9zIGBYYCAobWF5w7pzY3VsYSk/CgoKQ29tbyBlcyBkZSBlc3BlcmFyc2UsIGFob3JhIHB1ZWRlcyBoYWNlciBvcGVyYWNpb25lcyB1c2FuZG8gZGljaGEgdmFyaWFibGU6CmBgYHtyfQp4ICsgNS4wCnggKiA1CmxvZzEwKHgpCmBgYAoKT2JzZXJ2YSBxdWUgZWwgdmFsb3IgZGUgYHhgIG5vIGhhIGNhbWJpYWRvIGF1bnF1ZSBoYXlhbW9zIG9wZXJhZG8gc29icmUgw6lsLiBFamVjdXRhIGxvIHNpZ3VpZW50ZToKYGBge3J9CiMgcHJpbnQgeSBwYXN0ZSBub3Mgc2lydmVuIHBhcmEgImltcHJpbWlyIiBlbiBsYSBjb25zb2xhOgpwcmludCggcGFzdGUoICJFbCB2YWxvciBhY3R1YWwgZGUgeCBlczoiLCB4ICkgKQojIEFjdHVhbGl6YW1vcyB4CiMgVXNhbW9zIGVsIG9wZXJhZG9yICI9IiBvICI8LSIKeCA9IHggKiAyIApwcmludCggcGFzdGUoICJFbCBudWV2byB2YWxvciBkZSB4IGVzOiIsIHggKSApCmBgYAoKQ3JlYSBhaG9yYSB1bmEgdmFyaWFibGUgJHRlbXBfSyQgcXVlIGNvbnRlbmdhIGVsIGRvYmxlIGRlbCB2YWxvciBxdWUgdG9tZSB4LiAqKsK/Q3XDoW50byB2YWxlIGB5YD8qKgpgYGB7cn0KeSA9IHggKiAyCnkKYGBgCgpBc2lnbmEgdW4gbnVldm8gdmFsb3IgYSBgeGAgZGUgdGFsIG1hbmVyYSBxdWUgYHlgIGFob3JhIHB1ZWRhIHZhbGVyIDEsMDAwLgpgYGB7ciBldmFsPUZBTFNFfQojIEFjdHVhbGl6YSBlbCB2YWxvciBkZSB4Lgp4IDwtIGluZ3Jlc2EgdHUgcmVzcHVlc3RhCmBgYAoKKipPam8qKjogU2kgdHJhdGFzIGRlIGVqZWN1dGFyIGVsIGNvbWFuZG8gYXPDrSwgdGUgZGFyw6EgZXJyb3IuIMK/UG9yIHF1w6k/CgoKIyMjIMK/Q8OzbW8gbm9tYnJhciB2YXJpYWJsZXM/CgoqIExvcyBub21icmVzIGRlIGxhcyB2YXJpYWJsZXMgcHVlZGVuIGNvbnRlbmVyIGxldHJhcywgbsO6bWVyb3MsIGd1aW9uZXMgYmFqb3MgeSBwdW50b3MuIAoqICoqTm8gcHVlZGVuIGNvbWVuemFyIGNvbiB1biBuw7ptZXJvIG5pIGNvbnRlbmVyIGVzcGFjaW9zIG8gZ3Vpb25lcyBtZWRpb3MgZW50cmUgcGFsYWJyYXMuKiogIAoKKipFamVyY2ljaW86KiogVmVyaWZpY2EgY3VhbGVzIGRlIGxhcyBzaWd1aWVudGVzIGZvcm1hcyBkZSBub21icmFyIHVuYSB2YXJpYWJsZXMgc29uIHbDoWxpZGFzICh2ZSBlamVjdWF0YW5kbyB1bm8gYSB1bm8pOgpgYGB7ciBldmFsPUZBTFNFfQpudW1lcm9fZG9zID0gMgpudW1lcm8tdHJlcyA9IDMKbnVtZXJvIGN1YXRybyA9IDQKbnVtZXJvLjUgPSA1Cm51bWVyb1NlaXMgPSA2CjcubnVtZXJvID0gNwpfOCA9IDkKLjkgPSA5Cm51bV8xMCA9IDEwCm9uY2UgPSAib25jZSIKYGBgCgpgYGB7ciBpbmNsdWRlPUZBTFNFfQpudW1lcm9fZG9zID0gMgpudW1lcm8uNSA9IDUKbnVtZXJvU2VpcyA9IDYKbnVtXzEwID0gMTAKb25jZSA9ICJvbmNlIgpgYGAKCioqwr9DdcOhbnRhcyB2YXJpYWJsZXMgcHVkaXN0ZSBjcmVhcj8qKgoKIyMjIFBhbmVsZXMgKmBFbnZpcm9ubWVudGAqIHkgKmBIaXN0b3J5YCoKVHJhcyBlamVjdXRhciBsb3MgY29tYW5kb3MgYW50ZXJpb3JlcyB2ZXLDoXMgcXVlIGVuIGVsIHBhbmVsIHN1cGVyaW9yIGRlcmVjaG8sIGVuIGxhIHBlc3Rhw7FhICpgRW52aXJvbm1lbnRgKiBzZSBoYW4gaWRvIGd1YXJkYW5kbyBsYXMgdmFyaWFibGVzIHF1ZSBoYXMgY3JlYWRvLiBEaWNoYXMgdmFyaWFibGVzIGVzdMOhbiBndWFyZGFkYXMgZW4gbWVtb3JpYSB5IHB1ZWRlbiBzZXIgdXNhZGFzIHBhcmEgcmVhbGl6YXIgb3BlcmFjaW9uZXMuICAKUG9yIG90cm8gbGFkbywgZWwgcGFuZWwgKmBIaXN0b3J5YCogcG9zZWUgZWwgaGlzdG9yaWFsIGRlIHRvZG9zIGxvcyBjb21hbmRvcyBxdWUgaGFzIGlkbyBlamVjdXRhbmRvIGVuIGxhIHNlc2nDs24uCgojIyBPcGVyYWNpb25lcyByZWxhY2lvbmFsZXMKCmBgYHtyfQoyID09IDIgIyDCv1NvbiBpZ3VhbGVzPzogRGV2dWVsdmUgVFJVRQpudW1lcm9fZG9zID09IDIgIyDCv1NvbiBpZ3VhbGVzPzogT2JzZXJ2YSBxdWUgZXN0YSB2ZXogdXNhbW9zICI9PSIsIHkgbm8gIj0iCgoyID09IDEgIyDCv1NvbiBpZ3VhbGVzPzogRGV2dWVsdmUgRkFMU0UKMiAhPSAxICMgwr9Tb24gREVTaWd1YWxlcz86IERldnVlbHZlIFRSVUUKMiA+IDEgIyDCv0VzIG1heW9yIHF1ZT86IERldnVlbHZlIFRSVUUKMiA8IDEgIyDCv0VzIG1lbm9yIHF1ZT86IERldnVlbHZlIEZBTFNFCmBgYAoKIyMgVGlwb3MgZGUgZGF0b3MKCkVuIFIsIGNhc2kgdG9kb3MgbG9zIGRhdG9zIGNvbiBsb3MgcXVlIHRyYWJhamFtb3Mgc29uIGNvbnNpZGVyYWRvcyAqKl9PYmpldG9zXyoqLCBsbyBxdWUgc2lnbmlmaWNhIHF1ZSBjYWRhIGRhdG8gcGVydGVuZWNlIGEgdW5hICoqY2xhc2UqKiBlbiBwYXJ0aWN1bGFyLCB5IHBvciBlbGxvIHRpZW5lIGF0cmlidXRvcyBwYXJ0aWN1bGFyZXMuICAKTG9zIHRpcG9zIGRlIGRhdG9zICoqYsOhc2ljb3MqKiBtw6FzIGNvbXVuZXMgZW4gUiBzb24gbG9zIHNpZ3VpZW50ZXM6CgoqICoqbnVtZXJpYyoqOiBuw7ptZXJvIHJlYWwKKiAqKmludGVnZXIqKjogbsO6bWVybyBlbnRlcm8KKiAqKmNoYXJhY3RlcioqOiBjYWRlbmEgZGUgdGV4dG8KKiAqKmxvZ2ljYWwqKjogdmFsb3JlcyBsw7NnaWNvcyAodmVyZGFkZXJvIG8gZmFsc28pCgpIYXN0YSBhaG9yYSBoZW1vcyB1dGlsaXphZG8gYWxndW5vcyBkZSBlbGxvcywgeSBlcyBpbXBvcnRhbnRlIHNhYmVyIGNvbiBxdWUgdGlwbyBkZSBkYXRvcyBlc3RhbW9zIHRyYWJhamFuZG8sIHB1ZXMgZGUgZWxsbyBkZXBlbmRlIHF1w6kgb3BlcmFjaW9uZXMgcG9kZW1vcyByZWFsaXphciBjb24gZWxsb3MuIEEgY290aW51YWNpw7NuIHVzYW1vcyBsYSBmdW5jacOzbiBgY2xhc3MoKWAgcXVlIG5vcyBpbmRpY2EgcXXDqSB0aXBvIGRlIGRhdG8gZXN1biBvYmpldG86CgpgYGB7ciBjb2xsYXBzZT1UUlVFfQpudW1lcm9fcmVhbCA9IDEwMC41CmNsYXNzKG51bWVyb19yZWFsKQpgYGAKCmBgYHtyIGNvbGxhcHNlPVRSVUV9Cm51bWVyb19lbnRlcm8gPSAxMDBMCmNsYXNzKG51bWVyb19lbnRlcm8pCmBgYAoKYGBge3IgY29sbGFwc2U9VFJVRX0KY2FkZW5hX2RlX3RleHRvID0gIjEwMCIgIyBPIGNhZGVuYSBkZSBjYXJhY3RlcmVzCmNsYXNzKGNhZGVuYV9kZV90ZXh0bykKYGBgCgpgYGB7ciBjb2xsYXBzZT1UUlVFfQp2YWxvcl9sb2dpY28gPSBUUlVFICMgVGFtYmnDqW4gcHVlZGUgc2VyIEZBTFNFCmNsYXNzKHZhbG9yX2xvZ2ljbykKYGBgCgoqKkVqZXJjaWNpbyoqOiDCv0N1w6FsZXMgZGUgbGFzIHNpZ3VpZW50ZXMgb3BlcmFjaW9uZXMgZXMgcG9zaWJsZSByZWFsaXphcj8gwr9RdcOpIHRpcG8gZGUgZGF0byBlcyBlbCByZXN1bHRhZG8gZGUgY2FkYSB1bmE/ICAKVXNhIGxhIGZ1bmNpw7NuIGBjbGFzcygpYCBwYXJhIGV2YWx1YXIgY2FkYSByZXN1bHRhZG8gKHBvciBlamVtcGxvOiBgY2xhc3MoMTAwICsgMilgKQoKYGBge3IgZXZhbD1GQUxTRX0KMTAwICsgMgkJCQkgIygxCjEwMEwgKyAyLjAJCSAgIAkjKDIKMTAwTCArIDJMCQkgICAjKDMKMTAwICsgVFJVRSArIFRSVUUJIyg0ClRSVUUgPT0gMQkJCSMoNQoiMTAwIiArICIyIgkJICAJIyg2CnBhc3RlKCIxMDAiICsgIjIiKQkjKDcKcGFzdGUoIjEwMCIgKyAyKSAJIyg4CnBhc3RlKDEwMCArIDIpCQkjKDkKYGBgCgoKKioqCgoqKsKhTGlzdG8hKiogIApQdWVkZXMgY29udGludWFyIGhhY2lhIGxhIHNpZ3VpZW50ZSBzZWNjacOzbi4KCioqKgoKPGJ1dHRvbiB0eXBlPSJidXR0b24iIGNsYXNzPSJidG4gYnRuLXByaW1hcnkgcHVsbC1sZWZ0Ij5BbnRlcmlvcjwvYnV0dG9uPgoKPGJ1dHRvbiB0eXBlPSJidXR0b24iIGNsYXNzPSJidG4gYnRuLXByaW1hcnkgcHVsbC1yaWdodCI+U2lndWllbnRlPC9idXR0b24+Cgo=</div>
 
 
 </div>
