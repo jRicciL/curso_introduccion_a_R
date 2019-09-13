@@ -14,6 +14,6 @@
   <p>Joel Ricci López</p>
   <p>César Valdez</p>
   <p class="lead">
-    <a class="btn btn-primary btn-lg" href="#" role="button">Comenzar</a>
+    <a class="btn btn-primary btn-lg" href="./intro_R_p2.html" role="button">Comenzar</a>
   </p>
 </div>

@@ -722,21 +722,21 @@ Tómate un tiempo para analizar los siguientes comandos.</p>
 <div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1">m.ensTab =<span class="st"> </span><span class="kw">as.matrix</span>( genesTab )</a></code></pre></div>
 <p>Y generamos la gráfica:</p>
 <div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1"><span class="kw">barplot</span>(m.ensTab, <span class="dt">beside=</span><span class="ot">TRUE</span>) </a></code></pre></div>
-<p><img src="estructuras_de_datos_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<p><img src="estructuras_de_datos_files/figure-html/unnamed-chunk-232-1.png" width="672" /></p>
 <p>Besides nos grafica los datos de cada columna por separado. Podemos cambiar esto girando o transponiendo la matriz con el comando <code>t()</code>, esto hará que ahora las columnas sean las filas, es decir, que las especies sean ahora las columnas (prueba en la consola <code>t(m.ensTab)</code>.</p>
 <div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" data-line-number="1"><span class="kw">barplot</span>( <span class="kw">t</span>(m.ensTab), <span class="dt">beside =</span> <span class="ot">TRUE</span>) </a></code></pre></div>
-<p><img src="estructuras_de_datos_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<p><img src="estructuras_de_datos_files/figure-html/unnamed-chunk-233-1.png" width="672" /></p>
 <p><strong>¡Casi!</strong> Pero aún es difícil comparar por especie, de hecho, los datos están tan apilados que R no ha podido “dibujar” los nombres de todas las especies.</p>
 <p>Segundo intento, removamos <code>besides()</code>.</p>
 <div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1"><span class="kw">barplot</span>( <span class="kw">t</span>(m.ensTab)) </a></code></pre></div>
-<p><img src="estructuras_de_datos_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+<p><img src="estructuras_de_datos_files/figure-html/unnamed-chunk-234-1.png" width="672" /></p>
 <p><strong>¿Mejor?</strong>. Ahora tenemos una gráfica de barras apiladas. Con una barra por especie. Pero seguimos sin visualizar los nombres de las especies. Lo mejor será graficar horizontalmente:</p>
 <div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" data-line-number="1"><span class="kw">barplot</span>( <span class="kw">t</span>(m.ensTab), <span class="dt">horiz =</span> <span class="ot">TRUE</span>, <span class="dt">las =</span> <span class="dv">1</span>, </a>
 <a class="sourceLine" id="cb38-2" data-line-number="2">         <span class="co"># Y agregamos algo de decoración</span></a>
 <a class="sourceLine" id="cb38-3" data-line-number="3">         <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;indianred3&quot;</span>, <span class="st">&quot;turquoise4&quot;</span>, <span class="st">&quot;lightgoldenrod&quot;</span>), </a>
 <a class="sourceLine" id="cb38-4" data-line-number="4">         <span class="dt">xlab =</span> <span class="st">&quot;Pares de bases&quot;</span>,</a>
 <a class="sourceLine" id="cb38-5" data-line-number="5">         <span class="dt">legend.text =</span> (<span class="kw">colnames</span>(genesTab))) </a></code></pre></div>
-<p><img src="estructuras_de_datos_files/figure-html/unnamed-chunk-24-1.png" width="960" /></p>
+<p><img src="estructuras_de_datos_files/figure-html/unnamed-chunk-235-1.png" width="960" /></p>
 <hr />
 <p><strong>¡Listo!</strong><br />
 Puedes continuar hacia la siguiente sección.</p>
