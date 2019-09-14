@@ -6,7 +6,7 @@ Curso de Introducción a R
 
 ### Copyright
 
-Copyright (c) 2019, Ricardo Ehecatl, Karen Guerrero, Joel Ricci, César Valdez.
+Copyright (c) 2019, Ricardo Gómez, Karen Guerrero, Joel Ricci, César Valdez.
 
 
 #### Agradecimientos
