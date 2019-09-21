@@ -1,3 +1,5 @@
+
+
 code span.op {
   color: #f56d6d;
 }
@@ -29,7 +31,7 @@ p code {
 
 div h1.title {
     font-size: 42px;
-    color: #999;
+    color: #EB6864;
 }
 
 .header-section-number::after {
@@ -46,8 +48,8 @@ div h1.title {
     margin-top: -66px;
 }
 
-.section h2 {
-    padding: 80px 0px 10px;
+h3 {
+    padding: 80px 0px 20px;
     margin-top: -66px;
 }
 
@@ -58,5 +60,23 @@ ul .tocify ul, .tocify li {
 }
 
 div.main-container {
-    max-width: 1350px;
+    max-width: 1450px;
+}
+
+p { 
+  color: #555;
+  font-size: 1.2em;
+}
+
+ul, li {
+  font-size: 18px;
+}
+
+.img-responsive {
+    width: auto;
+    height: 120px;
+    padding: 15px;
+    margin: auto;
+    max-height: 90px;
+    max-width: 250px;
 }

@@ -6,9 +6,9 @@ title: 'Introducción a R: Parte 2'
 
 ## *Scripts* de R
 
-Hasta ahora hemos usado únicamente la consola. Llegó la hora de llevar un registro de los comandos que vamos usando y poder guardarlos en un archivo.
+Hasta ahora hemos usado únicamente la consola. Llegó la hora de llevar un registro de los comandos que vamos usando, o que necesitaremos usar, y poder guardarlos en un archivo.
 
-Podemos crear un nuevo archivo *.R* usando `File > New File > R script`, esto generará un archivo donde podremos ir escribiendo comandos de **R** sin necesidad de tener que ejecutarlos directamente sobre la consola.
+Para ellos vamos a crear un archivo *.R* usando `File > New File > R script`, esto generará un archivo donde podremos ir escribiendo comandos de **R** sin necesidad de tener que ejecutarlos directamente sobre la consola.
 
 ### Guardar el archivo "*.R*"
 Puedes guardar el archivo desde `File > Save`, o con `Ctrl + S`. Guárdalo en el **Escritorio** dentro de una carpeta llamada *Taller_R*, nombrando el archivo como *Intro_R.R*; es importante usar la extensión __*.R*__.  

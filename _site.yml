@@ -13,11 +13,11 @@ navbar:
     href: index.html
   - text: "Introducción a R"
     menu:
-      - text: "Parte 1"
+      - text: "Primeros Pasos con R"
         href: intro_R_p1.html
-      - text: "Parte 2"
+      - text: "Tipos de Datos en R"
         href: intro_R_p2.html
-      - text: "Parte 3"
+      - text: "Vectores"
         href: intro_R_p3.html
   - text: "Estructuras de datos"
     href: estructuras_de_datos.html
@@ -31,4 +31,6 @@ output:
     highlight: zenburn
     code_download: true
     number_sections: true
+    include:
+      after_body: footer.html
   

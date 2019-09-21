@@ -1,0 +1,17 @@
+---
+title: "introducción a Bioconductor"
+---
+***
+# *Biostrings*
+
+## Instalación de Bioconductor
+
+Para verificar si Bioconductor está instalado, podemos ejecutar el siguiente comando.
+```{r eval=FALSE}
+library(Biobase)
+```
+
+## Manipulación de Secuencias con Biostrings
+
+Comenzamos cargando las librerías necesarias:
+

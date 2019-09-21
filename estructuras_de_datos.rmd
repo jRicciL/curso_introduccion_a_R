@@ -37,6 +37,7 @@ mi_lista
 Los elementos dentro de una lista se obtienen usando dos corchetes cuadrados anidados: `[[ i ]]`, donde $i$ es el número de elemento deseado.
 
 **Ejercicio:**
+
 * ¿Cuál es la deferencia entre los siguientes dos comandos?
 * ¿Qué tipo de dato es cada uno? *Usa la función `class()` para veriguarlo.
 
@@ -74,7 +75,7 @@ library(knitr)
 kable(my_df, caption = "Mi primer DataFrame")
 ```
 
-Ya has creado tu primer `DataFrame`, sin emabrgo, vamos ahora un conjunto de datos proveniente de un archivo.
+Ya has creado tu primer `DataFrame`, sin embargo, vamos ahora un conjunto de datos proveniente de un archivo.
 
 ### Ejercicio con Dataframes
 
@@ -85,7 +86,7 @@ Vamos a utilizar los datos proporcionados por el Dr. Cei Abreu en la página [Pr
   <small>Citado la página <cite title="Nombre Apellidos">http://datos.langebio.cinvestav.mx/~cei/cursos/BP_2018/</cite></small>
 </blockquote>
 
-una vez descargado el archivo, guárdalo en tu directorio de trabajo (puedes usar el comando `getwd()` (*getWorkDirectory*) para guardar ahí el archivo).
+Una vez descargado el archivo, guárdalo en tu directorio de trabajo (puedes usar el comando `getwd()` (*getWorkDirectory*) para guardar ahí el archivo).
 
 Vamos a abrir el archivo utilizando el comando `read.table()`.  
 **Nota:** ¿Qué indican los parámetros `header=` y `row.names=`?

@@ -20,12 +20,7 @@
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
-<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
-<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<script src="site_libs/navigation-1.1/codefolding.js"></script>
-<script src="site_libs/navigation-1.1/sourceembed.js"></script>
 
 
 
@@ -54,9 +49,6 @@ h6 {
 }
 .table th:not([align]) {
   text-align: left;
-}
-#rmd-source-code {
-  display: none;
 }
 </style>
 
@@ -237,67 +229,7 @@ $(document).ready(function () {
 </style>
 
 <!-- code folding -->
-<style type="text/css">
-.code-folding-btn { margin-bottom: 4px; }
-</style>
 
-
-
-<style type="text/css">
-
-#TOC {
-  margin: 25px 0px 20px 0px;
-}
-@media (max-width: 768px) {
-#TOC {
-  position: relative;
-  width: 100%;
-}
-}
-
-
-.toc-content {
-  padding-left: 30px;
-  padding-right: 40px;
-}
-
-div.main-container {
-  max-width: 1200px;
-}
-
-div.tocify {
-  width: 20%;
-  max-width: 260px;
-  max-height: 85%;
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
-  div.tocify {
-    width: 25%;
-  }
-}
-
-@media (max-width: 767px) {
-  div.tocify {
-    width: 100%;
-    max-width: none;
-  }
-}
-
-.tocify ul, .tocify li {
-  line-height: 20px;
-}
-
-.tocify-subheader .tocify-item {
-  font-size: 0.90em;
-}
-
-.tocify .list-group-item {
-  border-radius: 0px;
-}
-
-
-</style>
 
 
 
@@ -307,16 +239,6 @@ div.tocify {
 
 
 <div class="container-fluid main-container">
-
-
-<!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row-fluid">
-<div class="col-xs-12 col-sm-4 col-md-3">
-<div id="TOC" class="tocify">
-</div>
-</div>
-
-<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -344,13 +266,13 @@ div.tocify {
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="intro_R_p1.html">Parte 1</a>
+      <a href="intro_R_p1.html">Primeros Pasos con R</a>
     </li>
     <li>
-      <a href="intro_R_p2.html">Parte 2</a>
+      <a href="intro_R_p2.html">Tipos de Datos en R</a>
     </li>
     <li>
-      <a href="intro_R_p3.html">Parte 3</a>
+      <a href="intro_R_p3.html">Vectores</a>
     </li>
   </ul>
 </li>
@@ -367,54 +289,83 @@ div.tocify {
 
 <div class="fluid-row" id="header">
 
-<div class="btn-group pull-right">
-<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
-<ul class="dropdown-menu" style="min-width: 50px;">
-<li><a id="rmd-download-source" href="#">Download Rmd</a></li>
-</ul>
-</div>
-
 
 
 
 </div>
 
 
-<hr />
-<hr />
+<div class="container">
 <div class="jumbotron">
-<h1 class="display-3">
-Introducción a R
+<h1 class="display-4 text-center pb-3">
+Curso de introducción a R
 </h1>
-<p class="lead">
-El objetivo de esta página es servir de guía y apoyo para el curso de “Introducción a R” a llevarse a cabo el 23 y 24 de septiembre del 2019.
+<br><br>
+<p class="lead text-center">
+Esta página tiene como objetivo servir de apoyo para el curso de <strong>“Introducción a R”</strong> a llevarse a cabo el 23 y 24 de septiembre del 2019.
 </p>
-<hr class="my-4">
+<br>
+<div class="container-fluid p-5">
+<div class="row">
+<div class="col-xm-12 col-sm-4 text-center">
+<img src="https://www.cicese.edu.mx/cicese2/assets/img/cicese.png" class="img-responsive mx-auto d-block" alt="Responsive image">
+</div>
+<div class="col-xm-12 col-sm-4">
+<img src="https://jantoniomora.files.wordpress.com/2017/08/rlogo.png" class="img-responsive" alt="Responsive image">
+</div>
+<div class="col-xm-12 col-sm-4">
+<img src="https://www.rstudio.com/wp-content/uploads/2018/10/RStudio-Logo-Flat.png" class="img-responsive" alt="Responsive image">
+</div>
+</div>
+</div>
+<hr class="my-5">
 <p>
 <strong>Instructores:</strong>
 </p>
-<p>
+<ul class="list-group list-group-flush">
+<li class="list-group-item col-sm-12 col-md-4">
 Karen Guerrero
-</p>
-<p>
+</li>
+<li class="list-group-item col-sm-12 col-md-4">
 Ricardo Ehecatl Gómez
+</li>
+<li class="list-group-item col-sm-12 col-md-4">
+Joel Ricci
+</li>
+</ul>
+<br>
+<hr class="my-4">
+<br>
+<div class="container py-5">
+<div class="alert alert-dismissible alert-warning py-5">
+<button type="button" class="close" data-dismiss="alert">×</button>
+<h4 class="alert-heading text-center">
+¡Atención!
+</h4>
+<p class="mb-0 text-center small">
+Utiliza el menú superior y los botones de navegación para dirigirte hacia la sección deseada.
 </p>
-<p>
-Joel Ricci López
-</p>
-<p>
-César Valdez
-</p>
+</div>
+</div>
 <p class="lead">
-<a class="btn btn-primary btn-lg" href="./intro_R_p2.html" role="button">Comenzar</a>
+<a class="btn btn-primary btn-lg btn-block" href="./intro_R_p1.html" role="button">Comenzar</a>
 </p>
 </div>
-
-<div id="rmd-source-code">LS0tCgotLS0KCjxkaXYgY2xhc3M9Imp1bWJvdHJvbiI+CiAgPGgxIGNsYXNzPSJkaXNwbGF5LTMiPkludHJvZHVjY2nDs24gYSBSPC9oMT4KICA8cCBjbGFzcz0ibGVhZCI+CiAgICBFbCBvYmpldGl2byBkZSBlc3RhIHDDoWdpbmEgZXMgc2VydmlyIGRlIGd1w61hIHkgYXBveW8gcGFyYSBlbCBjdXJzbyBkZSAiSW50cm9kdWNjacOzbiBhIFIiIGEgbGxldmFyc2UgYSBjYWJvIGVsIDIzIHkgMjQgZGUgc2VwdGllbWJyZSBkZWwgMjAxOS4KICA8L3A+CiAgPGhyIGNsYXNzPSJteS00Ij4KICA8cD48c3Ryb25nPkluc3RydWN0b3Jlczo8L3N0cm9uZz48L3A+CiAgPHA+S2FyZW4gR3VlcnJlcm88L3A+CiAgPHA+UmljYXJkbyBFaGVjYXRsIEfDs21lejwvcD4KICA8cD5Kb2VsIFJpY2NpIEzDs3BlejwvcD4KICA8cD5Dw6lzYXIgVmFsZGV6PC9wPgogIDxwIGNsYXNzPSJsZWFkIj4KICAgIDxhIGNsYXNzPSJidG4gYnRuLXByaW1hcnkgYnRuLWxnIiBocmVmPSIuL2ludHJvX1JfcDIuaHRtbCIgcm9sZT0iYnV0dG9uIj5Db21lbnphcjwvYT4KICA8L3A+CjwvZGl2Pgo=</div>
-
-
 </div>
-</div>
+
+<!-- Footer -->
+<footer class="page-footer font-small blue">
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">© 2019 Copyright:
+    <a href="https://github.com/jRicciL"> J. Ricci L.</a>
+  </div>
+  <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
+
+
 
 </div>
 
@@ -446,38 +397,7 @@ $(document).ready(function () {
 </script>
 
 <!-- code folding -->
-<script>
-$(document).ready(function () {
-  window.initializeSourceEmbed("index.Rmd");
-});
-</script>
 
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2,h3",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = true;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
