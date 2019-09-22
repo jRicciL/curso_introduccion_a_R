@@ -12,7 +12,7 @@
 
 
 
-<title>Introducción a R: Parte 2</title>
+<title>Introducción a R: Tipos de datos</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -439,13 +439,13 @@ div.tocify {
     <li>
       <a href="intro_R_p2.html">Tipos de Datos en R</a>
     </li>
-    <li>
-      <a href="intro_R_p3.html">Vectores</a>
-    </li>
   </ul>
 </li>
 <li>
-  <a href="estructuras_de_datos.html">Estructuras de datos</a>
+  <a href="intro_R_p3.html">Vectores</a>
+</li>
+<li>
+  <a href="estructuras_de_datos.html">Otras estructuras de datos</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -466,7 +466,7 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Introducción a R: Parte 2</h1>
+<h1 class="title toc-ignore">Introducción a R: Tipos de datos</h1>
 
 </div>
 
@@ -480,57 +480,69 @@ div.tocify {
 <p>Para ellos vamos a crear un archivo <em>.R</em> usando <code>File &gt; New File &gt; R script</code>, esto generará un archivo donde podremos ir escribiendo comandos de <strong>R</strong> sin necesidad de tener que ejecutarlos directamente sobre la consola.</p>
 <div id="guardar-el-archivo-.r" class="section level3">
 <h3><span class="header-section-number">1.1.1</span> Guardar el archivo “<em>.R</em>”</h3>
-<p>Puedes guardar el archivo desde <code>File &gt; Save</code>, o con <code>Ctrl + S</code>. Guárdalo en el <strong>Escritorio</strong> dentro de una carpeta llamada <em>Taller_R</em>, nombrando el archivo como <em>Intro_R.R</em>; es importante usar la extensión <strong><em>.R</em></strong>.<br />
-Una vez guardado vamos a la ventana de navegación de archivos (<strong>Files</strong>) dentro de RStudio (panel inferior derecho). Puedes navegar hasta la carpeta de trabajo.<br />
-En la pestaña <strong><em>More</em></strong> del panel de navegación de archivos, selecciona <em><code>Set As Working Directory</code></em>.</p>
-<p>¿Qué ocurrió en la consola?</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">getwd</span>() <span class="co"># Este comando nos dice la ruta del directorio de trabajo donde estamos.</span></a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="co"># Lo usaremos más adelante cuando trabajemos con archivos.</span></a></code></pre></div>
-<p>A partir de ahora puedes escribir los comandos que vayamos viendo directamente en el archivo <em>Intro_R.R</em>, escribiéndo un comando por línea.<br />
-Puedes ejecutar una línea colocándo el cursor sobre ella y presionando <code>Crtl + Enter</code>. También puedes ejecutar múltiples líneas si las seleccionas con el cursor y luego presionas <code>Crtl + Enter</code>.</p>
+<p>Puedes guardar el archivo desde <code>File &gt; Save</code>, o presionando <code>Ctrl + S</code>. Guárdalo en el <strong>Escritorio</strong> dentro de una carpeta llamada <em>Taller_R</em>, nombrando el archivo como <em>Intro_R.R</em>.</p>
+<div class="alert alert-dismissible alert-danger">
+<h4 class="alert-heading">
+¡Atención!
+</h4>
+<p><button type="button" class="close" data-dismiss="alert"></button> Es importante usar la extensión <strong>.R</strong>.</p>
+</div>
+<p>Una vez guardado vamos a la ventana de navegación de archivos (<code>*Files*</code>) dentro de <strong>RStudio</strong> (panel inferior derecho). Puedes navegar hasta la carpeta de trabajo.<br />
+En la pestaña <code>*More*</code> del panel de navegación de archivos, selecciona <em><code>Set As Working Directory</code></em>.</p>
+<p><strong>¿Qué ocurrió en la consola?</strong></p>
+<p><span class="spoiler">Se ha usado el comando <code>setwd()</code>, <em>set working directory</em>, que justamente establece como directorio de trabajo a la carpeta especificada.</span></p>
+<p>Ahora prueba el siguiente comando:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">getwd</span>()</a></code></pre></div>
+<p>Este comando nos dice la ruta del directorio de trabajo donde estamos. Lo usaremos más adelante cuando trabajemos con archivos.</p>
+<p>A partir de ahora puedes escribir los comandos que vayamos viendo directamente en el archivo <em>Intro_R.R</em>, escribiendo un comando por línea.<br />
+Puedes ejecutar una línea colocándo el cursor sobre ella y presionando <code>Crtl + Enter</code>. También puedes ejecutar múltiples líneas si las seleccionas <strong>todas</strong> con el cursor y luego presionas <code>Crtl + Enter</code>.</p>
+<p><br></p>
 </div>
 </div>
 <div id="variables-y-asignaciones" class="section level2">
 <h2><span class="header-section-number">1.2</span> Variables y asignaciones</h2>
-<p>En R, es posible almacenar valores en variables usando el operador de asignación <code>&lt;-</code>, o <code>=</code>:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co"># Asignamos a la variable llamada &quot;temperatura&quot; el valor numérico 25</span></a>
-<a class="sourceLine" id="cb2-2" data-line-number="2">x =<span class="st"> </span><span class="dv">25</span></a></code></pre></div>
-<p>Al ejecutar el comando, R no devúelve una respuesta. Sin embargo si escribimos el nombre de la variable R nos retornará el valor que le corresponde:</p>
+<p>En <strong>R</strong>, es posible almacenar valores en variables usando el operador de asignación <code>&lt;-</code>, o <code>=</code>:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co"># Asignamos a la variable llamada &quot;temp&quot; el valor numérico 25</span></a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">temp =<span class="st"> </span><span class="dv">25</span></a></code></pre></div>
+<p>Al ejecutar el comando, <strong>R</strong> no devúelve una respuesta. Sin embargo, si escribimos el nombre de la variable <strong>R</strong> nos retornará el valor que le corresponde:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="co"># &quot;Llamámos&quot; a la variable &quot;temperatura&quot;</span></a>
-<a class="sourceLine" id="cb3-2" data-line-number="2">x</a></code></pre></div>
+<a class="sourceLine" id="cb3-2" data-line-number="2">temp</a></code></pre></div>
 <pre><code>## [1] 25</code></pre>
 <p><strong><em>Nota:</em></strong> ¿Qué pasa si en lugar de escribir <code>x</code> (minúscula) en la consola, escribímos <code>X</code> (mayúscula)?</p>
 <p>Como es de esperarse, ahora puedes hacer operaciones usando dicha variable:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">x <span class="op">+</span><span class="st"> </span><span class="fl">5.0</span></a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">temp <span class="op">+</span><span class="st"> </span><span class="fl">5.0</span></a></code></pre></div>
 <pre><code>## [1] 30</code></pre>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">x <span class="op">*</span><span class="st"> </span><span class="dv">5</span></a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">temp <span class="op">*</span><span class="st"> </span><span class="dv">5</span></a></code></pre></div>
 <pre><code>## [1] 125</code></pre>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw">log10</span>(x)</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw">log10</span>( temp )</a></code></pre></div>
 <pre><code>## [1] 1.39794</code></pre>
-<p>Observa que el valor de <code>x</code> no ha cambiado aunque hayamos operado sobre él. Ejecuta lo siguiente:</p>
+<p>Observa que el valor de <code>temp</code> no ha cambiado aunque hayamos operado sobre él. Ejecuta lo siguiente:</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="co"># print y paste nos sirven para &quot;imprimir&quot; en la consola:</span></a>
-<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="kw">print</span>( <span class="kw">paste</span>( <span class="st">&quot;El valor actual de x es:&quot;</span>, x ) )</a></code></pre></div>
-<pre><code>## [1] &quot;El valor actual de x es: 25&quot;</code></pre>
+<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="kw">print</span>( <span class="kw">paste</span>( <span class="st">&quot;El valor actual de temp es:&quot;</span>, temp ) )</a></code></pre></div>
+<pre><code>## [1] &quot;El valor actual de temp es: 25&quot;</code></pre>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="co"># Actualizamos x</span></a>
 <a class="sourceLine" id="cb13-2" data-line-number="2"><span class="co"># Usamos el operador &quot;=&quot; o &quot;&lt;-&quot;</span></a>
-<a class="sourceLine" id="cb13-3" data-line-number="3">x =<span class="st"> </span>x <span class="op">*</span><span class="st"> </span><span class="dv">2</span> </a>
-<a class="sourceLine" id="cb13-4" data-line-number="4"><span class="kw">print</span>( <span class="kw">paste</span>( <span class="st">&quot;El nuevo valor de x es:&quot;</span>, x ) )</a></code></pre></div>
-<pre><code>## [1] &quot;El nuevo valor de x es: 50&quot;</code></pre>
-<p>Crea ahora una variable <span class="math inline">\(temp_K\)</span> que contenga el doble del valor que tome x. <strong>¿Cuánto vale <code>y</code>?</strong></p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">y =<span class="st"> </span>x <span class="op">*</span><span class="st"> </span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb15-2" data-line-number="2">y</a></code></pre></div>
-<pre><code>## [1] 100</code></pre>
-<p>Asigna un nuevo valor a <code>x</code> de tal manera que <code>y</code> ahora pueda valer 1,000.</p>
+<a class="sourceLine" id="cb13-3" data-line-number="3">temp =<span class="st"> </span>temp <span class="op">*</span><span class="st"> </span><span class="dv">2</span> </a>
+<a class="sourceLine" id="cb13-4" data-line-number="4"><span class="kw">print</span>( <span class="kw">paste</span>( <span class="st">&quot;El nuevo valor de temp es:&quot;</span>, temp ) )</a></code></pre></div>
+<pre><code>## [1] &quot;El nuevo valor de temp es: 50&quot;</code></pre>
+<p>Crea ahora una variable <code>temp_K</code> que contenga el valor de <code>temp</code> más <code>273.15</code>. <strong>¿Cuánto vale <code>temp_K</code>?</strong></p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">temp_K =<span class="st"> </span>temp <span class="op">+</span><span class="st"> </span><span class="fl">273.15</span></a>
+<a class="sourceLine" id="cb15-2" data-line-number="2">temp_K</a></code></pre></div>
+<pre><code>## [1] 323.15</code></pre>
+<p>Crea una nueva variable <code>temp_F</code> que convierta el valor de <code>temp</code> a grados <em>Fahrenheit</em>.</p>
+<p><span class="spoiler">x°C * 9/5 + 32 = y°F</span></p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="co"># Actualiza el valor de x.</span></a>
-<a class="sourceLine" id="cb17-2" data-line-number="2">x &lt;-<span class="st"> </span>ingresa tu respuesta</a></code></pre></div>
+<a class="sourceLine" id="cb17-2" data-line-number="2">temp_F &lt;-<span class="st"> </span>ingresa tu respuesta</a>
+<a class="sourceLine" id="cb17-3" data-line-number="3">temp_F</a></code></pre></div>
 <p><strong>Ojo</strong>: Si tratas de ejecutar el comando así, te dará error. ¿Por qué?</p>
+<p><br></p>
 <div id="como-nombrar-variables" class="section level3">
 <h3><span class="header-section-number">1.2.1</span> ¿Cómo nombrar variables?</h3>
 <ul>
 <li>Los nombres de las variables pueden contener letras, números, guiones bajos y puntos.</li>
 <li><strong>No pueden comenzar con un número ni contener espacios o guiones medios entre palabras.</strong></li>
 </ul>
-<p><strong>Ejercicio:</strong> Verifica cuales de las siguientes formas de nombrar una variables son válidas (ve ejecuatando uno a uno):</p>
+<p><strong>Ejercicio:</strong> Verifica cuales de las siguientes formas de nombrar una variables son válidas (ejecuta cada comando uno a uno):</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1">numero_dos =<span class="st"> </span><span class="dv">2</span></a>
 <a class="sourceLine" id="cb18-2" data-line-number="2">numero<span class="op">-</span>tres =<span class="st"> </span><span class="dv">3</span></a>
 <a class="sourceLine" id="cb18-3" data-line-number="3">numero cuatro =<span class="st"> </span><span class="dv">4</span></a>
@@ -542,11 +554,13 @@ Puedes ejecutar una línea colocándo el cursor sobre ella y presionando <code>C
 <a class="sourceLine" id="cb18-9" data-line-number="9">num_<span class="dv">10</span> =<span class="st"> </span><span class="dv">10</span></a>
 <a class="sourceLine" id="cb18-10" data-line-number="10">once =<span class="st"> &quot;once&quot;</span></a></code></pre></div>
 <p><strong>¿Cuántas variables pudiste crear?</strong></p>
+<p><br></p>
 </div>
 <div id="paneles-environment-y-history" class="section level3">
 <h3><span class="header-section-number">1.2.2</span> Paneles <em><code>Environment</code></em> y <em><code>History</code></em></h3>
 <p>Tras ejecutar los comandos anteriores verás que en el panel superior derecho, en la pestaña <em><code>Environment</code></em> se han ido guardando las variables que has creado. Dichas variables están guardadas en memoria y pueden ser usadas para realizar operaciones.<br />
 Por otro lado, el panel <em><code>History</code></em> posee el historial de todos los comandos que has ido ejecutando en la sesión.</p>
+<p><br></p>
 </div>
 </div>
 <div id="operaciones-relacionales" class="section level2">
@@ -563,10 +577,11 @@ Por otro lado, el panel <em><code>History</code></em> posee el historial de todo
 <pre><code>## [1] TRUE</code></pre>
 <div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1"><span class="dv">2</span> <span class="op">&lt;</span><span class="st"> </span><span class="dv">1</span> <span class="co"># ¿Es menor que?: Devuelve FALSE</span></a></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
+<p><br></p>
 </div>
 <div id="tipos-de-datos" class="section level2">
 <h2><span class="header-section-number">1.4</span> Tipos de datos</h2>
-<p>En R, casi todos los datos con los que trabajamos son considerados <strong><em>Objetos</em></strong>, lo que significa que cada dato pertenece a una <strong>clase</strong> en particular, y por ello tiene atributos particulares.<br />
+<p>En <strong>R</strong>, casi todos los datos con los que trabajamos son considerados <strong><em>Objetos</em></strong>, lo que significa que cada dato pertenece a una <strong>clase</strong> en particular, y por ello tiene atributos particulares.<br />
 Los tipos de datos <strong>básicos</strong> más comunes en R son los siguientes:</p>
 <ul>
 <li><strong>numeric</strong>: número real</li>
@@ -574,7 +589,7 @@ Los tipos de datos <strong>básicos</strong> más comunes en R son los siguiente
 <li><strong>character</strong>: cadena de texto</li>
 <li><strong>logical</strong>: valores lógicos (verdadero o falso)</li>
 </ul>
-<p>Hasta ahora hemos utilizado algunos de ellos, y es importante saber con que tipo de datos estamos trabajando, pues de ello depende qué operaciones podemos realizar con ellos. A cotinuación usamos la función <code>class()</code> que nos indica qué tipo de dato esun objeto:</p>
+<p>Hasta ahora hemos utilizado algunos de ellos, y es importante saber con que tipo de datos estamos trabajando, pues de ello depende qué operaciones podemos realizar con ellos. A cotinuación usamos la función <code>class()</code> que nos indica qué tipo de dato es un objeto:</p>
 <div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1">numero_real =<span class="st"> </span><span class="fl">100.5</span></a>
 <a class="sourceLine" id="cb31-2" data-line-number="2"><span class="kw">class</span>(numero_real)</a>
 <a class="sourceLine" id="cb31-3" data-line-number="3"><span class="co">## [1] &quot;numeric&quot;</span></a></code></pre></div>
@@ -587,8 +602,12 @@ Los tipos de datos <strong>básicos</strong> más comunes en R son los siguiente
 <div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1">valor_logico =<span class="st"> </span><span class="ot">TRUE</span> <span class="co"># También puede ser FALSE</span></a>
 <a class="sourceLine" id="cb34-2" data-line-number="2"><span class="kw">class</span>(valor_logico)</a>
 <a class="sourceLine" id="cb34-3" data-line-number="3"><span class="co">## [1] &quot;logical&quot;</span></a></code></pre></div>
-<p><strong>Ejercicio</strong>: ¿Cuáles de las siguientes operaciones es posible realizar? ¿Qué tipo de dato es el resultado de cada una?<br />
-Usa la función <code>class()</code> para evaluar cada resultado (por ejemplo: <code>class(100 + 2)</code>)</p>
+<p><strong>Ejercicio</strong>:</p>
+<ul>
+<li>¿Cuáles de las siguientes operaciones es posible realizar?</li>
+<li>¿Qué tipo de dato es el resultado de cada una?</li>
+</ul>
+<p>Usa la función <code>class()</code> para evaluar cada resultado (por ejemplo: <code>class(100 + 2)</code>)</p>
 <div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1"><span class="dv">100</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span>              <span class="co">#(1</span></a>
 <a class="sourceLine" id="cb35-2" data-line-number="2">100L <span class="op">+</span><span class="st"> </span><span class="fl">2.0</span>          <span class="co">#(2</span></a>
 <a class="sourceLine" id="cb35-3" data-line-number="3">100L <span class="op">+</span><span class="st"> </span>2L          <span class="co">#(3</span></a>
@@ -598,6 +617,12 @@ Usa la función <code>class()</code> para evaluar cada resultado (por ejemplo: <
 <a class="sourceLine" id="cb35-7" data-line-number="7"><span class="kw">paste</span>(<span class="st">&quot;100&quot;</span> <span class="op">+</span><span class="st"> &quot;2&quot;</span>)  <span class="co">#(7</span></a>
 <a class="sourceLine" id="cb35-8" data-line-number="8"><span class="kw">paste</span>(<span class="st">&quot;100&quot;</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span>)    <span class="co">#(8</span></a>
 <a class="sourceLine" id="cb35-9" data-line-number="9"><span class="kw">paste</span>(<span class="dv">100</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span>)      <span class="co">#(9</span></a></code></pre></div>
+<div class="alert alert-dismissible alert-success">
+<h4 class="alert-heading">
+¡Atención!
+</h4>
+<p><button type="button" class="close" data-dismiss="alert"></button> Recuerda que si hay algún cambio que desees guardar en tu archivo <em><strong>.R</strong></em> puedes utilizar <code>File &gt; Save</code> o <code>Ctrl + S</code>. No olvides tampoco utilizar los comentarios (<code>#</code>) para documentar los comandos y pasos que has realizado.</p>
+</div>
 <hr />
 <p><strong>¡Listo!</strong><br />
 Puedes continuar hacia la siguiente sección.</p>
@@ -611,7 +636,7 @@ Puedes continuar hacia la siguiente sección.</p>
 </div>
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAnSW50cm9kdWNjacOzbiBhIFI6IFBhcnRlIDInCi0tLQoqKioKIyBTY3JpcHMgeSB0aXBvcyBkZSBkYXRvcwoKIyMgKlNjcmlwdHMqIGRlIFIKCkhhc3RhIGFob3JhIGhlbW9zIHVzYWRvIMO6bmljYW1lbnRlIGxhIGNvbnNvbGEuIExsZWfDsyBsYSBob3JhIGRlIGxsZXZhciB1biByZWdpc3RybyBkZSBsb3MgY29tYW5kb3MgcXVlIHZhbW9zIHVzYW5kbywgbyBxdWUgbmVjZXNpdGFyZW1vcyB1c2FyLCB5IHBvZGVyIGd1YXJkYXJsb3MgZW4gdW4gYXJjaGl2by4KClBhcmEgZWxsb3MgdmFtb3MgYSBjcmVhciB1biBhcmNoaXZvICouUiogdXNhbmRvIGBGaWxlID4gTmV3IEZpbGUgPiBSIHNjcmlwdGAsIGVzdG8gZ2VuZXJhcsOhIHVuIGFyY2hpdm8gZG9uZGUgcG9kcmVtb3MgaXIgZXNjcmliaWVuZG8gY29tYW5kb3MgZGUgKipSKiogc2luIG5lY2VzaWRhZCBkZSB0ZW5lciBxdWUgZWplY3V0YXJsb3MgZGlyZWN0YW1lbnRlIHNvYnJlIGxhIGNvbnNvbGEuCgojIyMgR3VhcmRhciBlbCBhcmNoaXZvICIqLlIqIgpQdWVkZXMgZ3VhcmRhciBlbCBhcmNoaXZvIGRlc2RlIGBGaWxlID4gU2F2ZWAsIG8gY29uIGBDdHJsICsgU2AuIEd1w6FyZGFsbyBlbiBlbCAqKkVzY3JpdG9yaW8qKiBkZW50cm8gZGUgdW5hIGNhcnBldGEgbGxhbWFkYSAqVGFsbGVyX1IqLCBub21icmFuZG8gZWwgYXJjaGl2byBjb21vICpJbnRyb19SLlIqOyBlcyBpbXBvcnRhbnRlIHVzYXIgbGEgZXh0ZW5zacOzbiBfXyouUipfXy4gIApVbmEgdmV6IGd1YXJkYWRvIHZhbW9zIGEgbGEgdmVudGFuYSBkZSBuYXZlZ2FjacOzbiBkZSBhcmNoaXZvcyAoKipGaWxlcyoqKSBkZW50cm8gZGUgUlN0dWRpbyAocGFuZWwgaW5mZXJpb3IgZGVyZWNobykuIFB1ZWRlcyBuYXZlZ2FyIGhhc3RhIGxhIGNhcnBldGEgZGUgdHJhYmFqby4gIApFbiBsYSBwZXN0YcOxYSAqKl9Nb3JlXyoqIGRlbCBwYW5lbCBkZSBuYXZlZ2FjacOzbiBkZSBhcmNoaXZvcywgc2VsZWNjaW9uYSAqYFNldCBBcyBXb3JraW5nIERpcmVjdG9yeWAqLgoKwr9RdcOpIG9jdXJyacOzIGVuIGxhIGNvbnNvbGE/CgpgYGB7ciBldmFsPUZBTFNFfQpnZXR3ZCgpICMgRXN0ZSBjb21hbmRvIG5vcyBkaWNlIGxhIHJ1dGEgZGVsIGRpcmVjdG9yaW8gZGUgdHJhYmFqbyBkb25kZSBlc3RhbW9zLgojIExvIHVzYXJlbW9zIG3DoXMgYWRlbGFudGUgY3VhbmRvIHRyYWJhamVtb3MgY29uIGFyY2hpdm9zLgpgYGAKCkEgcGFydGlyIGRlIGFob3JhIHB1ZWRlcyBlc2NyaWJpciBsb3MgY29tYW5kb3MgcXVlIHZheWFtb3MgdmllbmRvIGRpcmVjdGFtZW50ZSBlbiBlbCBhcmNoaXZvICpJbnRyb19SLlIqLCBlc2NyaWJpw6luZG8gdW4gY29tYW5kbyBwb3IgbMOtbmVhLiAgClB1ZWRlcyBlamVjdXRhciB1bmEgbMOtbmVhIGNvbG9jw6FuZG8gZWwgY3Vyc29yIHNvYnJlIGVsbGEgeSBwcmVzaW9uYW5kbyBgQ3J0bCArIEVudGVyYC4gVGFtYmnDqW4gcHVlZGVzIGVqZWN1dGFyIG3Dumx0aXBsZXMgbMOtbmVhcyBzaSBsYXMgc2VsZWNjaW9uYXMgY29uIGVsIGN1cnNvciB5IGx1ZWdvIHByZXNpb25hcyBgQ3J0bCArIEVudGVyYC4KCiMjIFZhcmlhYmxlcyB5IGFzaWduYWNpb25lcwoKRW4gUiwgZXMgcG9zaWJsZSBhbG1hY2VuYXIgdmFsb3JlcyBlbiB2YXJpYWJsZXMgdXNhbmRvIGVsIG9wZXJhZG9yIGRlIGFzaWduYWNpw7NuIGA8LWAsIG8gYD1gOiAKYGBge3J9CiMgQXNpZ25hbW9zIGEgbGEgdmFyaWFibGUgbGxhbWFkYSAidGVtcGVyYXR1cmEiIGVsIHZhbG9yIG51bcOpcmljbyAyNQp4ID0gMjUKYGBgCkFsIGVqZWN1dGFyIGVsIGNvbWFuZG8sIFIgbm8gZGV2w7plbHZlIHVuYSByZXNwdWVzdGEuIFNpbiBlbWJhcmdvIHNpIGVzY3JpYmltb3MgZWwgbm9tYnJlIGRlIGxhIHZhcmlhYmxlIFIgbm9zIHJldG9ybmFyw6EgZWwgdmFsb3IgcXVlIGxlIGNvcnJlc3BvbmRlOgpgYGB7cn0KIyAiTGxhbcOhbW9zIiBhIGxhIHZhcmlhYmxlICJ0ZW1wZXJhdHVyYSIKeApgYGAKCioqX05vdGE6XyoqIMK/UXXDqSBwYXNhIHNpIGVuIGx1Z2FyIGRlIGVzY3JpYmlyIGB4YCAobWluw7pzY3VsYSkgZW4gbGEgY29uc29sYSwgZXNjcmliw61tb3MgYFhgIChtYXnDunNjdWxhKT8KCgpDb21vIGVzIGRlIGVzcGVyYXJzZSwgYWhvcmEgcHVlZGVzIGhhY2VyIG9wZXJhY2lvbmVzIHVzYW5kbyBkaWNoYSB2YXJpYWJsZToKYGBge3J9CnggKyA1LjAKeCAqIDUKbG9nMTAoeCkKYGBgCgpPYnNlcnZhIHF1ZSBlbCB2YWxvciBkZSBgeGAgbm8gaGEgY2FtYmlhZG8gYXVucXVlIGhheWFtb3Mgb3BlcmFkbyBzb2JyZSDDqWwuIEVqZWN1dGEgbG8gc2lndWllbnRlOgpgYGB7cn0KIyBwcmludCB5IHBhc3RlIG5vcyBzaXJ2ZW4gcGFyYSAiaW1wcmltaXIiIGVuIGxhIGNvbnNvbGE6CnByaW50KCBwYXN0ZSggIkVsIHZhbG9yIGFjdHVhbCBkZSB4IGVzOiIsIHggKSApCiMgQWN0dWFsaXphbW9zIHgKIyBVc2Ftb3MgZWwgb3BlcmFkb3IgIj0iIG8gIjwtIgp4ID0geCAqIDIgCnByaW50KCBwYXN0ZSggIkVsIG51ZXZvIHZhbG9yIGRlIHggZXM6IiwgeCApICkKYGBgCgpDcmVhIGFob3JhIHVuYSB2YXJpYWJsZSAkdGVtcF9LJCBxdWUgY29udGVuZ2EgZWwgZG9ibGUgZGVsIHZhbG9yIHF1ZSB0b21lIHguICoqwr9DdcOhbnRvIHZhbGUgYHlgPyoqCmBgYHtyfQp5ID0geCAqIDIKeQpgYGAKCkFzaWduYSB1biBudWV2byB2YWxvciBhIGB4YCBkZSB0YWwgbWFuZXJhIHF1ZSBgeWAgYWhvcmEgcHVlZGEgdmFsZXIgMSwwMDAuCmBgYHtyIGV2YWw9RkFMU0V9CiMgQWN0dWFsaXphIGVsIHZhbG9yIGRlIHguCnggPC0gaW5ncmVzYSB0dSByZXNwdWVzdGEKYGBgCgoqKk9qbyoqOiBTaSB0cmF0YXMgZGUgZWplY3V0YXIgZWwgY29tYW5kbyBhc8OtLCB0ZSBkYXLDoSBlcnJvci4gwr9Qb3IgcXXDqT8KCgojIyMgwr9Dw7NtbyBub21icmFyIHZhcmlhYmxlcz8KCiogTG9zIG5vbWJyZXMgZGUgbGFzIHZhcmlhYmxlcyBwdWVkZW4gY29udGVuZXIgbGV0cmFzLCBuw7ptZXJvcywgZ3Vpb25lcyBiYWpvcyB5IHB1bnRvcy4gCiogKipObyBwdWVkZW4gY29tZW56YXIgY29uIHVuIG7Dum1lcm8gbmkgY29udGVuZXIgZXNwYWNpb3MgbyBndWlvbmVzIG1lZGlvcyBlbnRyZSBwYWxhYnJhcy4qKiAgCgoqKkVqZXJjaWNpbzoqKiBWZXJpZmljYSBjdWFsZXMgZGUgbGFzIHNpZ3VpZW50ZXMgZm9ybWFzIGRlIG5vbWJyYXIgdW5hIHZhcmlhYmxlcyBzb24gdsOhbGlkYXMgKHZlIGVqZWN1YXRhbmRvIHVubyBhIHVubyk6CmBgYHtyIGV2YWw9RkFMU0V9Cm51bWVyb19kb3MgPSAyCm51bWVyby10cmVzID0gMwpudW1lcm8gY3VhdHJvID0gNApudW1lcm8uNSA9IDUKbnVtZXJvU2VpcyA9IDYKNy5udW1lcm8gPSA3Cl84ID0gOQouOSA9IDkKbnVtXzEwID0gMTAKb25jZSA9ICJvbmNlIgpgYGAKCmBgYHtyIGluY2x1ZGU9RkFMU0V9Cm51bWVyb19kb3MgPSAyCm51bWVyby41ID0gNQpudW1lcm9TZWlzID0gNgpudW1fMTAgPSAxMApvbmNlID0gIm9uY2UiCmBgYAoKKirCv0N1w6FudGFzIHZhcmlhYmxlcyBwdWRpc3RlIGNyZWFyPyoqCgojIyMgUGFuZWxlcyAqYEVudmlyb25tZW50YCogeSAqYEhpc3RvcnlgKgpUcmFzIGVqZWN1dGFyIGxvcyBjb21hbmRvcyBhbnRlcmlvcmVzIHZlcsOhcyBxdWUgZW4gZWwgcGFuZWwgc3VwZXJpb3IgZGVyZWNobywgZW4gbGEgcGVzdGHDsWEgKmBFbnZpcm9ubWVudGAqIHNlIGhhbiBpZG8gZ3VhcmRhbmRvIGxhcyB2YXJpYWJsZXMgcXVlIGhhcyBjcmVhZG8uIERpY2hhcyB2YXJpYWJsZXMgZXN0w6FuIGd1YXJkYWRhcyBlbiBtZW1vcmlhIHkgcHVlZGVuIHNlciB1c2FkYXMgcGFyYSByZWFsaXphciBvcGVyYWNpb25lcy4gIApQb3Igb3RybyBsYWRvLCBlbCBwYW5lbCAqYEhpc3RvcnlgKiBwb3NlZSBlbCBoaXN0b3JpYWwgZGUgdG9kb3MgbG9zIGNvbWFuZG9zIHF1ZSBoYXMgaWRvIGVqZWN1dGFuZG8gZW4gbGEgc2VzacOzbi4KCiMjIE9wZXJhY2lvbmVzIHJlbGFjaW9uYWxlcwoKYGBge3J9CjIgPT0gMiAjIMK/U29uIGlndWFsZXM/OiBEZXZ1ZWx2ZSBUUlVFCm51bWVyb19kb3MgPT0gMiAjIMK/U29uIGlndWFsZXM/OiBPYnNlcnZhIHF1ZSBlc3RhIHZleiB1c2Ftb3MgIj09IiwgeSBubyAiPSIKCjIgPT0gMSAjIMK/U29uIGlndWFsZXM/OiBEZXZ1ZWx2ZSBGQUxTRQoyICE9IDEgIyDCv1NvbiBERVNpZ3VhbGVzPzogRGV2dWVsdmUgVFJVRQoyID4gMSAjIMK/RXMgbWF5b3IgcXVlPzogRGV2dWVsdmUgVFJVRQoyIDwgMSAjIMK/RXMgbWVub3IgcXVlPzogRGV2dWVsdmUgRkFMU0UKYGBgCgojIyBUaXBvcyBkZSBkYXRvcwoKRW4gUiwgY2FzaSB0b2RvcyBsb3MgZGF0b3MgY29uIGxvcyBxdWUgdHJhYmFqYW1vcyBzb24gY29uc2lkZXJhZG9zICoqX09iamV0b3NfKiosIGxvIHF1ZSBzaWduaWZpY2EgcXVlIGNhZGEgZGF0byBwZXJ0ZW5lY2UgYSB1bmEgKipjbGFzZSoqIGVuIHBhcnRpY3VsYXIsIHkgcG9yIGVsbG8gdGllbmUgYXRyaWJ1dG9zIHBhcnRpY3VsYXJlcy4gIApMb3MgdGlwb3MgZGUgZGF0b3MgKipiw6FzaWNvcyoqIG3DoXMgY29tdW5lcyBlbiBSIHNvbiBsb3Mgc2lndWllbnRlczoKCiogKipudW1lcmljKio6IG7Dum1lcm8gcmVhbAoqICoqaW50ZWdlcioqOiBuw7ptZXJvIGVudGVybwoqICoqY2hhcmFjdGVyKio6IGNhZGVuYSBkZSB0ZXh0bwoqICoqbG9naWNhbCoqOiB2YWxvcmVzIGzDs2dpY29zICh2ZXJkYWRlcm8gbyBmYWxzbykKCkhhc3RhIGFob3JhIGhlbW9zIHV0aWxpemFkbyBhbGd1bm9zIGRlIGVsbG9zLCB5IGVzIGltcG9ydGFudGUgc2FiZXIgY29uIHF1ZSB0aXBvIGRlIGRhdG9zIGVzdGFtb3MgdHJhYmFqYW5kbywgcHVlcyBkZSBlbGxvIGRlcGVuZGUgcXXDqSBvcGVyYWNpb25lcyBwb2RlbW9zIHJlYWxpemFyIGNvbiBlbGxvcy4gQSBjb3RpbnVhY2nDs24gdXNhbW9zIGxhIGZ1bmNpw7NuIGBjbGFzcygpYCBxdWUgbm9zIGluZGljYSBxdcOpIHRpcG8gZGUgZGF0byBlc3VuIG9iamV0bzoKCmBgYHtyIGNvbGxhcHNlPVRSVUV9Cm51bWVyb19yZWFsID0gMTAwLjUKY2xhc3MobnVtZXJvX3JlYWwpCmBgYAoKYGBge3IgY29sbGFwc2U9VFJVRX0KbnVtZXJvX2VudGVybyA9IDEwMEwKY2xhc3MobnVtZXJvX2VudGVybykKYGBgCgpgYGB7ciBjb2xsYXBzZT1UUlVFfQpjYWRlbmFfZGVfdGV4dG8gPSAiMTAwIiAjIE8gY2FkZW5hIGRlIGNhcmFjdGVyZXMKY2xhc3MoY2FkZW5hX2RlX3RleHRvKQpgYGAKCmBgYHtyIGNvbGxhcHNlPVRSVUV9CnZhbG9yX2xvZ2ljbyA9IFRSVUUgIyBUYW1iacOpbiBwdWVkZSBzZXIgRkFMU0UKY2xhc3ModmFsb3JfbG9naWNvKQpgYGAKCioqRWplcmNpY2lvKio6IMK/Q3XDoWxlcyBkZSBsYXMgc2lndWllbnRlcyBvcGVyYWNpb25lcyBlcyBwb3NpYmxlIHJlYWxpemFyPyDCv1F1w6kgdGlwbyBkZSBkYXRvIGVzIGVsIHJlc3VsdGFkbyBkZSBjYWRhIHVuYT8gIApVc2EgbGEgZnVuY2nDs24gYGNsYXNzKClgIHBhcmEgZXZhbHVhciBjYWRhIHJlc3VsdGFkbyAocG9yIGVqZW1wbG86IGBjbGFzcygxMDAgKyAyKWApCgpgYGB7ciBldmFsPUZBTFNFfQoxMDAgKyAyCQkJCSAjKDEKMTAwTCArIDIuMAkJICAgCSMoMgoxMDBMICsgMkwJCSAgICMoMwoxMDAgKyBUUlVFICsgVFJVRQkjKDQKVFJVRSA9PSAxCQkJIyg1CiIxMDAiICsgIjIiCQkgIAkjKDYKcGFzdGUoIjEwMCIgKyAiMiIpCSMoNwpwYXN0ZSgiMTAwIiArIDIpIAkjKDgKcGFzdGUoMTAwICsgMikJCSMoOQpgYGAKCgoqKioKCioqwqFMaXN0byEqKiAgClB1ZWRlcyBjb250aW51YXIgaGFjaWEgbGEgc2lndWllbnRlIHNlY2Npw7NuLgoKKioqCgo8YnV0dG9uIHR5cGU9ImJ1dHRvbiIgY2xhc3M9ImJ0biBidG4tcHJpbWFyeSBwdWxsLWxlZnQiPgogIDxhIGhyZWY9Ii4vaW50cm9fUl9wMS5odG1sIiBzdHlsZT0iY29sb3I6aW5oZXJpdCI+IEluaWNpbyA8L2E+CjwvYnV0dG9uPgoKPGJ1dHRvbiB0eXBlPSJidXR0b24iIGNsYXNzPSJidG4gYnRuLXByaW1hcnkgcHVsbC1yaWdodCI+CiAgPGEgaHJlZj0iLi9pbnRyb19SX3AzLmh0bWwiIHN0eWxlPSJjb2xvcjppbmhlcml0Ij4gU2lndWllbnRlIDwvYT4KPC9idXR0b24+Cgo=</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAnSW50cm9kdWNjacOzbiBhIFI6IFRpcG9zIGRlIGRhdG9zJwotLS0KKioqCiMgU2NyaXBzIHkgdGlwb3MgZGUgZGF0b3MKCiMjICpTY3JpcHRzKiBkZSBSCgpIYXN0YSBhaG9yYSBoZW1vcyB1c2FkbyDDum5pY2FtZW50ZSBsYSBjb25zb2xhLiBMbGVnw7MgbGEgaG9yYSBkZSBsbGV2YXIgdW4gcmVnaXN0cm8gZGUgbG9zIGNvbWFuZG9zIHF1ZSB2YW1vcyB1c2FuZG8sIG8gcXVlIG5lY2VzaXRhcmVtb3MgdXNhciwgeSBwb2RlciBndWFyZGFybG9zIGVuIHVuIGFyY2hpdm8uCgpQYXJhIGVsbG9zIHZhbW9zIGEgY3JlYXIgdW4gYXJjaGl2byAqLlIqIHVzYW5kbyBgRmlsZSA+IE5ldyBGaWxlID4gUiBzY3JpcHRgLCBlc3RvIGdlbmVyYXLDoSB1biBhcmNoaXZvIGRvbmRlIHBvZHJlbW9zIGlyIGVzY3JpYmllbmRvIGNvbWFuZG9zIGRlICoqUioqIHNpbiBuZWNlc2lkYWQgZGUgdGVuZXIgcXVlIGVqZWN1dGFybG9zIGRpcmVjdGFtZW50ZSBzb2JyZSBsYSBjb25zb2xhLgoKIyMjIEd1YXJkYXIgZWwgYXJjaGl2byAiKi5SKiIKUHVlZGVzIGd1YXJkYXIgZWwgYXJjaGl2byBkZXNkZSBgRmlsZSA+IFNhdmVgLCBvIHByZXNpb25hbmRvIGBDdHJsICsgU2AuIEd1w6FyZGFsbyBlbiBlbCAqKkVzY3JpdG9yaW8qKiBkZW50cm8gZGUgdW5hIGNhcnBldGEgbGxhbWFkYSAqVGFsbGVyX1IqLCBub21icmFuZG8gZWwgYXJjaGl2byBjb21vICpJbnRyb19SLlIqLiAKCjxkaXYgY2xhc3M9ImFsZXJ0IGFsZXJ0LWRpc21pc3NpYmxlIGFsZXJ0LWRhbmdlciI+CjxoNCBjbGFzcz0iYWxlcnQtaGVhZGluZyI+wqFBdGVuY2nDs24hPC9oND4KICA8YnV0dG9uIHR5cGU9ImJ1dHRvbiIgY2xhc3M9ImNsb3NlIiBkYXRhLWRpc21pc3M9ImFsZXJ0Ij48L2J1dHRvbj4KICBFcyBpbXBvcnRhbnRlIHVzYXIgbGEgZXh0ZW5zacOzbiA8c3Ryb25nPi5SPC9zdHJvbmc+Lgo8L2Rpdj4KClVuYSB2ZXogZ3VhcmRhZG8gdmFtb3MgYSBsYSB2ZW50YW5hIGRlIG5hdmVnYWNpw7NuIGRlIGFyY2hpdm9zIChgKkZpbGVzKmApIGRlbnRybyBkZSAqKlJTdHVkaW8qKiAocGFuZWwgaW5mZXJpb3IgZGVyZWNobykuIFB1ZWRlcyBuYXZlZ2FyIGhhc3RhIGxhIGNhcnBldGEgZGUgdHJhYmFqby4gIApFbiBsYSBwZXN0YcOxYSBgKk1vcmUqYCBkZWwgcGFuZWwgZGUgbmF2ZWdhY2nDs24gZGUgYXJjaGl2b3MsIHNlbGVjY2lvbmEgKmBTZXQgQXMgV29ya2luZyBEaXJlY3RvcnlgKi4KCioqwr9RdcOpIG9jdXJyacOzIGVuIGxhIGNvbnNvbGE/KioKCltTZSBoYSB1c2FkbyBlbCBjb21hbmRvIGBzZXR3ZCgpYCwgKnNldCB3b3JraW5nIGRpcmVjdG9yeSosIHF1ZSBqdXN0YW1lbnRlIGVzdGFibGVjZSBjb21vIGRpcmVjdG9yaW8gZGUgdHJhYmFqbyBhIGxhIGNhcnBldGEgZXNwZWNpZmljYWRhLl17LnNwb2lsZXJ9CgpBaG9yYSBwcnVlYmEgZWwgc2lndWllbnRlIGNvbWFuZG86CgpgYGB7ciBldmFsPUZBTFNFfQpnZXR3ZCgpCmBgYAoKRXN0ZSBjb21hbmRvIG5vcyBkaWNlIGxhIHJ1dGEgZGVsIGRpcmVjdG9yaW8gZGUgdHJhYmFqbyBkb25kZSBlc3RhbW9zLiBMbyB1c2FyZW1vcyBtw6FzIGFkZWxhbnRlIGN1YW5kbyB0cmFiYWplbW9zIGNvbiBhcmNoaXZvcy4KCkEgcGFydGlyIGRlIGFob3JhIHB1ZWRlcyBlc2NyaWJpciBsb3MgY29tYW5kb3MgcXVlIHZheWFtb3MgdmllbmRvIGRpcmVjdGFtZW50ZSBlbiBlbCBhcmNoaXZvICpJbnRyb19SLlIqLCBlc2NyaWJpZW5kbyB1biBjb21hbmRvIHBvciBsw61uZWEuICAKUHVlZGVzIGVqZWN1dGFyIHVuYSBsw61uZWEgY29sb2PDoW5kbyBlbCBjdXJzb3Igc29icmUgZWxsYSB5IHByZXNpb25hbmRvIGBDcnRsICsgRW50ZXJgLiBUYW1iacOpbiBwdWVkZXMgZWplY3V0YXIgbcO6bHRpcGxlcyBsw61uZWFzIHNpIGxhcyBzZWxlY2Npb25hcyAqKnRvZGFzKiogY29uIGVsIGN1cnNvciB5IGx1ZWdvIHByZXNpb25hcyBgQ3J0bCArIEVudGVyYC4KCjxicj4KCiMjIFZhcmlhYmxlcyB5IGFzaWduYWNpb25lcwoKRW4gKipSKiosIGVzIHBvc2libGUgYWxtYWNlbmFyIHZhbG9yZXMgZW4gdmFyaWFibGVzIHVzYW5kbyBlbCBvcGVyYWRvciBkZSBhc2lnbmFjacOzbiBgPC1gLCBvIGA9YDogCmBgYHtyfQojIEFzaWduYW1vcyBhIGxhIHZhcmlhYmxlIGxsYW1hZGEgInRlbXAiIGVsIHZhbG9yIG51bcOpcmljbyAyNQp0ZW1wID0gMjUKYGBgCkFsIGVqZWN1dGFyIGVsIGNvbWFuZG8sICoqUioqIG5vIGRldsO6ZWx2ZSB1bmEgcmVzcHVlc3RhLiBTaW4gZW1iYXJnbywgc2kgZXNjcmliaW1vcyBlbCBub21icmUgZGUgbGEgdmFyaWFibGUgKipSKiogbm9zIHJldG9ybmFyw6EgZWwgdmFsb3IgcXVlIGxlIGNvcnJlc3BvbmRlOgpgYGB7cn0KIyAiTGxhbcOhbW9zIiBhIGxhIHZhcmlhYmxlICJ0ZW1wZXJhdHVyYSIKdGVtcApgYGAKCioqX05vdGE6XyoqIMK/UXXDqSBwYXNhIHNpIGVuIGx1Z2FyIGRlIGVzY3JpYmlyIGB4YCAobWluw7pzY3VsYSkgZW4gbGEgY29uc29sYSwgZXNjcmliw61tb3MgYFhgIChtYXnDunNjdWxhKT8KCgpDb21vIGVzIGRlIGVzcGVyYXJzZSwgYWhvcmEgcHVlZGVzIGhhY2VyIG9wZXJhY2lvbmVzIHVzYW5kbyBkaWNoYSB2YXJpYWJsZToKYGBge3J9CnRlbXAgKyA1LjAKdGVtcCAqIDUKbG9nMTAoIHRlbXAgKQpgYGAKCk9ic2VydmEgcXVlIGVsIHZhbG9yIGRlIGB0ZW1wYCBubyBoYSBjYW1iaWFkbyBhdW5xdWUgaGF5YW1vcyBvcGVyYWRvIHNvYnJlIMOpbC4gRWplY3V0YSBsbyBzaWd1aWVudGU6CmBgYHtyfQojIHByaW50IHkgcGFzdGUgbm9zIHNpcnZlbiBwYXJhICJpbXByaW1pciIgZW4gbGEgY29uc29sYToKcHJpbnQoIHBhc3RlKCAiRWwgdmFsb3IgYWN0dWFsIGRlIHRlbXAgZXM6IiwgdGVtcCApICkKIyBBY3R1YWxpemFtb3MgeAojIFVzYW1vcyBlbCBvcGVyYWRvciAiPSIgbyAiPC0iCnRlbXAgPSB0ZW1wICogMiAKcHJpbnQoIHBhc3RlKCAiRWwgbnVldm8gdmFsb3IgZGUgdGVtcCBlczoiLCB0ZW1wICkgKQpgYGAKCkNyZWEgYWhvcmEgdW5hIHZhcmlhYmxlIGB0ZW1wX0tgIHF1ZSBjb250ZW5nYSBlbCB2YWxvciBkZSBgdGVtcGAgbcOhcyBgMjczLjE1YC4gKirCv0N1w6FudG8gdmFsZSBgdGVtcF9LYD8qKgpgYGB7cn0KdGVtcF9LID0gdGVtcCArIDI3My4xNQp0ZW1wX0sKYGBgCgpDcmVhIHVuYSBudWV2YSB2YXJpYWJsZSBgdGVtcF9GYCBxdWUgY29udmllcnRhIGVsIHZhbG9yIGRlIGB0ZW1wYCBhIGdyYWRvcyAqRmFocmVuaGVpdCouCgpbIHjCsEMgKiA5LzUgKyAzMiA9IHnCsEZdey5zcG9pbGVyfQoKYGBge3IgZXZhbD1GQUxTRX0KIyBBY3R1YWxpemEgZWwgdmFsb3IgZGUgeC4KdGVtcF9GIDwtIGluZ3Jlc2EgdHUgcmVzcHVlc3RhCnRlbXBfRgpgYGAKCioqT2pvKio6IFNpIHRyYXRhcyBkZSBlamVjdXRhciBlbCBjb21hbmRvIGFzw60sIHRlIGRhcsOhIGVycm9yLiDCv1BvciBxdcOpPwoKPGJyPgoKIyMjIMK/Q8OzbW8gbm9tYnJhciB2YXJpYWJsZXM/CgoqIExvcyBub21icmVzIGRlIGxhcyB2YXJpYWJsZXMgcHVlZGVuIGNvbnRlbmVyIGxldHJhcywgbsO6bWVyb3MsIGd1aW9uZXMgYmFqb3MgeSBwdW50b3MuIAoqICoqTm8gcHVlZGVuIGNvbWVuemFyIGNvbiB1biBuw7ptZXJvIG5pIGNvbnRlbmVyIGVzcGFjaW9zIG8gZ3Vpb25lcyBtZWRpb3MgZW50cmUgcGFsYWJyYXMuKiogIAoKKipFamVyY2ljaW86KiogVmVyaWZpY2EgY3VhbGVzIGRlIGxhcyBzaWd1aWVudGVzIGZvcm1hcyBkZSBub21icmFyIHVuYSB2YXJpYWJsZXMgc29uIHbDoWxpZGFzIChlamVjdXRhIGNhZGEgY29tYW5kbyB1bm8gYSB1bm8pOgpgYGB7ciBldmFsPUZBTFNFfQpudW1lcm9fZG9zID0gMgpudW1lcm8tdHJlcyA9IDMKbnVtZXJvIGN1YXRybyA9IDQKbnVtZXJvLjUgPSA1Cm51bWVyb1NlaXMgPSA2CjcubnVtZXJvID0gNwpfOCA9IDkKLjkgPSA5Cm51bV8xMCA9IDEwCm9uY2UgPSAib25jZSIKYGBgCgpgYGB7ciBpbmNsdWRlPUZBTFNFfQpudW1lcm9fZG9zID0gMgpudW1lcm8uNSA9IDUKbnVtZXJvU2VpcyA9IDYKbnVtXzEwID0gMTAKb25jZSA9ICJvbmNlIgpgYGAKCioqwr9DdcOhbnRhcyB2YXJpYWJsZXMgcHVkaXN0ZSBjcmVhcj8qKgoKPGJyPgoKIyMjIFBhbmVsZXMgKmBFbnZpcm9ubWVudGAqIHkgKmBIaXN0b3J5YCoKVHJhcyBlamVjdXRhciBsb3MgY29tYW5kb3MgYW50ZXJpb3JlcyB2ZXLDoXMgcXVlIGVuIGVsIHBhbmVsIHN1cGVyaW9yIGRlcmVjaG8sIGVuIGxhIHBlc3Rhw7FhICpgRW52aXJvbm1lbnRgKiBzZSBoYW4gaWRvIGd1YXJkYW5kbyBsYXMgdmFyaWFibGVzIHF1ZSBoYXMgY3JlYWRvLiBEaWNoYXMgdmFyaWFibGVzIGVzdMOhbiBndWFyZGFkYXMgZW4gbWVtb3JpYSB5IHB1ZWRlbiBzZXIgdXNhZGFzIHBhcmEgcmVhbGl6YXIgb3BlcmFjaW9uZXMuICAKUG9yIG90cm8gbGFkbywgZWwgcGFuZWwgKmBIaXN0b3J5YCogcG9zZWUgZWwgaGlzdG9yaWFsIGRlIHRvZG9zIGxvcyBjb21hbmRvcyBxdWUgaGFzIGlkbyBlamVjdXRhbmRvIGVuIGxhIHNlc2nDs24uCgo8YnI+CgojIyBPcGVyYWNpb25lcyByZWxhY2lvbmFsZXMKCmBgYHtyfQoyID09IDIgIyDCv1NvbiBpZ3VhbGVzPzogRGV2dWVsdmUgVFJVRQpudW1lcm9fZG9zID09IDIgIyDCv1NvbiBpZ3VhbGVzPzogT2JzZXJ2YSBxdWUgZXN0YSB2ZXogdXNhbW9zICI9PSIsIHkgbm8gIj0iCgoyID09IDEgIyDCv1NvbiBpZ3VhbGVzPzogRGV2dWVsdmUgRkFMU0UKMiAhPSAxICMgwr9Tb24gREVTaWd1YWxlcz86IERldnVlbHZlIFRSVUUKMiA+IDEgIyDCv0VzIG1heW9yIHF1ZT86IERldnVlbHZlIFRSVUUKMiA8IDEgIyDCv0VzIG1lbm9yIHF1ZT86IERldnVlbHZlIEZBTFNFCmBgYAoKPGJyPgoKIyMgVGlwb3MgZGUgZGF0b3MKCkVuICoqUioqLCBjYXNpIHRvZG9zIGxvcyBkYXRvcyBjb24gbG9zIHF1ZSB0cmFiYWphbW9zIHNvbiBjb25zaWRlcmFkb3MgKipfT2JqZXRvc18qKiwgbG8gcXVlIHNpZ25pZmljYSBxdWUgY2FkYSBkYXRvIHBlcnRlbmVjZSBhIHVuYSAqKmNsYXNlKiogZW4gcGFydGljdWxhciwgeSBwb3IgZWxsbyB0aWVuZSBhdHJpYnV0b3MgcGFydGljdWxhcmVzLiAgCkxvcyB0aXBvcyBkZSBkYXRvcyAqKmLDoXNpY29zKiogbcOhcyBjb211bmVzIGVuIFIgc29uIGxvcyBzaWd1aWVudGVzOgoKKiAqKm51bWVyaWMqKjogbsO6bWVybyByZWFsCiogKippbnRlZ2VyKio6IG7Dum1lcm8gZW50ZXJvCiogKipjaGFyYWN0ZXIqKjogY2FkZW5hIGRlIHRleHRvCiogKipsb2dpY2FsKio6IHZhbG9yZXMgbMOzZ2ljb3MgKHZlcmRhZGVybyBvIGZhbHNvKQoKSGFzdGEgYWhvcmEgaGVtb3MgdXRpbGl6YWRvIGFsZ3Vub3MgZGUgZWxsb3MsIHkgZXMgaW1wb3J0YW50ZSBzYWJlciBjb24gcXVlIHRpcG8gZGUgZGF0b3MgZXN0YW1vcyB0cmFiYWphbmRvLCBwdWVzIGRlIGVsbG8gZGVwZW5kZSBxdcOpIG9wZXJhY2lvbmVzIHBvZGVtb3MgcmVhbGl6YXIgY29uIGVsbG9zLiBBIGNvdGludWFjacOzbiB1c2Ftb3MgbGEgZnVuY2nDs24gYGNsYXNzKClgIHF1ZSBub3MgaW5kaWNhIHF1w6kgdGlwbyBkZSBkYXRvIGVzIHVuIG9iamV0bzoKCmBgYHtyIGNvbGxhcHNlPVRSVUV9Cm51bWVyb19yZWFsID0gMTAwLjUKY2xhc3MobnVtZXJvX3JlYWwpCmBgYAoKYGBge3IgY29sbGFwc2U9VFJVRX0KbnVtZXJvX2VudGVybyA9IDEwMEwKY2xhc3MobnVtZXJvX2VudGVybykKYGBgCgpgYGB7ciBjb2xsYXBzZT1UUlVFfQpjYWRlbmFfZGVfdGV4dG8gPSAiMTAwIiAjIE8gY2FkZW5hIGRlIGNhcmFjdGVyZXMKY2xhc3MoY2FkZW5hX2RlX3RleHRvKQpgYGAKCmBgYHtyIGNvbGxhcHNlPVRSVUV9CnZhbG9yX2xvZ2ljbyA9IFRSVUUgIyBUYW1iacOpbiBwdWVkZSBzZXIgRkFMU0UKY2xhc3ModmFsb3JfbG9naWNvKQpgYGAKCioqRWplcmNpY2lvKio6IAoKLSDCv0N1w6FsZXMgZGUgbGFzIHNpZ3VpZW50ZXMgb3BlcmFjaW9uZXMgZXMgcG9zaWJsZSByZWFsaXphcj8KLSDCv1F1w6kgdGlwbyBkZSBkYXRvIGVzIGVsIHJlc3VsdGFkbyBkZSBjYWRhIHVuYT8KClVzYSBsYSBmdW5jacOzbiBgY2xhc3MoKWAgcGFyYSBldmFsdWFyIGNhZGEgcmVzdWx0YWRvIChwb3IgZWplbXBsbzogYGNsYXNzKDEwMCArIDIpYCkKCmBgYHtyIGV2YWw9RkFMU0V9CjEwMCArIDIJCQkJICMoMQoxMDBMICsgMi4wCQkgICAJIygyCjEwMEwgKyAyTAkJICAgIygzCjEwMCArIFRSVUUgKyBUUlVFCSMoNApUUlVFID09IDEJCQkjKDUKIjEwMCIgKyAiMiIJCSAgCSMoNgpwYXN0ZSgiMTAwIiArICIyIikJIyg3CnBhc3RlKCIxMDAiICsgMikgCSMoOApwYXN0ZSgxMDAgKyAyKQkJIyg5CmBgYAoKPGRpdiBjbGFzcz0iYWxlcnQgYWxlcnQtZGlzbWlzc2libGUgYWxlcnQtc3VjY2VzcyI+CjxoNCBjbGFzcz0iYWxlcnQtaGVhZGluZyI+wqFBdGVuY2nDs24hPC9oND4KICA8YnV0dG9uIHR5cGU9ImJ1dHRvbiIgY2xhc3M9ImNsb3NlIiBkYXRhLWRpc21pc3M9ImFsZXJ0Ij48L2J1dHRvbj4KICBSZWN1ZXJkYSBxdWUgc2kgaGF5IGFsZ8O6biBjYW1iaW8gcXVlIGRlc2VlcyBndWFyZGFyIGVuIHR1IGFyY2hpdm8gXyoqLlIqKl8gcHVlZGVzIHV0aWxpemFyIGBGaWxlID4gU2F2ZWAgbyBgQ3RybCArIFNgLiBObyBvbHZpZGVzIHRhbXBvY28gdXRpbGl6YXIgbG9zIGNvbWVudGFyaW9zIChgI2ApIHBhcmEgZG9jdW1lbnRhciBsb3MgY29tYW5kb3MgeSBwYXNvcyBxdWUgaGFzIHJlYWxpemFkby4KPC9kaXY+CgoqKioKCioqwqFMaXN0byEqKiAgClB1ZWRlcyBjb250aW51YXIgaGFjaWEgbGEgc2lndWllbnRlIHNlY2Npw7NuLgoKKioqCgo8YnV0dG9uIHR5cGU9ImJ1dHRvbiIgY2xhc3M9ImJ0biBidG4tcHJpbWFyeSBwdWxsLWxlZnQiPgogIDxhIGhyZWY9Ii4vaW50cm9fUl9wMS5odG1sIiBzdHlsZT0iY29sb3I6aW5oZXJpdCI+IEluaWNpbyA8L2E+CjwvYnV0dG9uPgoKPGJ1dHRvbiB0eXBlPSJidXR0b24iIGNsYXNzPSJidG4gYnRuLXByaW1hcnkgcHVsbC1yaWdodCI+CiAgPGEgaHJlZj0iLi9pbnRyb19SX3AzLmh0bWwiIHN0eWxlPSJjb2xvcjppbmhlcml0Ij4gU2lndWllbnRlIDwvYT4KPC9idXR0b24+Cgo=</div>
 <!-- Footer -->
 <footer class="page-footer font-small blue">
 

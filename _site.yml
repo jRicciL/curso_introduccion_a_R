@@ -17,9 +17,9 @@ navbar:
         href: intro_R_p1.html
       - text: "Tipos de Datos en R"
         href: intro_R_p2.html
-      - text: "Vectores"
-        href: intro_R_p3.html
-  - text: "Estructuras de datos"
+  - text: "Vectores"
+    href: intro_R_p3.html
+  - text: "Otras estructuras de datos"
     href: estructuras_de_datos.html
 output:
   html_document:

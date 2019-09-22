@@ -1,5 +1,5 @@
 ---
-title: "Introducción a R: Parte 3"
+title: "Introducción a R: Vectores"
 ---
 ***
 # Trabajando con Vectores
@@ -18,7 +18,7 @@ w = c(1, 2, "3", 4)
 print(w)
 class(w)
 ```
-**Es importante recordar que los vectores son _homogéneos_, por lo que pueden tener un sólo tipo de dato.** Observa como el vector `w`, al ser creado con un dato de tipo *character*, $"3"$, ha convertido los elementos *numeric* (1 y 2) a *character*. 
+**Es importante recordar que los vectores son _homogéneos_, por lo que pueden tener un sólo tipo de dato.** Observa como el vector `w`, al ser creado con un dato de tipo *character*, `"3"`, ha convertido los elementos *numeric* (1 y 2) a *character*. 
 
 También puedes crear vectores con valores dentro de un rango usando **:**.
 ```{r collapse=TRUE}
@@ -26,7 +26,8 @@ z = c(1, 2, 3:10) # Es lo mismo que c(1:10)
 print(z)
 class(z)
 ```
-¿Qué tipo de dato es el vector `z`?
+
+**¿Qué tipo de dato es el vector `z`?**
 
 Finalmente, es posible combinar dos o más vectores:
 ```{r}
@@ -52,6 +53,8 @@ seq(2, 100, by = 2)
 seq(0.1, 10, by = 0.1)
 seq(0.1, 10, length.out = 100)
 ```
+
+<br>
 
 ### Operaciones con vectores
 
@@ -88,6 +91,8 @@ media_edades = sum(edades) / length(edades)
 media_edades
 ```
 
+<br>
+
 ### Indexación de vectores
 Podemos accesar a determinados valores del vector, según su posición en el. Para ello usamos la siguiente sintaxis:
 ```{r collapse=TRUE}
@@ -103,6 +108,7 @@ edades[-2] # Se va Andrés
 edades[- c(2, 3)] # Se van Andrés y Carlos
 ```
 
+<br>
 
 ### Operaciones relacionales con vectores
 ¿Cómo podemos saber qué *personas* son **mayores** de una *n* cantidad de años?
@@ -132,6 +138,8 @@ edades[ condicion_1 & condicion_2 ]
 edades[ (edades < 55) | (edades > 65) ]
 ```
 
+<br>
+
 ### Funciones aplicables a vectores:
 Para ordenar el vector, usamos la función `sort()`:
 ```{r}
@@ -155,6 +163,20 @@ min(edades)
 ```{r include=FALSE}
 mean( edades_ord[ - length(edades) ] )
 ```
+
+<br>
+
+<div class="alert alert-success">
+<h4 class="alert-heading">En resumen:</h4>
+  <button type="button" class="close" ></button>
+  <ul class="list-group list-group-flush">
+  <li class="list-group-item">Los vectores son unidimensionales.</li>
+  <li class="list-group-item">Los vectores son homogéneos (todos sus datos u objetos son del mismo tipo).</li>
+  <li class="list-group-item">Los elementos dentro de los vectores tienen una "ubicación" o "índice" definido, y es posible accesar a ellos directamente.</li>
+  </ul>
+</div>
+
+<br>
 
 ## Ejercicio Final
 

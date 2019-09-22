@@ -15,6 +15,8 @@ matriz
 También es posible tener estructuras de datos de más de dos dimensiones, para ello usamos el comando `array()`.
 En este tutorial veremos poco sobre matrices, pero es importante que algunos de los comandos que veremos para los `DataFrames` son también aplicables para las matrices. Puedes consultar más al respecto en los siguientes vinculos: [1](https://www.oreilly.com/library/view/learning-r/9781449357160/ch04.html), [2](http://www.r-tutor.com/r-introduction/matrix).
 
+<br>
+
 ## Listas
 
 * Las listas funcionan como contenedores de objetos. 
@@ -30,7 +32,10 @@ mi_lista
 Los elementos de las listas pueden ser nombrados:
 
 ```{r}
-mi_lista = list( gen = "Arc", num_bases = 1000, expresado = TRUE, sec_inicial = "AGTTTG")
+mi_lista = list( gen = "Arc", 
+                 num_bases = 1000, 
+                 expresado = TRUE, 
+                 sec_inicial = "AGTTTG")
 mi_lista
 ```
 
@@ -39,7 +44,7 @@ Los elementos dentro de una lista se obtienen usando dos corchetes cuadrados ani
 **Ejercicio:**
 
 * ¿Cuál es la deferencia entre los siguientes dos comandos?
-* ¿Qué tipo de dato es cada uno? *Usa la función `class()` para veriguarlo.
+* ¿Qué tipo de dato es cada uno? Usa la función `class()` para veriguarlo.
 
 ```{r eval=FALSE}
 mi_lista[4]
@@ -50,9 +55,19 @@ Si se han asignado nombres a la lista, es posible usarlos para extraer los datos
 
 ```{r}
 names(mi_lista) # Devuelve los nombres de los elementos de la lista
+```
+
+Por ejemplo, nos interesa extraer de la lista los datos correspondientes a la variable `gen`:
+
+```{r}
+mi_lista[[1]] # Devuelve el elemento número 1 de la lista
 mi_lista$gen # Devuelve el elemento nombrado como "gen"
 mi_lista[["gen"]] # Devuelve el elemento nombrado como "gen"
 ```
+
+Las tres formas anteriores son válidas y permiten obtener el mismo resultado.
+
+<br>
 
 ## DataFrames
 
@@ -76,6 +91,8 @@ kable(my_df, caption = "Mi primer DataFrame")
 ```
 
 Ya has creado tu primer `DataFrame`, sin embargo, vamos ahora un conjunto de datos proveniente de un archivo.
+
+<br>
 
 ### Ejercicio con Dataframes
 
@@ -107,7 +124,13 @@ head(ensTab, n = 3)
 tail(ensTab, n = 3)
 ```
 
-**OJO**: En `Environment` puedes comprobar que el objeto `ensTab` ha sido creado, puedes abrirlo desde *RStudio* para examinarlo.
+<div class="alert alert-dismissible alert-success">
+<h4 class="alert-heading">¡Ojo!</h4>
+  <button type="button" class="close" data-dismiss="alert"></button>
+   En `Environment` puedes comprobar que el objeto `ensTab` ha sido creado, puedes abrirlo desde *RStudio* para examinarlo. También puedes usar el comando `View(nombre_del_dataFrame )`.
+</div>
+
+<br>
 
 ### Inspeccionando el *DataFrame*
 
@@ -139,9 +162,13 @@ ensTab["Tasmanian_devil", "genome_length"] # Este funcionará
 ensTab["genome_length", "Tasmanian_devil"] # Este NO funcionará
 ```
 
-**RECUERDA:** Primero nombra o indica la fila, y luego la columna, separados por una coma `,`.
+<div class="alert alert-dismissible alert-danger">
+<h4 class="alert-heading">¡Recuerda!</h4>
+  <button type="button" class="close" data-dismiss="alert"></button>
+  Primero nombra o indica la fila, y luego la columna, separados por una coma `,`.
+</div>
 
-Ahora queremos saber los datos de las primeras dos columnas (variables *coding_genes* y *ncrna_genes*) de las primeras tres especies:
+Ahora queremos saber los datos de las primeras dos columnas (variables `coding_genes` y `ncrna_genes`) de las primeras tres especies:
 ```{r eval=FALSE}
 # Podemos usar valores numéricos como índices de la tabla
 ensTab[ c(1:3) , c(1:2) ]
@@ -156,23 +183,32 @@ ensTab[ , "genome_length" ] # ¡No olvides la coma!
 ¿Qué especie tiene la mayor longitud de genoma? Para ello podemos averiguar qué hace la función `which.max()`.  
 Tómate un tiempo para analizar los siguientes comandos.
 ```{r eval=FALSE}
-ensTab$genome_length # ¿Es esto similar a la opción de arriba?
-# ¿Recuerdas que también era posible con las listas?
+longitudes_genoma = ensTab$genome_length 
+# ¿Es esto similar a la opción de arriba? -> ensTab[ , "genome_length" ] 
+# ¿Recuerdas que también era posible hacer esto con las listas?
 
 # ¿Qué crees que indique la función which.max()?
-maximo_pos = which.max(ensTab$genome_length)
-
-
+maximo_pos = which.max( longitudes_genoma )
 rownames(ensTab[ maximo_pos , ])
 ```
 
 **¿Qué ocurrió?**
 
-1. El comando `ensTab$genome_length` es similar a ejecutar `ensTab[ , "genome_length" ]`, con lo cual obtenemos un vector de valores correspondentes a la longitud del genoma.
+1. El comando `ensTab$genome_length` es similar a ejecutar `ensTab[ , "genome_length" ]` (recuerda que las columnas se nonbran después de las filas y de la coma `,`), con lo cual obtenemos un vector de valores correspondentes a la longitud del genoma de cada especie.
 2. El comando `which.max` identifica al valor máximo y nos devuelve su posición en el **vector**. En cambio, si recuerdas, el comando `max()` nos devolvía el valor máximo (pero no su posición en el vector).
 3. A la variable `maximo_pos` se le asignó el valor de la posición del valor máximo del vector.
-4. Escribir `ensTab[ maximo_pos , ]` es equivalente a `ensTab[ 5 , ]`, y en la tabla, el **Chimpance** está en la posición 5.
+4. Escribir `ensTab[ maximo_pos , ]` es equivalente a `ensTab[ 5 , ]`, y en la tabla, el **Chimpance** está en la fila número 5.
 5. Por último, usar `rownames()` nos simplifica la visualización mostrándonos únicamente el nombre de esa fila.
+
+Ahora podemos ver el resultado de la ejecución:
+```{r}
+# Podemos ejecuatar todo en una sola línea
+rownames(ensTab[ which.max(ensTab$genome_length) , ])
+```
+
+**Nota:** Aunque parezca más "profesional" ejecutar todo en una sola línea, como en el ejemplo de arriba, lo más recoemendable es que escribas tu código de tal manera que facilite a otras personas, incluyendo al futuro **tú**, su lectura e interpretación.
+
+<br>
 
 ### Análisis finales con DataFrames... por ahora
 

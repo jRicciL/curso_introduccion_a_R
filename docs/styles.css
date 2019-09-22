@@ -27,6 +27,7 @@ code span.fl {
 p code {
   color: #333;
   background-color: #eaddb8;
+  font-size: 0.8em;
 }
 
 div h1.title {
@@ -70,6 +71,25 @@ p {
 
 ul, li {
   font-size: 18px;
+}
+
+.spoiler {
+  visibility: hidden;
+}
+
+.spoiler::before {
+  visibility: visible;
+  color: #EB6864;
+  font-weight: bold;
+  content: "Spoiler!"
+}
+
+.spoiler:hover {
+  visibility: visible;
+}
+
+.spoiler:hover::before {
+  display: none;
 }
 
 .img-responsive {

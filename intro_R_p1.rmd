@@ -1,16 +1,14 @@
 ---
-title: "Introducción a R: Parte 1"
+title: "Introducción a R: Primeros pasos"
 ---
 ***
 # Primeros pasos con R
 
-Este documento muestra... bla bla bla
+## Interfaz de RStudio
 
+![Interfaz de Rstudio](http://mcolebrook.github.io/CursoRStudio/figure/RStudio_panels.png)
 
-## RStudio
-
-```{r}
-```
+<br>
 
 ## Usando R como una calculadora
 Una de las cosas más simples que podemos hacer con R, es usar la **consola** como una calculadora. Escribe en ella:
@@ -19,11 +17,6 @@ Una de las cosas más simples que podemos hacer con R, es usar la **consola** co
 ```
 
 Como ves, al ejecutar cada comando en la **consola**, R mostrará la respuesta (precedida por un `[1]`) en la siguiente línea. Podemos probar otras operaciones aritméticas.
-
-**Ejercicio:**
-
-* Fíjate en el orden en que cada operación se ejecuta; ¿El resultado de las operaciones  $2-2*2$ y $(2 -2) * 2$ es el mismo?
-* ¿Qué hacen las operaciones $3 ** 2$ y $3^2$?
 
 ```{r}
 10 - 5
@@ -34,6 +27,18 @@ Como ves, al ejecutar cada comando en la **consola**, R mostrará la respuesta (
 3 ** 2
 3 ^ 2
 ```
+
+También puedes usar números racionales (decimales):
+```{r}
+2.5 * 2
+```
+
+**Ejercicio:**
+
+* Fíjate en el orden en que cada operación se ejecuta; ¿El resultado de las operaciones  `2-2*2` y `(2 -2) * 2` es el mismo?
+* ¿Qué hacen las operaciones `3 ** 2` y `3^2`?
+
+<br>
 
 ### Orden de las operaciones aritméticas
 
@@ -51,21 +56,22 @@ Como ves, al ejecutar cada comando en la **consola**, R mostrará la respuesta (
 1 + 2 * (3**2)     # Opción 3
 ```
 
-También puedes usar números decimales:
-```{r}
-2.5 * 2
-```
+[¡Todos suman 19!]{.spoiler}
+
+<br>
 
 ## Notación científica
-Prueba escribir los siguientes comandos en la consola, ¿Cómo representa R los número muy grandes o muy pequeños?
+Prueba escribir los siguientes comandos en la consola, ¿Cómo representa **R** los número muy grandes o muy pequeños?
 ```{r}
 10**6
 1 / 10 ** 6
 ```
 ¿Qué pasa si escribes direactamente `1e3` en la consola?
 
+<br>
+
 ## Comentarios
-Es posible hacer comentarios en el código usando el caracter `#`, lo que escribas después de dicho símbolo no se ejecutará. Prueba lo siguiente.
+Es posible hacer comentarios en el código usando el caracter `#`, lo que escribas después de dicho símbolo no se ejecutará. Prueba lo siguiente:
 
 ```{r}
 # Esto es un comentario
@@ -73,10 +79,13 @@ Es posible hacer comentarios en el código usando el caracter `#`, lo que escrib
 # 2 + 2.5
 ```
 
+<br>
+
 ## Otras funciones Matemáticas
-Además de los operadores algebráicos como *__+__, __-__, __/__,* etc., **R** posee *funciones* preestablecidas que llevan a cabo otras operaciones aritméticas. Cada función recibe uno o más parámetros, los cuales los escribimos entre paréntesis, y separados por comas:
+Además de los operadores algebráicos como `+`, `-`, `/`, `*` etc., **R** posee *funciones* preestablecidas que llevan a cabo otras operaciones aritméticas. Cada función recibe uno o más parámetros, los cuales los escribimos entre paréntesis, y separados por comas:
 ```{r}
-round(3.1415926, digits = 3) # Redondea 3.1415926 a tres decimales
+# Redondea 3.1415926 a tres decimales
+round(3.1415926, digits = 3) # el parámetro digits toma el valor de 3
 abs(1 - 10) # Valor absoluto de la operación 1 - 10 = -9
 sum(5, 10) # 5 + 10
 sqrt(9) # raíz cuadrada de 9
@@ -86,21 +95,29 @@ log10(1000) # log base 10 de 1000
 exp(1) # ¿Qué hace esta función?
 ```
 
+<br>
+
 ## Ayuda en R
 
 No es necesario memorizar todas las funciones, si quieres hacer algo en R puedes googlearlo, seguramente encontrarás una respuesta.  
-Otra opción es usar el panel de ayuda en R. Por ejemplo, vamos a averiguar que hace la función `exp()`:
+Otra opción es usar el panel de **Ayuda** en R. Por ejemplo, vamos a averiguar que hace la función `exp()`:
 ```{r}
 ?exp
 ```
 
-En el panel de **Ayuda**, o *`Help`*, de RStudio es posible consultar la documenación sobre las funciones y comandos que podemos usar en R. Puedes usar la sintáxis `?nombreFuncion` (como en `?exp` o `?sum`), o directamente escribir en la sección de búsqueda del panel de **Ayuda**.
+<div class="alert alert-dismissible alert-success">
+<h4 class="alert-heading">¡Atención!</h4>
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  En el panel de **Ayuda**, o *`Help`*, de RStudio es posible consultar la documenación sobre las funciones y comandos que podemos usar en R. Puedes usar la sintáxis `?nombreFuncion` (como en `?exp` o `?sum`), o directamente escribir en la sección de búsqueda del panel de **Ayuda**.
+</div>
 
-**Ejercicio:** puedes consultar ayuda también sobre cómo funcionan los operadores. Por ejemplo:
+
+Puedes consultar ayuda también sobre cómo funcionan los operadores. Por ejemplo:
 ```{r}
 ?"+"
 ```
-**¿Qué hacen los operadores `%\%` y `%%`**
+
+**Ejercicio:** ¿Qué hacen los operadores `%\%` y `%%`:
 
 ```{r eval=FALSE}
 4 %/% 2

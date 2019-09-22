@@ -12,7 +12,7 @@
 
 
 
-<title>Introducción a R: Parte 1</title>
+<title>Introducción a R: Primeros pasos</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -434,18 +434,18 @@ div.tocify {
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="intro_R_p1.html">Parte 1</a>
+      <a href="intro_R_p1.html">Primeros Pasos con R</a>
     </li>
     <li>
-      <a href="intro_R_p2.html">Parte 2</a>
-    </li>
-    <li>
-      <a href="intro_R_p3.html">Parte 3</a>
+      <a href="intro_R_p2.html">Tipos de Datos en R</a>
     </li>
   </ul>
 </li>
 <li>
-  <a href="estructuras_de_datos.html">Estructuras de datos</a>
+  <a href="intro_R_p3.html">Vectores</a>
+</li>
+<li>
+  <a href="estructuras_de_datos.html">Otras estructuras de datos</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -466,7 +466,7 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Introducción a R: Parte 1</h1>
+<h1 class="title toc-ignore">Introducción a R: Primeros pasos</h1>
 
 </div>
 
@@ -474,9 +474,13 @@ div.tocify {
 <hr />
 <div id="primeros-pasos-con-r" class="section level1">
 <h1><span class="header-section-number">1</span> Primeros pasos con R</h1>
-<p>Este documento muestra… bla bla bla</p>
-<div id="rstudio" class="section level2">
-<h2><span class="header-section-number">1.1</span> RStudio</h2>
+<div id="interfaz-de-rstudio" class="section level2">
+<h2><span class="header-section-number">1.1</span> Interfaz de RStudio</h2>
+<div class="figure">
+<img src="http://mcolebrook.github.io/CursoRStudio/figure/RStudio_panels.png" alt="Interfaz de Rstudio" />
+<p class="caption">Interfaz de Rstudio</p>
+</div>
+<p><br></p>
 </div>
 <div id="usando-r-como-una-calculadora" class="section level2">
 <h2><span class="header-section-number">1.2</span> Usando R como una calculadora</h2>
@@ -484,11 +488,6 @@ div.tocify {
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="dv">10</span> <span class="op">+</span><span class="st"> </span><span class="dv">5</span></a></code></pre></div>
 <pre><code>## [1] 15</code></pre>
 <p>Como ves, al ejecutar cada comando en la <strong>consola</strong>, R mostrará la respuesta (precedida por un <code>[1]</code>) en la siguiente línea. Podemos probar otras operaciones aritméticas.</p>
-<p><strong>Ejercicio:</strong></p>
-<ul>
-<li>Fíjate en el orden en que cada operación se ejecuta; ¿El resultado de las operaciones <span class="math inline">\(2-2*2\)</span> y <span class="math inline">\((2 -2) * 2\)</span> es el mismo?</li>
-<li>¿Qué hacen las operaciones <span class="math inline">\(3 ** 2\)</span> y <span class="math inline">\(3^2\)</span>?</li>
-</ul>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="dv">10</span> <span class="op">-</span><span class="st"> </span><span class="dv">5</span></a></code></pre></div>
 <pre><code>## [1] 5</code></pre>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="dv">10</span> <span class="op">*</span><span class="st"> </span><span class="dv">5</span></a></code></pre></div>
@@ -503,6 +502,15 @@ div.tocify {
 <pre><code>## [1] 9</code></pre>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="dv">3</span> <span class="op">^</span><span class="st"> </span><span class="dv">2</span></a></code></pre></div>
 <pre><code>## [1] 9</code></pre>
+<p>También puedes usar números racionales (decimales):</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="fl">2.5</span> <span class="op">*</span><span class="st"> </span><span class="dv">2</span></a></code></pre></div>
+<pre><code>## [1] 5</code></pre>
+<p><strong>Ejercicio:</strong></p>
+<ul>
+<li>Fíjate en el orden en que cada operación se ejecuta; ¿El resultado de las operaciones <code>2-2*2</code> y <code>(2 -2) * 2</code> es el mismo?</li>
+<li>¿Qué hacen las operaciones <code>3 ** 2</code> y <code>3^2</code>?</li>
+</ul>
+<p><br></p>
 <div id="orden-de-las-operaciones-aritmeticas" class="section level3">
 <h3><span class="header-section-number">1.2.1</span> Orden de las operaciones aritméticas</h3>
 <ol style="list-style-type: decimal">
@@ -514,35 +522,37 @@ div.tocify {
 <li><strong>Resta:</strong> <code>-</code></li>
 </ol>
 <p><strong>¿Cuáles son los resultados tras usar los siguientes comandos?</strong></p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1">(<span class="dv">1</span> <span class="op">+</span><span class="st"> </span>(<span class="dv">2</span> <span class="op">*</span><span class="st"> </span>(<span class="dv">3</span><span class="op">**</span><span class="dv">2</span>))) <span class="co"># Opción 1</span></a>
-<a class="sourceLine" id="cb17-2" data-line-number="2"><span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span> <span class="op">*</span><span class="st"> </span><span class="dv">3</span> <span class="op">^</span><span class="st"> </span><span class="dv">2</span>      <span class="co"># Opción 2</span></a>
-<a class="sourceLine" id="cb17-3" data-line-number="3"><span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span> <span class="op">*</span><span class="st"> </span>(<span class="dv">3</span><span class="op">**</span><span class="dv">2</span>)     <span class="co"># Opción 3</span></a></code></pre></div>
-<p>También puedes usar números decimales:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="fl">2.5</span> <span class="op">*</span><span class="st"> </span><span class="dv">2</span></a></code></pre></div>
-<pre><code>## [1] 5</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1">(<span class="dv">1</span> <span class="op">+</span><span class="st"> </span>(<span class="dv">2</span> <span class="op">*</span><span class="st"> </span>(<span class="dv">3</span><span class="op">**</span><span class="dv">2</span>))) <span class="co"># Opción 1</span></a>
+<a class="sourceLine" id="cb19-2" data-line-number="2"><span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span> <span class="op">*</span><span class="st"> </span><span class="dv">3</span> <span class="op">^</span><span class="st"> </span><span class="dv">2</span>      <span class="co"># Opción 2</span></a>
+<a class="sourceLine" id="cb19-3" data-line-number="3"><span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span> <span class="op">*</span><span class="st"> </span>(<span class="dv">3</span><span class="op">**</span><span class="dv">2</span>)     <span class="co"># Opción 3</span></a></code></pre></div>
+<p><span class="spoiler">¡Todos suman 19!</span></p>
+<p><br></p>
 </div>
 </div>
 <div id="notacion-cientifica" class="section level2">
 <h2><span class="header-section-number">1.3</span> Notación científica</h2>
-<p>Prueba escribir los siguientes comandos en la consola, ¿Cómo representa R los número muy grandes o muy pequeños?</p>
+<p>Prueba escribir los siguientes comandos en la consola, ¿Cómo representa <strong>R</strong> los número muy grandes o muy pequeños?</p>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1"><span class="dv">10</span><span class="op">**</span><span class="dv">6</span></a></code></pre></div>
 <pre><code>## [1] 1e+06</code></pre>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1"><span class="dv">1</span> <span class="op">/</span><span class="st"> </span><span class="dv">10</span> <span class="op">**</span><span class="st"> </span><span class="dv">6</span></a></code></pre></div>
 <pre><code>## [1] 1e-06</code></pre>
 <p>¿Qué pasa si escribes direactamente <code>1e3</code> en la consola?</p>
+<p><br></p>
 </div>
 <div id="comentarios" class="section level2">
 <h2><span class="header-section-number">1.4</span> Comentarios</h2>
-<p>Es posible hacer comentarios en el código usando el caracter <code>#</code>, lo que escribas después de dicho símbolo no se ejecutará. Prueba lo siguiente.</p>
+<p>Es posible hacer comentarios en el código usando el caracter <code>#</code>, lo que escribas después de dicho símbolo no se ejecutará. Prueba lo siguiente:</p>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1"><span class="co"># Esto es un comentario</span></a>
 <a class="sourceLine" id="cb24-2" data-line-number="2"><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="fl">2.5</span> <span class="co"># Este es un comentario</span></a></code></pre></div>
 <pre><code>## [1] 4.5</code></pre>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1"><span class="co"># 2 + 2.5</span></a></code></pre></div>
+<p><br></p>
 </div>
 <div id="otras-funciones-matematicas" class="section level2">
 <h2><span class="header-section-number">1.5</span> Otras funciones Matemáticas</h2>
-<p>Además de los operadores algebráicos como <em><strong>+</strong>, <strong>-</strong>, <strong>/</strong>,</em> etc., <strong>R</strong> posee <em>funciones</em> preestablecidas que llevan a cabo otras operaciones aritméticas. Cada función recibe uno o más parámetros, los cuales los escribimos entre paréntesis, y separados por comas:</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1"><span class="kw">round</span>(<span class="fl">3.1415926</span>, <span class="dt">digits =</span> <span class="dv">3</span>) <span class="co"># Redondea 3.1415926 a tres decimales</span></a></code></pre></div>
+<p>Además de los operadores algebráicos como <code>+</code>, <code>-</code>, <code>/</code>, <code>*</code> etc., <strong>R</strong> posee <em>funciones</em> preestablecidas que llevan a cabo otras operaciones aritméticas. Cada función recibe uno o más parámetros, los cuales los escribimos entre paréntesis, y separados por comas:</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1"><span class="co"># Redondea 3.1415926 a tres decimales</span></a>
+<a class="sourceLine" id="cb27-2" data-line-number="2"><span class="kw">round</span>(<span class="fl">3.1415926</span>, <span class="dt">digits =</span> <span class="dv">3</span>) <span class="co"># el parámetro digits toma el valor de 3</span></a></code></pre></div>
 <pre><code>## [1] 3.142</code></pre>
 <div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1"><span class="kw">abs</span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="dv">10</span>) <span class="co"># Valor absoluto de la operación 1 - 10 = -9</span></a></code></pre></div>
 <pre><code>## [1] 9</code></pre>
@@ -558,16 +568,22 @@ div.tocify {
 <pre><code>## [1] 3</code></pre>
 <div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" data-line-number="1"><span class="kw">exp</span>(<span class="dv">1</span>) <span class="co"># ¿Qué hace esta función?</span></a></code></pre></div>
 <pre><code>## [1] 2.718282</code></pre>
+<p><br></p>
 </div>
 <div id="ayuda-en-r" class="section level2">
 <h2><span class="header-section-number">1.6</span> Ayuda en R</h2>
 <p>No es necesario memorizar todas las funciones, si quieres hacer algo en R puedes googlearlo, seguramente encontrarás una respuesta.<br />
-Otra opción es usar el panel de ayuda en R. Por ejemplo, vamos a averiguar que hace la función <code>exp()</code>:</p>
+Otra opción es usar el panel de <strong>Ayuda</strong> en R. Por ejemplo, vamos a averiguar que hace la función <code>exp()</code>:</p>
 <div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" data-line-number="1">?exp</a></code></pre></div>
-<p>En el panel de <strong>Ayuda</strong>, o <em><code>Help</code></em>, de RStudio es posible consultar la documenación sobre las funciones y comandos que podemos usar en R. Puedes usar la sintáxis <code>?nombreFuncion</code> (como en <code>?exp</code> o <code>?sum</code>), o directamente escribir en la sección de búsqueda del panel de <strong>Ayuda</strong>.</p>
-<p><strong>Ejercicio:</strong> puedes consultar ayuda también sobre cómo funcionan los operadores. Por ejemplo:</p>
+<div class="alert alert-dismissible alert-success">
+<h4 class="alert-heading">
+¡Atención!
+</h4>
+<p><button type="button" class="close" data-dismiss="alert">×</button> En el panel de <strong>Ayuda</strong>, o <em><code>Help</code></em>, de RStudio es posible consultar la documenación sobre las funciones y comandos que podemos usar en R. Puedes usar la sintáxis <code>?nombreFuncion</code> (como en <code>?exp</code> o <code>?sum</code>), o directamente escribir en la sección de búsqueda del panel de <strong>Ayuda</strong>.</p>
+</div>
+<p>Puedes consultar ayuda también sobre cómo funcionan los operadores. Por ejemplo:</p>
 <div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" data-line-number="1">?<span class="st">&quot;+&quot;</span></a></code></pre></div>
-<p><strong>¿Qué hacen los operadores <code>%\%</code> y <code>%%</code></strong></p>
+<p><strong>Ejercicio:</strong> ¿Qué hacen los operadores <code>%\%</code> y <code>%%</code>:</p>
 <div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" data-line-number="1"><span class="dv">4</span> <span class="op">%/%</span><span class="st"> </span><span class="dv">2</span></a>
 <a class="sourceLine" id="cb45-2" data-line-number="2"><span class="dv">4</span> <span class="op">/</span><span class="st"> </span><span class="dv">2</span></a>
 <a class="sourceLine" id="cb45-3" data-line-number="3"><span class="dv">5</span> <span class="op">%/%</span><span class="st"> </span><span class="dv">2</span></a>
@@ -587,7 +603,7 @@ Puedes continuar hacia la siguiente sección.</p>
 </div>
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiSW50cm9kdWNjacOzbiBhIFI6IFBhcnRlIDEiCi0tLQoqKioKIyBQcmltZXJvcyBwYXNvcyBjb24gUgoKRXN0ZSBkb2N1bWVudG8gbXVlc3RyYS4uLiBibGEgYmxhIGJsYQoKCiMjIFJTdHVkaW8KCmBgYHtyfQpgYGAKCiMjIFVzYW5kbyBSIGNvbW8gdW5hIGNhbGN1bGFkb3JhClVuYSBkZSBsYXMgY29zYXMgbcOhcyBzaW1wbGVzIHF1ZSBwb2RlbW9zIGhhY2VyIGNvbiBSLCBlcyB1c2FyIGxhICoqY29uc29sYSoqIGNvbW8gdW5hIGNhbGN1bGFkb3JhLiBFc2NyaWJlIGVuIGVsbGE6CmBgYHtyfQoxMCArIDUKYGBgCgpDb21vIHZlcywgYWwgZWplY3V0YXIgY2FkYSBjb21hbmRvIGVuIGxhICoqY29uc29sYSoqLCBSIG1vc3RyYXLDoSBsYSByZXNwdWVzdGEgKHByZWNlZGlkYSBwb3IgdW4gYFsxXWApIGVuIGxhIHNpZ3VpZW50ZSBsw61uZWEuIFBvZGVtb3MgcHJvYmFyIG90cmFzIG9wZXJhY2lvbmVzIGFyaXRtw6l0aWNhcy4KCioqRWplcmNpY2lvOioqCgoqIEbDrWphdGUgZW4gZWwgb3JkZW4gZW4gcXVlIGNhZGEgb3BlcmFjacOzbiBzZSBlamVjdXRhOyDCv0VsIHJlc3VsdGFkbyBkZSBsYXMgb3BlcmFjaW9uZXMgICQyLTIqMiQgeSAkKDIgLTIpICogMiQgZXMgZWwgbWlzbW8/Ciogwr9RdcOpIGhhY2VuIGxhcyBvcGVyYWNpb25lcyAkMyAqKiAyJCB5ICQzXjIkPwoKYGBge3J9CjEwIC0gNQoxMCAqIDUKMTAgLyA1CjIgLSAyICogMgooMiAtIDIpICogMgozICoqIDIKMyBeIDIKYGBgCgojIyMgT3JkZW4gZGUgbGFzIG9wZXJhY2lvbmVzIGFyaXRtw6l0aWNhcwoKMS4gKipQYXLDqW50ZXNpczoqKiBgKCApYAoyLiAqKkV4cG9uZW50ZToqKiBgXmAgbyBgKipgCjMuICoqRGl2aXNpw7NuOioqIGAvYAo0LiAqKk11bHRpcGxpY2FjacOzbjoqKiBgKmAKNS4gKipTdW1hOioqIGArYAo2LiAqKlJlc3RhOioqIGAtYAoKKirCv0N1w6FsZXMgc29uIGxvcyByZXN1bHRhZG9zIHRyYXMgdXNhciBsb3Mgc2lndWllbnRlcyBjb21hbmRvcz8qKgpgYGB7ciBlY2hvID0gVCwgcmVzdWx0cyA9ICdoaWRlJ30KKDEgKyAoMiAqICgzKioyKSkpICMgT3BjacOzbiAxCjEgKyAyICogMyBeIDIgICAgICAjIE9wY2nDs24gMgoxICsgMiAqICgzKioyKSAgICAgIyBPcGNpw7NuIDMKYGBgCgpUYW1iacOpbiBwdWVkZXMgdXNhciBuw7ptZXJvcyBkZWNpbWFsZXM6CmBgYHtyfQoyLjUgKiAyCmBgYAoKIyMgTm90YWNpw7NuIGNpZW50w61maWNhClBydWViYSBlc2NyaWJpciBsb3Mgc2lndWllbnRlcyBjb21hbmRvcyBlbiBsYSBjb25zb2xhLCDCv0PDs21vIHJlcHJlc2VudGEgUiBsb3MgbsO6bWVybyBtdXkgZ3JhbmRlcyBvIG11eSBwZXF1ZcOxb3M/CmBgYHtyfQoxMCoqNgoxIC8gMTAgKiogNgpgYGAKwr9RdcOpIHBhc2Egc2kgZXNjcmliZXMgZGlyZWFjdGFtZW50ZSBgMWUzYCBlbiBsYSBjb25zb2xhPwoKIyMgQ29tZW50YXJpb3MKRXMgcG9zaWJsZSBoYWNlciBjb21lbnRhcmlvcyBlbiBlbCBjw7NkaWdvIHVzYW5kbyBlbCBjYXJhY3RlciBgI2AsIGxvIHF1ZSBlc2NyaWJhcyBkZXNwdcOpcyBkZSBkaWNobyBzw61tYm9sbyBubyBzZSBlamVjdXRhcsOhLiBQcnVlYmEgbG8gc2lndWllbnRlLgoKYGBge3J9CiMgRXN0byBlcyB1biBjb21lbnRhcmlvCjIgKyAyLjUgIyBFc3RlIGVzIHVuIGNvbWVudGFyaW8KIyAyICsgMi41CmBgYAoKIyMgT3RyYXMgZnVuY2lvbmVzIE1hdGVtw6F0aWNhcwpBZGVtw6FzIGRlIGxvcyBvcGVyYWRvcmVzIGFsZ2VicsOhaWNvcyBjb21vICpfXytfXywgX18tX18sIF9fL19fLCogZXRjLiwgKipSKiogcG9zZWUgKmZ1bmNpb25lcyogcHJlZXN0YWJsZWNpZGFzIHF1ZSBsbGV2YW4gYSBjYWJvIG90cmFzIG9wZXJhY2lvbmVzIGFyaXRtw6l0aWNhcy4gQ2FkYSBmdW5jacOzbiByZWNpYmUgdW5vIG8gbcOhcyBwYXLDoW1ldHJvcywgbG9zIGN1YWxlcyBsb3MgZXNjcmliaW1vcyBlbnRyZSBwYXLDqW50ZXNpcywgeSBzZXBhcmFkb3MgcG9yIGNvbWFzOgpgYGB7cn0Kcm91bmQoMy4xNDE1OTI2LCBkaWdpdHMgPSAzKSAjIFJlZG9uZGVhIDMuMTQxNTkyNiBhIHRyZXMgZGVjaW1hbGVzCmFicygxIC0gMTApICMgVmFsb3IgYWJzb2x1dG8gZGUgbGEgb3BlcmFjacOzbiAxIC0gMTAgPSAtOQpzdW0oNSwgMTApICMgNSArIDEwCnNxcnQoOSkgIyByYcOteiBjdWFkcmFkYSBkZSA5CmxvZygxKSAjIGxuIGRlIDEKbG9nKDgsIGJhc2UgPSAyKSAjIGxvZyBiYXNlIDIgZGUgOApsb2cxMCgxMDAwKSAjIGxvZyBiYXNlIDEwIGRlIDEwMDAKZXhwKDEpICMgwr9RdcOpIGhhY2UgZXN0YSBmdW5jacOzbj8KYGBgCgojIyBBeXVkYSBlbiBSCgpObyBlcyBuZWNlc2FyaW8gbWVtb3JpemFyIHRvZGFzIGxhcyBmdW5jaW9uZXMsIHNpIHF1aWVyZXMgaGFjZXIgYWxnbyBlbiBSIHB1ZWRlcyBnb29nbGVhcmxvLCBzZWd1cmFtZW50ZSBlbmNvbnRyYXLDoXMgdW5hIHJlc3B1ZXN0YS4gIApPdHJhIG9wY2nDs24gZXMgdXNhciBlbCBwYW5lbCBkZSBheXVkYSBlbiBSLiBQb3IgZWplbXBsbywgdmFtb3MgYSBhdmVyaWd1YXIgcXVlIGhhY2UgbGEgZnVuY2nDs24gYGV4cCgpYDoKYGBge3J9Cj9leHAKYGBgCgpFbiBlbCBwYW5lbCBkZSAqKkF5dWRhKiosIG8gKmBIZWxwYCosIGRlIFJTdHVkaW8gZXMgcG9zaWJsZSBjb25zdWx0YXIgbGEgZG9jdW1lbmFjacOzbiBzb2JyZSBsYXMgZnVuY2lvbmVzIHkgY29tYW5kb3MgcXVlIHBvZGVtb3MgdXNhciBlbiBSLiBQdWVkZXMgdXNhciBsYSBzaW50w6F4aXMgYD9ub21icmVGdW5jaW9uYCAoY29tbyBlbiBgP2V4cGAgbyBgP3N1bWApLCBvIGRpcmVjdGFtZW50ZSBlc2NyaWJpciBlbiBsYSBzZWNjacOzbiBkZSBiw7pzcXVlZGEgZGVsIHBhbmVsIGRlICoqQXl1ZGEqKi4KCioqRWplcmNpY2lvOioqIHB1ZWRlcyBjb25zdWx0YXIgYXl1ZGEgdGFtYmnDqW4gc29icmUgY8OzbW8gZnVuY2lvbmFuIGxvcyBvcGVyYWRvcmVzLiBQb3IgZWplbXBsbzoKYGBge3J9Cj8iKyIKYGBgCioqwr9RdcOpIGhhY2VuIGxvcyBvcGVyYWRvcmVzIGAlXCVgIHkgYCUlYCoqCgpgYGB7ciBldmFsPUZBTFNFfQo0ICUvJSAyCjQgLyAyCjUgJS8lIDIKNSAvIDIKCjQgJSUgMgo1ICUvJSAyCmBgYAoKKirCoUxpc3RvISoqICAKUHVlZGVzIGNvbnRpbnVhciBoYWNpYSBsYSBzaWd1aWVudGUgc2VjY2nDs24uCgoqKioKCgo8YnV0dG9uIHR5cGU9ImJ1dHRvbiIgY2xhc3M9ImJ0biBidG4tcHJpbWFyeSBwdWxsLWxlZnQiPgogIDxhIGhyZWY9Ii4vaW5kZXguaHRtbCIgc3R5bGU9ImNvbG9yOmluaGVyaXQiPiBJbmljaW8gPC9hPgo8L2J1dHRvbj4KCjxidXR0b24gdHlwZT0iYnV0dG9uIiBjbGFzcz0iYnRuIGJ0bi1wcmltYXJ5IHB1bGwtcmlnaHQiPgogIDxhIGhyZWY9Ii4vaW50cm9fUl9wMi5odG1sIiBzdHlsZT0iY29sb3I6aW5oZXJpdCI+IFNpZ3VpZW50ZSA8L2E+CjwvYnV0dG9uPgoK</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiSW50cm9kdWNjacOzbiBhIFI6IFByaW1lcm9zIHBhc29zIgotLS0KKioqCiMgUHJpbWVyb3MgcGFzb3MgY29uIFIKCiMjIEludGVyZmF6IGRlIFJTdHVkaW8KCiFbSW50ZXJmYXogZGUgUnN0dWRpb10oaHR0cDovL21jb2xlYnJvb2suZ2l0aHViLmlvL0N1cnNvUlN0dWRpby9maWd1cmUvUlN0dWRpb19wYW5lbHMucG5nKQoKPGJyPgoKIyMgVXNhbmRvIFIgY29tbyB1bmEgY2FsY3VsYWRvcmEKVW5hIGRlIGxhcyBjb3NhcyBtw6FzIHNpbXBsZXMgcXVlIHBvZGVtb3MgaGFjZXIgY29uIFIsIGVzIHVzYXIgbGEgKipjb25zb2xhKiogY29tbyB1bmEgY2FsY3VsYWRvcmEuIEVzY3JpYmUgZW4gZWxsYToKYGBge3J9CjEwICsgNQpgYGAKCkNvbW8gdmVzLCBhbCBlamVjdXRhciBjYWRhIGNvbWFuZG8gZW4gbGEgKipjb25zb2xhKiosIFIgbW9zdHJhcsOhIGxhIHJlc3B1ZXN0YSAocHJlY2VkaWRhIHBvciB1biBgWzFdYCkgZW4gbGEgc2lndWllbnRlIGzDrW5lYS4gUG9kZW1vcyBwcm9iYXIgb3RyYXMgb3BlcmFjaW9uZXMgYXJpdG3DqXRpY2FzLgoKYGBge3J9CjEwIC0gNQoxMCAqIDUKMTAgLyA1CjIgLSAyICogMgooMiAtIDIpICogMgozICoqIDIKMyBeIDIKYGBgCgpUYW1iacOpbiBwdWVkZXMgdXNhciBuw7ptZXJvcyByYWNpb25hbGVzIChkZWNpbWFsZXMpOgpgYGB7cn0KMi41ICogMgpgYGAKCioqRWplcmNpY2lvOioqCgoqIEbDrWphdGUgZW4gZWwgb3JkZW4gZW4gcXVlIGNhZGEgb3BlcmFjacOzbiBzZSBlamVjdXRhOyDCv0VsIHJlc3VsdGFkbyBkZSBsYXMgb3BlcmFjaW9uZXMgIGAyLTIqMmAgeSBgKDIgLTIpICogMmAgZXMgZWwgbWlzbW8/Ciogwr9RdcOpIGhhY2VuIGxhcyBvcGVyYWNpb25lcyBgMyAqKiAyYCB5IGAzXjJgPwoKPGJyPgoKIyMjIE9yZGVuIGRlIGxhcyBvcGVyYWNpb25lcyBhcml0bcOpdGljYXMKCjEuICoqUGFyw6ludGVzaXM6KiogYCggKWAKMi4gKipFeHBvbmVudGU6KiogYF5gIG8gYCoqYAozLiAqKkRpdmlzacOzbjoqKiBgL2AKNC4gKipNdWx0aXBsaWNhY2nDs246KiogYCpgCjUuICoqU3VtYToqKiBgK2AKNi4gKipSZXN0YToqKiBgLWAKCioqwr9DdcOhbGVzIHNvbiBsb3MgcmVzdWx0YWRvcyB0cmFzIHVzYXIgbG9zIHNpZ3VpZW50ZXMgY29tYW5kb3M/KioKYGBge3IgZWNobyA9IFQsIHJlc3VsdHMgPSAnaGlkZSd9CigxICsgKDIgKiAoMyoqMikpKSAjIE9wY2nDs24gMQoxICsgMiAqIDMgXiAyICAgICAgIyBPcGNpw7NuIDIKMSArIDIgKiAoMyoqMikgICAgICMgT3BjacOzbiAzCmBgYAoKW8KhVG9kb3Mgc3VtYW4gMTkhXXsuc3BvaWxlcn0KCjxicj4KCiMjIE5vdGFjacOzbiBjaWVudMOtZmljYQpQcnVlYmEgZXNjcmliaXIgbG9zIHNpZ3VpZW50ZXMgY29tYW5kb3MgZW4gbGEgY29uc29sYSwgwr9Dw7NtbyByZXByZXNlbnRhICoqUioqIGxvcyBuw7ptZXJvIG11eSBncmFuZGVzIG8gbXV5IHBlcXVlw7Fvcz8KYGBge3J9CjEwKio2CjEgLyAxMCAqKiA2CmBgYArCv1F1w6kgcGFzYSBzaSBlc2NyaWJlcyBkaXJlYWN0YW1lbnRlIGAxZTNgIGVuIGxhIGNvbnNvbGE/Cgo8YnI+CgojIyBDb21lbnRhcmlvcwpFcyBwb3NpYmxlIGhhY2VyIGNvbWVudGFyaW9zIGVuIGVsIGPDs2RpZ28gdXNhbmRvIGVsIGNhcmFjdGVyIGAjYCwgbG8gcXVlIGVzY3JpYmFzIGRlc3B1w6lzIGRlIGRpY2hvIHPDrW1ib2xvIG5vIHNlIGVqZWN1dGFyw6EuIFBydWViYSBsbyBzaWd1aWVudGU6CgpgYGB7cn0KIyBFc3RvIGVzIHVuIGNvbWVudGFyaW8KMiArIDIuNSAjIEVzdGUgZXMgdW4gY29tZW50YXJpbwojIDIgKyAyLjUKYGBgCgo8YnI+CgojIyBPdHJhcyBmdW5jaW9uZXMgTWF0ZW3DoXRpY2FzCkFkZW3DoXMgZGUgbG9zIG9wZXJhZG9yZXMgYWxnZWJyw6FpY29zIGNvbW8gYCtgLCBgLWAsIGAvYCwgYCpgIGV0Yy4sICoqUioqIHBvc2VlICpmdW5jaW9uZXMqIHByZWVzdGFibGVjaWRhcyBxdWUgbGxldmFuIGEgY2FibyBvdHJhcyBvcGVyYWNpb25lcyBhcml0bcOpdGljYXMuIENhZGEgZnVuY2nDs24gcmVjaWJlIHVubyBvIG3DoXMgcGFyw6FtZXRyb3MsIGxvcyBjdWFsZXMgbG9zIGVzY3JpYmltb3MgZW50cmUgcGFyw6ludGVzaXMsIHkgc2VwYXJhZG9zIHBvciBjb21hczoKYGBge3J9CiMgUmVkb25kZWEgMy4xNDE1OTI2IGEgdHJlcyBkZWNpbWFsZXMKcm91bmQoMy4xNDE1OTI2LCBkaWdpdHMgPSAzKSAjIGVsIHBhcsOhbWV0cm8gZGlnaXRzIHRvbWEgZWwgdmFsb3IgZGUgMwphYnMoMSAtIDEwKSAjIFZhbG9yIGFic29sdXRvIGRlIGxhIG9wZXJhY2nDs24gMSAtIDEwID0gLTkKc3VtKDUsIDEwKSAjIDUgKyAxMApzcXJ0KDkpICMgcmHDrXogY3VhZHJhZGEgZGUgOQpsb2coMSkgIyBsbiBkZSAxCmxvZyg4LCBiYXNlID0gMikgIyBsb2cgYmFzZSAyIGRlIDgKbG9nMTAoMTAwMCkgIyBsb2cgYmFzZSAxMCBkZSAxMDAwCmV4cCgxKSAjIMK/UXXDqSBoYWNlIGVzdGEgZnVuY2nDs24/CmBgYAoKPGJyPgoKIyMgQXl1ZGEgZW4gUgoKTm8gZXMgbmVjZXNhcmlvIG1lbW9yaXphciB0b2RhcyBsYXMgZnVuY2lvbmVzLCBzaSBxdWllcmVzIGhhY2VyIGFsZ28gZW4gUiBwdWVkZXMgZ29vZ2xlYXJsbywgc2VndXJhbWVudGUgZW5jb250cmFyw6FzIHVuYSByZXNwdWVzdGEuICAKT3RyYSBvcGNpw7NuIGVzIHVzYXIgZWwgcGFuZWwgZGUgKipBeXVkYSoqIGVuIFIuIFBvciBlamVtcGxvLCB2YW1vcyBhIGF2ZXJpZ3VhciBxdWUgaGFjZSBsYSBmdW5jacOzbiBgZXhwKClgOgpgYGB7cn0KP2V4cApgYGAKCjxkaXYgY2xhc3M9ImFsZXJ0IGFsZXJ0LWRpc21pc3NpYmxlIGFsZXJ0LXN1Y2Nlc3MiPgo8aDQgY2xhc3M9ImFsZXJ0LWhlYWRpbmciPsKhQXRlbmNpw7NuITwvaDQ+CiAgPGJ1dHRvbiB0eXBlPSJidXR0b24iIGNsYXNzPSJjbG9zZSIgZGF0YS1kaXNtaXNzPSJhbGVydCI+JnRpbWVzOzwvYnV0dG9uPgogIEVuIGVsIHBhbmVsIGRlICoqQXl1ZGEqKiwgbyAqYEhlbHBgKiwgZGUgUlN0dWRpbyBlcyBwb3NpYmxlIGNvbnN1bHRhciBsYSBkb2N1bWVuYWNpw7NuIHNvYnJlIGxhcyBmdW5jaW9uZXMgeSBjb21hbmRvcyBxdWUgcG9kZW1vcyB1c2FyIGVuIFIuIFB1ZWRlcyB1c2FyIGxhIHNpbnTDoXhpcyBgP25vbWJyZUZ1bmNpb25gIChjb21vIGVuIGA/ZXhwYCBvIGA/c3VtYCksIG8gZGlyZWN0YW1lbnRlIGVzY3JpYmlyIGVuIGxhIHNlY2Npw7NuIGRlIGLDunNxdWVkYSBkZWwgcGFuZWwgZGUgKipBeXVkYSoqLgo8L2Rpdj4KCgpQdWVkZXMgY29uc3VsdGFyIGF5dWRhIHRhbWJpw6luIHNvYnJlIGPDs21vIGZ1bmNpb25hbiBsb3Mgb3BlcmFkb3Jlcy4gUG9yIGVqZW1wbG86CmBgYHtyfQo/IisiCmBgYAoKKipFamVyY2ljaW86Kiogwr9RdcOpIGhhY2VuIGxvcyBvcGVyYWRvcmVzIGAlXCVgIHkgYCUlYDoKCmBgYHtyIGV2YWw9RkFMU0V9CjQgJS8lIDIKNCAvIDIKNSAlLyUgMgo1IC8gMgoKNCAlJSAyCjUgJS8lIDIKYGBgCgoqKsKhTGlzdG8hKiogIApQdWVkZXMgY29udGludWFyIGhhY2lhIGxhIHNpZ3VpZW50ZSBzZWNjacOzbi4KCioqKgoKCjxidXR0b24gdHlwZT0iYnV0dG9uIiBjbGFzcz0iYnRuIGJ0bi1wcmltYXJ5IHB1bGwtbGVmdCI+CiAgPGEgaHJlZj0iLi9pbmRleC5odG1sIiBzdHlsZT0iY29sb3I6aW5oZXJpdCI+IEluaWNpbyA8L2E+CjwvYnV0dG9uPgoKPGJ1dHRvbiB0eXBlPSJidXR0b24iIGNsYXNzPSJidG4gYnRuLXByaW1hcnkgcHVsbC1yaWdodCI+CiAgPGEgaHJlZj0iLi9pbnRyb19SX3AyLmh0bWwiIHN0eWxlPSJjb2xvcjppbmhlcml0Ij4gU2lndWllbnRlIDwvYT4KPC9idXR0b24+Cgo=</div>
 <!-- Footer -->
 <footer class="page-footer font-small blue">
 

@@ -1,5 +1,5 @@
 ---
-title: 'Introducción a R: Parte 2'
+title: 'Introducción a R: Tipos de datos'
 ---
 ***
 # Scrips y tipos de datos
@@ -11,31 +11,45 @@ Hasta ahora hemos usado únicamente la consola. Llegó la hora de llevar un regi
 Para ellos vamos a crear un archivo *.R* usando `File > New File > R script`, esto generará un archivo donde podremos ir escribiendo comandos de **R** sin necesidad de tener que ejecutarlos directamente sobre la consola.
 
 ### Guardar el archivo "*.R*"
-Puedes guardar el archivo desde `File > Save`, o con `Ctrl + S`. Guárdalo en el **Escritorio** dentro de una carpeta llamada *Taller_R*, nombrando el archivo como *Intro_R.R*; es importante usar la extensión __*.R*__.  
-Una vez guardado vamos a la ventana de navegación de archivos (**Files**) dentro de RStudio (panel inferior derecho). Puedes navegar hasta la carpeta de trabajo.  
-En la pestaña **_More_** del panel de navegación de archivos, selecciona *`Set As Working Directory`*.
+Puedes guardar el archivo desde `File > Save`, o presionando `Ctrl + S`. Guárdalo en el **Escritorio** dentro de una carpeta llamada *Taller_R*, nombrando el archivo como *Intro_R.R*. 
 
-¿Qué ocurrió en la consola?
+<div class="alert alert-dismissible alert-danger">
+<h4 class="alert-heading">¡Atención!</h4>
+  <button type="button" class="close" data-dismiss="alert"></button>
+  Es importante usar la extensión <strong>.R</strong>.
+</div>
+
+Una vez guardado vamos a la ventana de navegación de archivos (`*Files*`) dentro de **RStudio** (panel inferior derecho). Puedes navegar hasta la carpeta de trabajo.  
+En la pestaña `*More*` del panel de navegación de archivos, selecciona *`Set As Working Directory`*.
+
+**¿Qué ocurrió en la consola?**
+
+[Se ha usado el comando `setwd()`, *set working directory*, que justamente establece como directorio de trabajo a la carpeta especificada.]{.spoiler}
+
+Ahora prueba el siguiente comando:
 
 ```{r eval=FALSE}
-getwd() # Este comando nos dice la ruta del directorio de trabajo donde estamos.
-# Lo usaremos más adelante cuando trabajemos con archivos.
+getwd()
 ```
 
-A partir de ahora puedes escribir los comandos que vayamos viendo directamente en el archivo *Intro_R.R*, escribiéndo un comando por línea.  
-Puedes ejecutar una línea colocándo el cursor sobre ella y presionando `Crtl + Enter`. También puedes ejecutar múltiples líneas si las seleccionas con el cursor y luego presionas `Crtl + Enter`.
+Este comando nos dice la ruta del directorio de trabajo donde estamos. Lo usaremos más adelante cuando trabajemos con archivos.
+
+A partir de ahora puedes escribir los comandos que vayamos viendo directamente en el archivo *Intro_R.R*, escribiendo un comando por línea.  
+Puedes ejecutar una línea colocándo el cursor sobre ella y presionando `Crtl + Enter`. También puedes ejecutar múltiples líneas si las seleccionas **todas** con el cursor y luego presionas `Crtl + Enter`.
+
+<br>
 
 ## Variables y asignaciones
 
-En R, es posible almacenar valores en variables usando el operador de asignación `<-`, o `=`: 
+En **R**, es posible almacenar valores en variables usando el operador de asignación `<-`, o `=`: 
 ```{r}
-# Asignamos a la variable llamada "temperatura" el valor numérico 25
-x = 25
+# Asignamos a la variable llamada "temp" el valor numérico 25
+temp = 25
 ```
-Al ejecutar el comando, R no devúelve una respuesta. Sin embargo si escribimos el nombre de la variable R nos retornará el valor que le corresponde:
+Al ejecutar el comando, **R** no devúelve una respuesta. Sin embargo, si escribimos el nombre de la variable **R** nos retornará el valor que le corresponde:
 ```{r}
 # "Llamámos" a la variable "temperatura"
-x
+temp
 ```
 
 **_Nota:_** ¿Qué pasa si en lugar de escribir `x` (minúscula) en la consola, escribímos `X` (mayúscula)?
@@ -43,42 +57,47 @@ x
 
 Como es de esperarse, ahora puedes hacer operaciones usando dicha variable:
 ```{r}
-x + 5.0
-x * 5
-log10(x)
+temp + 5.0
+temp * 5
+log10( temp )
 ```
 
-Observa que el valor de `x` no ha cambiado aunque hayamos operado sobre él. Ejecuta lo siguiente:
+Observa que el valor de `temp` no ha cambiado aunque hayamos operado sobre él. Ejecuta lo siguiente:
 ```{r}
 # print y paste nos sirven para "imprimir" en la consola:
-print( paste( "El valor actual de x es:", x ) )
+print( paste( "El valor actual de temp es:", temp ) )
 # Actualizamos x
 # Usamos el operador "=" o "<-"
-x = x * 2 
-print( paste( "El nuevo valor de x es:", x ) )
+temp = temp * 2 
+print( paste( "El nuevo valor de temp es:", temp ) )
 ```
 
-Crea ahora una variable $temp_K$ que contenga el doble del valor que tome x. **¿Cuánto vale `y`?**
+Crea ahora una variable `temp_K` que contenga el valor de `temp` más `273.15`. **¿Cuánto vale `temp_K`?**
 ```{r}
-y = x * 2
-y
+temp_K = temp + 273.15
+temp_K
 ```
 
-Asigna un nuevo valor a `x` de tal manera que `y` ahora pueda valer 1,000.
+Crea una nueva variable `temp_F` que convierta el valor de `temp` a grados *Fahrenheit*.
+
+[ x°C * 9/5 + 32 = y°F]{.spoiler}
+
 ```{r eval=FALSE}
 # Actualiza el valor de x.
-x <- ingresa tu respuesta
+temp_F <- ingresa tu respuesta
+temp_F
 ```
 
 **Ojo**: Si tratas de ejecutar el comando así, te dará error. ¿Por qué?
 
+<br>
 
 ### ¿Cómo nombrar variables?
 
 * Los nombres de las variables pueden contener letras, números, guiones bajos y puntos. 
 * **No pueden comenzar con un número ni contener espacios o guiones medios entre palabras.**  
 
-**Ejercicio:** Verifica cuales de las siguientes formas de nombrar una variables son válidas (ve ejecuatando uno a uno):
+**Ejercicio:** Verifica cuales de las siguientes formas de nombrar una variables son válidas (ejecuta cada comando uno a uno):
 ```{r eval=FALSE}
 numero_dos = 2
 numero-tres = 3
@@ -102,9 +121,13 @@ once = "once"
 
 **¿Cuántas variables pudiste crear?**
 
+<br>
+
 ### Paneles *`Environment`* y *`History`*
 Tras ejecutar los comandos anteriores verás que en el panel superior derecho, en la pestaña *`Environment`* se han ido guardando las variables que has creado. Dichas variables están guardadas en memoria y pueden ser usadas para realizar operaciones.  
 Por otro lado, el panel *`History`* posee el historial de todos los comandos que has ido ejecutando en la sesión.
+
+<br>
 
 ## Operaciones relacionales
 
@@ -118,9 +141,11 @@ numero_dos == 2 # ¿Son iguales?: Observa que esta vez usamos "==", y no "="
 2 < 1 # ¿Es menor que?: Devuelve FALSE
 ```
 
+<br>
+
 ## Tipos de datos
 
-En R, casi todos los datos con los que trabajamos son considerados **_Objetos_**, lo que significa que cada dato pertenece a una **clase** en particular, y por ello tiene atributos particulares.  
+En **R**, casi todos los datos con los que trabajamos son considerados **_Objetos_**, lo que significa que cada dato pertenece a una **clase** en particular, y por ello tiene atributos particulares.  
 Los tipos de datos **básicos** más comunes en R son los siguientes:
 
 * **numeric**: número real
@@ -128,7 +153,7 @@ Los tipos de datos **básicos** más comunes en R son los siguientes:
 * **character**: cadena de texto
 * **logical**: valores lógicos (verdadero o falso)
 
-Hasta ahora hemos utilizado algunos de ellos, y es importante saber con que tipo de datos estamos trabajando, pues de ello depende qué operaciones podemos realizar con ellos. A cotinuación usamos la función `class()` que nos indica qué tipo de dato esun objeto:
+Hasta ahora hemos utilizado algunos de ellos, y es importante saber con que tipo de datos estamos trabajando, pues de ello depende qué operaciones podemos realizar con ellos. A cotinuación usamos la función `class()` que nos indica qué tipo de dato es un objeto:
 
 ```{r collapse=TRUE}
 numero_real = 100.5
@@ -150,7 +175,11 @@ valor_logico = TRUE # También puede ser FALSE
 class(valor_logico)
 ```
 
-**Ejercicio**: ¿Cuáles de las siguientes operaciones es posible realizar? ¿Qué tipo de dato es el resultado de cada una?  
+**Ejercicio**: 
+
+- ¿Cuáles de las siguientes operaciones es posible realizar?
+- ¿Qué tipo de dato es el resultado de cada una?
+
 Usa la función `class()` para evaluar cada resultado (por ejemplo: `class(100 + 2)`)
 
 ```{r eval=FALSE}
@@ -165,6 +194,11 @@ paste("100" + 2) 	#(8
 paste(100 + 2)		#(9
 ```
 
+<div class="alert alert-dismissible alert-success">
+<h4 class="alert-heading">¡Atención!</h4>
+  <button type="button" class="close" data-dismiss="alert"></button>
+  Recuerda que si hay algún cambio que desees guardar en tu archivo _**.R**_ puedes utilizar `File > Save` o `Ctrl + S`. No olvides tampoco utilizar los comentarios (`#`) para documentar los comandos y pasos que has realizado.
+</div>
 
 ***
 
