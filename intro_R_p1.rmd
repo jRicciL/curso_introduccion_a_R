@@ -140,5 +140,5 @@ Puedes continuar hacia la siguiente sección.
 <a class="btn btn-primary pull-left" href="./index.html" role="button"> Inicio </a>
 
 
-<a class="btn btn-primary pull-left" href="./intro_R_p2.html" role="button"> Siguiente </a>
+<a class="btn btn-primary pull-right" href="./intro_R_p2.html" role="button"> Siguiente </a>
 
