@@ -5,14 +5,15 @@ title: 'Estructuras de datos'
 # Matrices, Listas y Dataframes
 
 ## Matrices
-Al igual que los vectores, las matrices son una estructura de datos del **mismo tipo**, con la diferencia de que en las matrices los datos están estructurados en dos dimensión. Es posible crear matrices usando el comando `matrix()`. 
+Al igual que los vectores, las matrices son una estructura de datos del **mismo tipo**, con la diferencia de que en las matrices los datos están estructurados en dos dimensiones: **Filas** y **Columnas**.  
+Es posible crear matrices usando el comando `matrix()`. 
 
 ```{r}
 matriz = matrix(1:15, byrow = TRUE, nrow = 3)
 matriz
 ```
 
-También es posible tener estructuras de datos de más de dos dimensiones, para ello usamos el comando `array()`.
+También es posible tener estructuras de datos de más de dos dimensiones, para ello usamos el comando `array()`.  
 En este tutorial veremos poco sobre matrices, pero es importante que algunos de los comandos que veremos para los `DataFrames` son también aplicables para las matrices. Puedes consultar más al respecto en los siguientes vinculos: [1](https://www.oreilly.com/library/view/learning-r/9781449357160/ch04.html), [2](http://www.r-tutor.com/r-introduction/matrix).
 
 <br>
@@ -127,7 +128,7 @@ tail(ensTab, n = 3)
 <div class="alert alert-dismissible alert-success">
 <h4 class="alert-heading">¡Ojo!</h4>
   <button type="button" class="close" data-dismiss="alert"></button>
-   En `Environment` puedes comprobar que el objeto `ensTab` ha sido creado, puedes abrirlo desde *RStudio* para examinarlo. También puedes usar el comando `View(nombre_del_dataFrame )`.
+   En `Environment` puedes comprobar que el objeto `ensTab` ha sido creado, puedes abrirlo desde *RStudio* para examinarlo. También puedes usar el comando `View(nombre_del_dataFrame)`.
 </div>
 
 <br>
@@ -231,7 +232,7 @@ percentage =  avg_coding_base_pairs / ensTab$genome_length * 100
 ensTab$coding_genes_percentage = percentage
 ```
 
-## Un poco más sobre gráficos
+## Un poco sobre gráficos
 Podemos usar el comando `barplot()` para visualizar nuestros datos en un gráfico de barras. Supon que queremos visualizar únicamente los datos de genes codificantes, ncRAN y pseudo genes. Para ello creamos un nuevo DataFrame con sólo estos datos:
 
 ```{r}
@@ -285,10 +286,7 @@ Puedes continuar hacia la siguiente sección.
 
 ***
 
-<button type="button" class="btn btn-primary pull-left">
-  <a href="./intro_R_p3.html" style="color:inherit"> Anterior </a>
-</button>
+  <a class="btn btn-primary pull-left" href="./intro_R_p3.html" role="button"> Anterior </a>
 
-<button type="button" class="btn btn-primary pull-right">
-  <a href="./index.html" style="color:inherit"> Siguiente </a>
-</button>
+
+  <a class="btn btn-primary pull-right" href="./index.html" role="button"> Siguiente </a>

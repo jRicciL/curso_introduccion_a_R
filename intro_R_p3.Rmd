@@ -27,6 +27,8 @@ print(z)
 class(z)
 ```
 
+Como verás el caracter `:` es también un operador que ejecuta una función. Puedes averiguar más usando la ayuda que brinda **R**: `?":"`.
+
 **¿Qué tipo de dato es el vector `z`?**
 
 Finalmente, es posible combinar dos o más vectores:
@@ -209,10 +211,8 @@ Puedes continuar hacia la siguiente sección.
 ***
 
 
-<button type="button" class="btn btn-primary pull-left">
-  <a href="./intro_R_p2.html" style="color:inherit"> Anterior </a>
-</button>
 
-<button type="button" class="btn btn-primary pull-right">
-  <a href="./estructuras_de_datos.html" style="color:inherit"> Siguiente </a>
-</button>
+<a class="btn btn-primary pull-left" href="./intro_R_p2.html" role="button"> Anterior </a>
+
+<a class="btn btn-primary pull-right" href="./estructuras_de_datos.html" role="button"> Siguiente </a>
+

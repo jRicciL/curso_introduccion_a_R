@@ -19,8 +19,8 @@ Puedes guardar el archivo desde `File > Save`, o presionando `Ctrl + S`. Guárda
   Es importante usar la extensión <strong>.R</strong>.
 </div>
 
-Una vez guardado vamos a la ventana de navegación de archivos (`*Files*`) dentro de **RStudio** (panel inferior derecho). Puedes navegar hasta la carpeta de trabajo.  
-En la pestaña `*More*` del panel de navegación de archivos, selecciona *`Set As Working Directory`*.
+Una vez guardado vamos a la ventana de navegación de archivos (*`Files`*) dentro de **RStudio** (panel inferior derecho). Puedes navegar hasta la carpeta de trabajo.  
+En la pestaña *`More`* del panel de navegación de archivos, selecciona *`Set As Working Directory`*.
 
 **¿Qué ocurrió en la consola?**
 
@@ -48,11 +48,11 @@ temp = 25
 ```
 Al ejecutar el comando, **R** no devúelve una respuesta. Sin embargo, si escribimos el nombre de la variable **R** nos retornará el valor que le corresponde:
 ```{r}
-# "Llamámos" a la variable "temperatura"
+# "Llamámos" a la variable "temp"
 temp
 ```
 
-**_Nota:_** ¿Qué pasa si en lugar de escribir `x` (minúscula) en la consola, escribímos `X` (mayúscula)?
+**_Nota:_** ¿Qué pasa si en lugar de escribir `temp` (minúscula) en la consola, escribímos `TEMP` (mayúscula)?
 
 
 Como es de esperarse, ahora puedes hacer operaciones usando dicha variable:
@@ -62,13 +62,14 @@ temp * 5
 log10( temp )
 ```
 
-Observa que el valor de `temp` no ha cambiado aunque hayamos operado sobre él. Ejecuta lo siguiente:
+Observa que el valor de `temp` no ha cambiado aunque hayamos operado sobre él.  
+Ejecuta lo siguiente:
 ```{r}
 # print y paste nos sirven para "imprimir" en la consola:
 print( paste( "El valor actual de temp es:", temp ) )
 # Actualizamos x
 # Usamos el operador "=" o "<-"
-temp = temp * 2 
+temp <- temp * 2 
 print( paste( "El nuevo valor de temp es:", temp ) )
 ```
 
@@ -80,7 +81,7 @@ temp_K
 
 Crea una nueva variable `temp_F` que convierta el valor de `temp` a grados *Fahrenheit*.
 
-[ x°C * 9/5 + 32 = y°F]{.spoiler}
+[ _**x**_ *°C* * 9/5 + 32 = _**y**_ *°F*]{.spoiler}
 
 ```{r eval=FALSE}
 # Actualiza el valor de x.
@@ -192,6 +193,7 @@ TRUE == 1			#(5
 paste("100" + "2")	#(7
 paste("100" + 2) 	#(8
 paste(100 + 2)		#(9
+paste(100, 2)     #(10
 ```
 
 <div class="alert alert-dismissible alert-success">
@@ -207,11 +209,7 @@ Puedes continuar hacia la siguiente sección.
 
 ***
 
-<button type="button" class="btn btn-primary pull-left">
-  <a href="./intro_R_p1.html" style="color:inherit"> Anterior </a>
-</button>
+<a class="btn btn-primary pull-left" href="./intro_R_p1.html" role="button"> Anterior </a>
 
-<button type="button" class="btn btn-primary pull-right">
-  <a href="./intro_R_p3.html" style="color:inherit"> Siguiente </a>
-</button>
+<a class="btn btn-primary pull-right" href="./intro_R_p3.html" role="button"> Siguiente </a>
 
