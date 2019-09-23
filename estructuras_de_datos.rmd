@@ -286,7 +286,7 @@ Puedes continuar hacia la siguiente sección.
 ***
 
 <button type="button" class="btn btn-primary pull-left">
-  <a href="./intro_R_p3.html" style="color:inherit"> Inicio </a>
+  <a href="./intro_R_p3.html" style="color:inherit"> Anterior </a>
 </button>
 
 <button type="button" class="btn btn-primary pull-right">
