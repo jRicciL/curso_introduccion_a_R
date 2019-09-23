@@ -108,7 +108,7 @@ Otra opción es usar el panel de **Ayuda** en R. Por ejemplo, vamos a averiguar 
 <div class="alert alert-dismissible alert-success">
 <h4 class="alert-heading">¡Atención!</h4>
   <button type="button" class="close" data-dismiss="alert">&times;</button>
-  En el panel de **Ayuda**, o *`Help`*, de RStudio es posible consultar la documenación sobre las funciones y comandos que podemos usar en R. Puedes usar la sintáxis `?nombreFuncion` (como en `?exp` o `?sum`), o directamente escribir en la sección de búsqueda del panel de **Ayuda**.
+  En el panel de **Ayuda**, o *`Help`*, de RStudio es posible consultar la documenación sobre las funciones y comandos que podemos usar en R. Puedes usar la sintaxis `?nombreFuncion` (como en `?exp` o `?sum`), o directamente escribir en la sección de búsqueda del panel de **Ayuda**.
 </div>
 
 

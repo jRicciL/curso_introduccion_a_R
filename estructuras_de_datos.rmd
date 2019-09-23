@@ -44,7 +44,7 @@ Los elementos dentro de una lista se obtienen usando dos corchetes cuadrados ani
 
 **Ejercicio:**
 
-* ¿Cuál es la deferencia entre los siguientes dos comandos?
+* ¿Cuál es la diferencia entre los siguientes dos comandos?
 * ¿Qué tipo de dato es cada uno? Usa la función `class()` para veriguarlo.
 
 ```{r eval=FALSE}
@@ -72,7 +72,7 @@ Las tres formas anteriores son válidas y permiten obtener el mismo resultado.
 
 ## DataFrames
 
-* Los  `DataFrames` son uno de los objetos más usados en R.
+* Los `DataFrames` son uno de los objetos más usados en R.
 * Podemos entender a un `Dataframe` como una tabla de datos de un determinado número de filas y columnas. Sin embargo, a diferencia de las matrices, los DataFrames pueden tener datos heterogéneos.
 
 Comencémos creando un `DataFrame` usando el comando `data.frame()`:
