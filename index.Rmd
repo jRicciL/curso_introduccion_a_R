@@ -49,5 +49,7 @@ output:
   <p class="lead">
     <a class="btn btn-primary btn-lg btn-block" href="./intro_R_p1.html" role="button">Comenzar</a>
   </p>
+
+  
 </div>
 </div>

@@ -49,6 +49,11 @@ nuevo_vector
 
 ```{r include=FALSE}
 c(1:49, 51:100)
+```
+
+Al finalizar, comprueba si el valor `50` está en tu vector utilizando el operador `%in%`.
+
+```{r include=FALSE}
 seq(2, 100, by = 2)
 seq(0.1, 10, by = 0.1)
 seq(0.1, 10, length.out = 100)
