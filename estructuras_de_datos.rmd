@@ -275,7 +275,7 @@ barplot( t(m.ensTab))
 barplot( t(m.ensTab), horiz = TRUE, las = 1, 
          # Y agregamos algo de decoración
          col = c("indianred3", "turquoise4", "lightgoldenrod"), 
-         xlab = "Pares de bases",
+         xlab = "Número de genes",
          legend.text = (colnames(genesTab))) 
 ```
 
