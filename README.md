@@ -1,7 +1,7 @@
 Curso de Introducción a R
 ==============================
 
-[Guía de introducción a R, RStudio y Bioconductor](https://jriccil.github.io/IntroR/), v. 1.0.
+[Guía de introducción a R, RStudio y Bioconductor](https://jriccil.github.io/curso_introduccion_a_R/), v. 1.0.
 
 
 ### Copyright
